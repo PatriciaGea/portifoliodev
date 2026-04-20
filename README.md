@@ -1,100 +1,134 @@
-# Patrícia Gea — Portfolio
+# Patricia Gea Portfolio
 
-A modern, responsive portfolio website built with **Next.js 14**, **TypeScript**, and **CSS custom properties**.
+Personal portfolio built with Next.js App Router, TypeScript, and a custom UI layer focused on performance, clarity, and responsive behavior.
 
-## ✨ Features
+## Overview
 
-- 🌙 Dark / Light mode (default: dark)
-- 🎨 Custom color palette: `#5170ff` (primary), `#ff66c4` (pink), `#791919` (red)
-- 📱 Fully responsive design
-- ⚡ Animated particle background on hero
-- 🧭 Smooth scroll navigation
-- 📊 Interactive skill bars with category tabs
-- 🗂️ Filterable projects section
-- 📬 Contact section
-- ♿ Accessibility best practices
-- 🔤 Custom fonts: Syne (display) + DM Sans (body) + JetBrains Mono
+This project presents professional profile, technical stack, selected projects, and contact channels in a single-page experience.
 
-## 🚀 Getting Started
+Core goals:
 
-### Prerequisites
+- Present background and capabilities with clear information hierarchy
+- Keep the interface lightweight and responsive across desktop and mobile
+- Maintain a clean component structure for ongoing updates
+- Provide direct contact through an integrated form
+
+## Features
+
+- Hero section with animated rotating profile image
+- Compact About section cards with education, interests, languages, and Instagram portfolio links
+- Technology stack and concepts overview
+- Project showcase with category labels
+- Contact section with direct channels and form submission
+- EmailJS integration for form delivery
+- Dark/light theme support
+
+## Tech Stack
+
+- Framework: Next.js 14 (App Router)
+- Language: TypeScript
+- UI: React 18 + CSS (custom properties)
+- Icons: Lucide React
+- Theme handling: next-themes
+- Animations: CSS keyframes + Framer Motion
+- Form delivery: EmailJS Browser SDK
+
+## Project Structure
+
+```text
+src/
+  app/
+    globals.css
+    layout.tsx
+    page.tsx
+  components/
+    layout/
+      Navbar.tsx
+      Footer.tsx
+      ThemeProvider.tsx
+    sections/
+      Hero.tsx
+      About.tsx
+      TechStack.tsx
+      Projects.tsx
+      Contact.tsx
+  lib/
+    portfolio-data.ts
+public/
+  images/
+```
+
+## Getting Started
+
+### Requirements
+
 - Node.js 18+
-- npm or yarn
+- npm
 
-### Installation
+### Install and Run
 
 ```bash
-# Clone or unzip the project
-cd portfolio
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open http://localhost:3000.
 
-### Build for production
+### Production
 
 ```bash
 npm run build
 npm start
 ```
 
-## 📁 Project Structure
+## Environment Variables
 
-```
-src/
-├── app/
-│   ├── globals.css       # All CSS variables, themes, animations
-│   ├── layout.tsx        # Root layout with fonts & ThemeProvider
-│   └── page.tsx          # Main page assembling sections
-└── components/
-    ├── layout/
-    │   ├── Navbar.tsx        # Sticky nav with mobile menu
-    │   ├── Footer.tsx        # Footer with socials
-    │   └── ThemeProvider.tsx # Dark/light mode wrapper
-    └── sections/
-        ├── Hero.tsx          # Animated hero with particles
-        ├── About.tsx         # About me with highlights
-        ├── TechStack.tsx     # Skills with bars & tabs
-        ├── Projects.tsx      # Project cards with filters
-        └── Contact.tsx       # Contact form + info
+Create a local environment file named `.env.local` in the project root.
+
+Required variables for the contact form:
+
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-## 🎨 Customization
+Notes:
 
-### Colors
-Edit in `src/app/globals.css`:
-```css
-:root {
-  --primary: #5170ff;
-  --pink: #ff66c4;
-  --red: #791919;
-}
+- Variables prefixed with `NEXT_PUBLIC_` are exposed to client-side code by design.
+- Keep private credentials out of client-side environment variables.
+
+## Customization Guide
+
+- Profile, social links, highlights, stack, and projects: `src/lib/portfolio-data.ts`
+- Global styles, theme tokens, and animations: `src/app/globals.css`
+- Section content and layout: files in `src/components/sections/`
+
+## Quality Checks
+
+Run linting:
+
+```bash
+npm run lint
 ```
 
-### Projects
-Edit the `projects` array in `src/components/sections/Projects.tsx`
+Build verification:
 
-### GitHub links
-Replace all `https://github.com/PatriciaGea` references with your actual repo URLs.
+```bash
+npm run build
+```
 
-## 🛠️ Tech Stack
+## Deployment
 
-- **Framework**: Next.js 14
-- **Language**: TypeScript
-- **Styling**: CSS custom properties + Tailwind utilities
-- **Animations**: CSS animations + canvas API
-- **Icons**: Lucide React
-- **Theme**: next-themes
-- **Fonts**: Google Fonts (Syne, DM Sans, JetBrains Mono)
+This project can be deployed to any Node-compatible platform.
 
-## 🔎 SEO and Metadata
+Recommended flow:
 
-This project includes complete metadata and SEO routes for Next.js App Router:
+1. Push repository to GitHub.
+2. Import the repository into your hosting platform.
+3. Configure production environment variables.
+4. Deploy using the default Next.js build/start commands.
 
-- `src/app/layout.tsx`: Metadata (Open Graph, Twitter, robots, canonical)
-- `src/app/manifest.ts`: web app manifest
+## License
+
+This repository is for personal portfolio use.

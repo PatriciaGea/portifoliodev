@@ -28,7 +28,7 @@ export interface Project {
 export const siteConfig = {
   name: "Patricia Gea H. Rodrigues",
   displayName: "patriciagea",
-  role: "Frontend & Fullstack Developer",
+  role: "Frontend Developer",
   location: "Stockholm, Sweden",
   email: "patricia.gea@gmail.com",
   phone: "+46 729 23 11 63",
@@ -39,7 +39,7 @@ export const siteConfig = {
 };
 
 export const seoConfig = {
-  title: "Patricia Gea - Frontend & Fullstack Developer",
+  title: "Patricia Gea - Frontend Developer",
   description:
     "Frontend developer with a product and UX background. Building accessible, beautiful web experiences. Based in Stockholm, Sweden.",
   keywords: [
