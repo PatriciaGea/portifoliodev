@@ -1,5 +1,6 @@
 "use client";
 
+import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import { Mail, MapPin, Phone, Github, Linkedin, Globe, Send, CheckCircle } from "lucide-react";
 import { contactInfo, socialLinks } from "@/lib/portfolio-data";
@@ -18,6 +19,10 @@ const socialIconByType = {
   website: Globe,
 } as const;
 
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
@@ -26,10 +31,35 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate form submission — integrate with your preferred service (Formspree, EmailJS, etc.)
-    await new Promise((r) => setTimeout(r, 1200));
-    setSent(true);
-    setLoading(false);
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      alert("EmailJS is not fully configured yet. Add your Service ID to .env.local.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          subject: form.subject,
+          message: form.message,
+        },
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        },
+      );
+
+      setSent(true);
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      alert("Could not send message. Check your EmailJS configuration and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -120,7 +150,7 @@ export default function Contact() {
                 Find me on
               </p>
               <div style={{ display: "flex", gap: 12 }}>
-                {socialLinks.map(({ type, href, label }) => {
+                {socialLinks.filter(({ href }) => !href.includes("instagram.com")).map(({ type, href, label }) => {
                   const Icon = socialIconByType[type];
                   if (!Icon) return null;
 
@@ -274,10 +304,7 @@ export default function Contact() {
                 </button>
 
                 <p style={{ fontSize: "0.75rem", color: "var(--color-text-faint)", textAlign: "center" }}>
-                  💡 Tip: you can also integrate this with{" "}
-                  <a href="https://formspree.io" target="_blank" rel="noopener noreferrer" style={{ color: "var(--primary)" }}>Formspree</a>
-                  {" "}or{" "}
-                  <a href="https://emailjs.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--primary)" }}>EmailJS</a>
+                  EmailJS connected. Missing only the Service ID in your local environment.
                 </p>
               </form>
             )}

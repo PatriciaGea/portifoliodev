@@ -117,11 +117,6 @@ code, pre, .mono {
   cursor: pointer;
 }
 
-.hero-photo-wrap:hover .hero-portrait {
-  animation-play-state: paused;
-  transform: rotateY(180deg);
-}
-
 /* Glow effects */
 .glow-primary {
   box-shadow: 0 0 40px rgba(81,112,255,0.2), 0 0 80px rgba(81,112,255,0.08);

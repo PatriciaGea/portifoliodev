@@ -11,8 +11,7 @@ A modern, responsive portfolio website built with **Next.js 14**, **TypeScript**
 - 🧭 Smooth scroll navigation
 - 📊 Interactive skill bars with category tabs
 - 🗂️ Filterable projects section
-- 📅 Timeline for experience & education
-- 📬 Contact form (ready to connect to Formspree / EmailJS)
+- 📬 Contact section
 - ♿ Accessibility best practices
 - 🔤 Custom fonts: Syne (display) + DM Sans (body) + JetBrains Mono
 
@@ -62,7 +61,6 @@ src/
         ├── About.tsx         # About me with highlights
         ├── TechStack.tsx     # Skills with bars & tabs
         ├── Projects.tsx      # Project cards with filters
-        ├── Experience.tsx    # Timeline + education
         └── Contact.tsx       # Contact form + info
 ```
 
@@ -81,11 +79,6 @@ Edit in `src/app/globals.css`:
 ### Projects
 Edit the `projects` array in `src/components/sections/Projects.tsx`
 
-### Contact form
-The form is ready to integrate. Add your endpoint to the `handleSubmit` function in `Contact.tsx`. Recommended services:
-- [Formspree](https://formspree.io) — just update the fetch URL
-- [EmailJS](https://emailjs.com) — add their SDK
-
 ### GitHub links
 Replace all `https://github.com/PatriciaGea` references with your actual repo URLs.
 
@@ -99,35 +92,9 @@ Replace all `https://github.com/PatriciaGea` references with your actual repo UR
 - **Theme**: next-themes
 - **Fonts**: Google Fonts (Syne, DM Sans, JetBrains Mono)
 
-## 📦 Deployment
-
-Works out of the box with:
-- [Vercel](https://vercel.com) (recommended for Next.js)
-- [Netlify](https://netlify.com)
-- Any Node.js hosting
-
-```bash
-# Deploy to Vercel
-npx vercel
-```
-
-### Vercel Production Setup
-
-1. Push your repository to GitHub.
-2. Import the project in Vercel.
-3. Framework preset: Next.js (auto-detected).
-4. Build command: `npm run build`
-5. Output directory: `.next` (auto)
-6. Install command: `npm install`
-7. Deploy.
-
-If you change your domain later, update `siteConfig.website` in `src/lib/portfolio-data.ts`.
-
 ## 🔎 SEO and Metadata
 
 This project includes complete metadata and SEO routes for Next.js App Router:
 
 - `src/app/layout.tsx`: Metadata (Open Graph, Twitter, robots, canonical)
-- `src/app/sitemap.ts`: XML sitemap
-- `src/app/robots.ts`: robots.txt
 - `src/app/manifest.ts`: web app manifest

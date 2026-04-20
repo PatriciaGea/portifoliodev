@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
 
           <div style={{ display: "flex", gap: 12 }}>
-            {socialLinks.map(({ type, href, label }) => {
+            {socialLinks.filter(({ href }) => !href.includes("instagram.com")).map(({ type, href, label }) => {
               const Icon = iconByType[type];
 
               return (

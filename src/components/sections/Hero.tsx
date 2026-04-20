@@ -171,7 +171,7 @@ bringing experience in UX, product, and growth.
                   fill
                   sizes="(max-width: 768px) 78vw, 420px"
                   priority
-                  style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(2)", transformOrigin: "center top" }}
+                  style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
                 />
               </div>
               <div
@@ -193,7 +193,7 @@ bringing experience in UX, product, and growth.
                   alt="Patricia Gea portrait back"
                   fill
                   sizes="(max-width: 768px) 78vw, 420px"
-                  style={{ objectFit: "cover", objectPosition: "center center", transform: "scale(2)", transformOrigin: "center center" }}
+                  style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
                 />
               </div>
             </div>

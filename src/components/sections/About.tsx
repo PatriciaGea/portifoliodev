@@ -39,86 +39,92 @@ export default function About() {
           display: "flex",
           justifyContent: "center",
         }}>
-          {/* Right: highlights + decorative */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, width: "100%", maxWidth: 920 }}>
-            {/* Visual card with gradient border */}
+          {/* Cards compactos centrados */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, width: "100%" }}>
+
+            {/* Profile card */}
             <div style={{
-              position: "relative",
-              padding: "2px",
-              borderRadius: 20,
+              position: "relative", padding: "2px", borderRadius: 20,
               background: "linear-gradient(135deg, #5170ff, #ff66c4, #791919)",
-              marginBottom: 4,
+              width: "100%", maxWidth: 340,
             }}>
-              <div style={{
-                borderRadius: 18,
-                background: "var(--color-surface)",
-                padding: "24px 22px",
-                textAlign: "center",
-              }}>
+              <div style={{ borderRadius: 18, background: "var(--color-surface)", padding: "20px 18px", textAlign: "center" }}>
                 <div style={{
-                  width: 68, height: 68, borderRadius: "50%",
+                  width: 56, height: 56, borderRadius: "50%",
                   background: "linear-gradient(135deg, #5170ff, #ff66c4)",
-                  margin: "0 auto 12px",
+                  margin: "0 auto 10px",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "1.7rem",
-                }}>
-                  👩🏻‍💻
-                </div>
-                <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "1rem", marginBottom: 4 }}>
+                  fontSize: "1.4rem",
+                }}>👩🏻‍💻</div>
+                <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.92rem", marginBottom: 3 }}>
                   Patrícia Gea H. Rodrigues
                 </p>
-                <p className="gradient-accent-text" style={{ fontFamily: "monospace", fontSize: "0.75rem" }}>
+                <p className="gradient-accent-text" style={{ fontFamily: "monospace", fontSize: "0.72rem" }}>
                   Frontend Developer · Product & UX
                 </p>
               </div>
             </div>
 
-            {/* Stats grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 10 }}>
+            {/* Stats row */}
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8 }}>
               {aboutHighlights.map(({ icon, label, sub }) => {
                 const Icon = iconByKey[icon];
-
                 return (
-                  <div key={label} className="card" style={{ padding: "14px 12px" }}>
-                    <Icon size={16} style={{ color: "var(--primary)", marginBottom: 6 }} />
-                    <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.86rem", marginBottom: 2 }}>{label}</p>
-                    <p style={{ fontSize: "0.74rem", color: "var(--color-text-faint)" }}>{sub}</p>
+                  <div key={label} className="card" style={{ padding: "12px 14px", width: 165, flexShrink: 0 }}>
+                    <Icon size={14} style={{ color: "var(--primary)", marginBottom: 5 }} />
+                    <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.8rem", marginBottom: 2 }}>{label}</p>
+                    <p style={{ fontSize: "0.7rem", color: "var(--color-text-faint)" }}>{sub}</p>
                   </div>
                 );
               })}
             </div>
 
-            <div className="card" style={{ padding: "14px 12px" }}>
-              <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.86rem", marginBottom: 8 }}>
-                Languages
-              </p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
+            {/* Languages */}
+            <div className="card" style={{ padding: "12px 14px", width: "100%", maxWidth: 348 }}>
+              <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.8rem", marginBottom: 7 }}>Languages</p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5 }}>
                 {(languages ?? []).map(({ name, level }) => (
-                  <p key={name} style={{ fontSize: "0.76rem", color: "var(--color-text-muted)" }}>
+                  <p key={name} style={{ fontSize: "0.72rem", color: "var(--color-text-muted)" }}>
                     {name} <span style={{ color: "var(--color-text-faint)" }}>({level})</span>
                   </p>
                 ))}
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 10 }}>
+            {/* Info cards row */}
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8 }}>
               {infoCards.map((card) => (
-                <div key={card.title} className="card" style={{ padding: "14px 12px" }}>
-                  <p style={{ fontSize: "0.74rem", color: "var(--color-text-faint)", marginBottom: 6 }}>
-                    {card.emoji} CARD
-                  </p>
-                  <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.84rem", marginBottom: 4 }}>
-                    {card.title}
-                  </p>
-                  <p style={{ fontSize: "0.76rem", color: "var(--color-text-muted)", marginBottom: 2 }}>
-                    {card.subtitle}
-                  </p>
-                  <p style={{ fontSize: "0.73rem", color: "var(--color-text-faint)" }}>
-                    {card.details}
-                  </p>
+                <div key={card.title} className="card" style={{ padding: "12px 14px", width: 200, flexShrink: 0 }}>
+                  <p style={{ fontSize: "0.72rem", color: "var(--color-text-faint)", marginBottom: 5 }}>{card.emoji}</p>
+                  <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.8rem", marginBottom: 3 }}>{card.title}</p>
+                  <p style={{ fontSize: "0.72rem", color: "var(--color-text-muted)", marginBottom: 2 }}>{card.subtitle}</p>
+                  <p style={{ fontSize: "0.69rem", color: "var(--color-text-faint)" }}>{card.details}</p>
                 </div>
               ))}
             </div>
+
+            {/* Instagram card */}
+            <div className="card" style={{ padding: "12px 14px", width: "100%", maxWidth: 348 }}>
+              <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.8rem", marginBottom: 9 }}>📸 Instagram</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                <a href="https://www.instagram.com/tattooink.se" target="_blank" rel="noopener noreferrer"
+                  style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "0.76rem", color: "var(--color-text)", fontWeight: 600 }}>Studio Stockholm Sweden</span>
+                  <span style={{ fontSize: "0.69rem", color: "var(--color-text-faint)", marginLeft: 8 }}>2018–2025</span>
+                </a>
+                <a href="https://www.instagram.com/estudiotattooink" target="_blank" rel="noopener noreferrer"
+                  style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "0.76rem", color: "var(--color-text)", fontWeight: 600 }}>Studio Sao Paulo Brasil</span>
+                  <span style={{ fontSize: "0.69rem", color: "var(--color-text-faint)", marginLeft: 8 }}>2013–2026</span>
+                </a>
+                <a href="https://www.instagram.com/patriciagea/" target="_blank" rel="noopener noreferrer"
+                  style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "0.76rem", color: "var(--color-text)", fontWeight: 600 }}>@patriciagea</span>
+                  <span style={{ fontSize: "0.69rem", color: "var(--color-text-faint)", marginLeft: 8 }}>Tattoo portfolio</span>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
