@@ -127,23 +127,6 @@ export default function Contact() {
               })}
             </div>
 
-            <div className="card" style={{ padding: "18px 16px", marginBottom: 28 }}>
-              <p style={{ fontFamily: "monospace", fontSize: "0.72rem", color: "var(--color-text-faint)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>
-                Instagram links
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                <a href="https://www.instagram.com/tattooink.se" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-muted)", lineHeight: 1.5 }}>
-                  <strong style={{ color: "var(--color-text)" }}>Studio Stockholm Sweden</strong> - 2018-2025
-                </a>
-                <a href="https://www.instagram.com/estudiotattooink" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-muted)", lineHeight: 1.5 }}>
-                  <strong style={{ color: "var(--color-text)" }}>Studio Sao Paulo Brasil</strong> - 2013-2026
-                </a>
-                <a href="https://www.instagram.com/patriciagea/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-muted)", lineHeight: 1.5 }}>
-                  <strong style={{ color: "var(--color-text)" }}>@patriciagea</strong> - Tattoo portfolio
-                </a>
-              </div>
-            </div>
-
             {/* Socials */}
             <div>
               <p style={{ fontFamily: "monospace", fontSize: "0.72rem", color: "var(--color-text-faint)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
@@ -303,9 +286,6 @@ export default function Contact() {
                   )}
                 </button>
 
-                <p style={{ fontSize: "0.75rem", color: "var(--color-text-faint)", textAlign: "center" }}>
-                  EmailJS connected. Missing only the Service ID in your local environment.
-                </p>
               </form>
             )}
           </div>

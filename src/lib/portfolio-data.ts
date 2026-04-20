@@ -23,6 +23,7 @@ export interface Project {
   category: Filter;
   accent: string;
   emoji: string;
+  image?: string;
 }
 
 export const siteConfig = {
@@ -141,18 +142,27 @@ export const projects: Project[] = [
     category: "Frontend",
     accent: "#ff66c4",
     emoji: "🎨",
+    image: "/images/site2.webp",
   },
   {
-    title: "Task Management App",
+    title: "User Management System",
     description:
-      "Full CRUD application to manage tasks with focus on usability, state management, and API integration. Clean interface with smooth UX.",
-    tech: ["React", "TypeScript", "REST API"],
-    features: ["Create / edit / delete tasks", "API integration", "State management", "Responsive design"],
-    github: siteConfig.github,
-    live: "#",
-    category: "Frontend",
+      "Full-stack user management system with CRUD operations, validation, notifications, and responsive navigation.",
+    tech: ["React", "React Router", "JavaScript", "Vite", "Node.js", "Express", "MongoDB", "Mongoose", "Axios"],
+    features: [
+      "Create, search, display, edit and delete user records",
+      "Notifications with visual feedback",
+      "Form validation",
+      "Responsive design",
+      "RESTful API with CRUD operations",
+      "Client-side routing with React Router",
+    ],
+    github: "https://github.com/PatriciaGea/React_Javascript_Api.git",
+    live: "https://patriciagea.github.io/React_Javascript_Api/",
+    category: "Fullstack",
     accent: "#791919",
     emoji: "✅",
+    image: "/images/site3.webp",
   },
 ];
 

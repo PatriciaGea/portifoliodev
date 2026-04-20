@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
@@ -67,7 +68,15 @@ export default function Projects() {
                 overflow: "hidden",
                 borderBottom: "1px solid var(--color-border)",
               }}>
-                <span style={{ fontSize: "4rem" }}>{project.emoji}</span>
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 380px"
+                    style={{ objectFit: "cover" }}
+                  />
+                ) : null}
                 {/* Decorative circles */}
                 <div style={{
                   position: "absolute",
@@ -116,7 +125,7 @@ export default function Projects() {
                       color: "white", textDecoration: "none",
                       backdropFilter: "blur(8px)",
                     }}
-                    aria-label="Live Demo"
+                    aria-label="Deployed"
                   >
                     <ExternalLink size={18} />
                   </a>
@@ -194,7 +203,7 @@ export default function Projects() {
                     onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--pink)")}
                     onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)")}
                   >
-                    <ExternalLink size={14} /> Live Demo
+                    <ExternalLink size={14} /> Deployed
                   </a>
                 </div>
               </div>
