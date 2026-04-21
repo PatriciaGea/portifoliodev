@@ -33,7 +33,7 @@ export const siteConfig = {
   location: "Stockholm, Sweden",
   email: "patricia.gea@gmail.com",
   phone: "+46 729 23 11 63",
-  website: "https://patricia.tattooink.se",
+  website: "https://patriciageadev.vercel.app",
   github: "https://github.com/PatriciaGea",
   linkedin: "https://www.linkedin.com/in/patriciageadev/",
   availableFor: "internship",
