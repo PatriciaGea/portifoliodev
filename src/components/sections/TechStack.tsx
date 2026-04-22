@@ -11,7 +11,7 @@ export default function TechStack() {
     <section id="stack" className="section" style={{ background: "var(--color-bg-alt)" }}>
       <div className="container">
         <div className="section-heading-block" style={{ textAlign: "center", marginBottom: 64 }}>
-          <h2 className="section-title" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+          <h2 className="section-title">
             <span className="section-title-accent">Skills</span>
           </h2>
           <div className="divider" style={{ margin: "16px auto" }} />

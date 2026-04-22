@@ -16,7 +16,7 @@ export default function Projects() {
       <div className="container">
         <div style={{ marginBottom: 56 }}>
           <div className="section-heading-row" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
-            <h2 className="section-title" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+            <h2 className="section-title">
               <span className="section-title-accent">Projects</span>
             </h2>
 

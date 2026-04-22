@@ -78,7 +78,7 @@ export default function Contact() {
     <section id="contact" className="section">
       <div className="container">
         <div className="section-heading-block" style={{ textAlign: "center", marginBottom: 64 }}>
-          <h2 className="section-title" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+          <h2 className="section-title">
             Let&apos;s <span className="section-title-accent">Work Together</span>
           </h2>
           <div className="divider" style={{ margin: "16px auto" }} />
