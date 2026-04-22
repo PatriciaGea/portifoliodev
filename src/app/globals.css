@@ -168,6 +168,7 @@ code, pre, .mono {
 
 .hero-photo-desktop {
   display: flex;
+  margin-top: -20px;
 }
 
 .hero-portrait {
