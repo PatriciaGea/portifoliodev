@@ -33,7 +33,7 @@ export default function Hero() {
           src="/images/profile-front.png"
           alt="Patricia Gea portrait front"
           fill
-          sizes="(max-width: 768px) 60vw, 300px"
+          sizes="(max-width: 768px) 60vw, 460px"
           priority
           style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
         />
@@ -56,7 +56,7 @@ export default function Hero() {
           src="/images/profile-back.png"
           alt="Patricia Gea portrait back"
           fill
-          sizes="(max-width: 768px) 60vw, 300px"
+          sizes="(max-width: 768px) 60vw, 460px"
           style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
         />
       </div>
@@ -68,6 +68,7 @@ export default function Hero() {
       {/* Mesh gradients - otimizados */}
       <div className="mesh-bg" style={{ width: 400, height: 400, background: "#5170ff", top: -50, right: -100, opacity: 0.08 }} />
       <div className="mesh-bg" style={{ width: 300, height: 300, background: "#ff66c4", bottom: -50, left: -50, opacity: 0.06 }} />
+      <div className="mesh-bg" style={{ width: 520, height: 520, background: "#791919", top: 120, right: -160, opacity: 0.12 }} />
 
       <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: 120, paddingBottom: 80 }}>
         <div className="hero-layout" style={{ maxWidth: 1200 }}>
@@ -125,7 +126,7 @@ export default function Hero() {
             lineHeight: 1.8,
             fontWeight: 300,
           }}>
-            <strong style={{ color: "#791919", fontWeight: 700 }}>Hi Im Patricia Gea</strong>, a frontend developer transitioning from 17 years as a business owner, where I built 3 tattoo studios across Brazil and Sweden, leading teams of up to 20 people and bringing experience in UX, product, and growth.
+            <strong className="hero-highlight-name">Hi, I&apos;m Patricia Gea</strong>, a frontend developer transitioning from 17 years as a business owner, where I built 3 tattoo studios across Brazil and Sweden, leading teams of up to 20 people and bringing experience in UX, product, and growth.
           </p>
           <p style={{
             fontSize: "0.95rem",

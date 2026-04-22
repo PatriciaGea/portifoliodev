@@ -31,8 +31,8 @@ const infoCards = [
   },
   {
     title: "Interests",
-    subtitle: "Music · Art · Illustration",
-    details: "Coding & creative problem solving",
+    subtitle: "Music · Art · Illustration · Coding",
+    details: "Creative problem solving",
     icon: "palette",
   },
 ] as const;

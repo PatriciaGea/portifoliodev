@@ -18,10 +18,10 @@
   --color-bg-alt: #f4f3f8;
   --color-surface: #ffffff;
   --color-surface-alt: #f0eef8;
-  --color-border: rgba(81,112,255,0.15);
+  --color-border: rgba(81,112,255,0.2);
   --color-text: #0d0c12;
-  --color-text-muted: #5c5871;
-  --color-text-faint: #9b96b0;
+  --color-text-muted: #4f4a66;
+  --color-text-faint: #87829f;
   --nav-bg: rgba(252,251,253,0.85);
 }
 
@@ -30,10 +30,10 @@
   --color-bg-alt: #0f0d1a;
   --color-surface: #13111f;
   --color-surface-alt: #1a1730;
-  --color-border: rgba(81,112,255,0.18);
+  --color-border: rgba(81,112,255,0.24);
   --color-text: #f0eeff;
-  --color-text-muted: #a09cbb;
-  --color-text-faint: #5c5878;
+  --color-text-muted: #b5b2cf;
+  --color-text-faint: #746f92;
   --nav-bg: rgba(7,6,15,0.85);
 }
 
@@ -114,6 +114,23 @@ code, pre, .mono {
   background-clip: text;
 }
 
+.hero-highlight-name {
+  font-weight: 700;
+  color: inherit;
+}
+
+.fullstack-label {
+  color: var(--red) !important;
+}
+
+.dark .hero-highlight-name {
+  color: #791919;
+}
+
+.dark .fullstack-label {
+  color: #a64a4a !important;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
@@ -154,8 +171,8 @@ code, pre, .mono {
 }
 
 .hero-portrait {
-  width: min(56vw, 300px);
-  height: min(56vw, 300px);
+  width: min(78vw, 460px);
+  height: min(78vw, 460px);
   cursor: pointer;
 }
 

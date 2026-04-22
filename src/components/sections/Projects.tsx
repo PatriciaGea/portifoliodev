@@ -7,6 +7,7 @@ import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
 
 export default function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
+  const formatFilterLabel = (value: Filter) => (value === "Fullstack" ? "Full-Stack" : value);
 
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
 
@@ -40,7 +41,7 @@ export default function Projects() {
                     transition: "all 0.2s ease",
                   }}
                 >
-                  {f}
+                  {formatFilterLabel(f)}
                 </button>
               ))}
             </div>
@@ -136,7 +137,7 @@ export default function Projects() {
               <div style={{ padding: "24px 24px 20px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
                   <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>{project.title}</h3>
-                  <span style={{
+                  <span className={project.category === "Fullstack" ? "fullstack-label" : undefined} style={{
                     padding: "3px 10px",
                     borderRadius: 100,
                     background: `${project.accent}15`,
@@ -148,7 +149,7 @@ export default function Projects() {
                     flexShrink: 0,
                     marginLeft: 8,
                   }}>
-                    {project.category}
+                    {project.category === "Fullstack" ? "Full-Stack" : project.category}
                   </span>
                 </div>
 

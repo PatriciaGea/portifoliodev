@@ -132,7 +132,7 @@ export const techConcepts = [
 
 export const projects: Project[] = [
   {
-    title: "Tattoo Booking System",
+    title: "Booking System with Login",
     description:
       "A full-stack booking system inspired by real tattoo studio operations - built from first-hand experience running studios across two countries. Improves scheduling flow and client management with a clean, intuitive UI.",
     tech: ["React", "TypeScript", "Node.js", "Express"],
