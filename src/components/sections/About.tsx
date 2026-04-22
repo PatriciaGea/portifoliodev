@@ -1,6 +1,7 @@
 "use client";
 
-import { MapPin, Coffee, Zap, Heart, GraduationCap, BookOpen, Palette, Instagram, UserRound } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Coffee, Zap, Heart, GraduationCap, BookOpen, Palette, Instagram } from "lucide-react";
 import { aboutHighlights, languages } from "@/lib/portfolio-data";
 
 const iconByKey = {
@@ -59,9 +60,16 @@ export default function About() {
                   width: 56, height: 56, borderRadius: "50%",
                   background: "linear-gradient(135deg, #5170ff, #ff66c4)",
                   margin: "0 auto 10px",
+                  overflow: "hidden",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
-                  <UserRound size={26} color="white" />
+                  <Image
+                    src="/images/ChatGPT Image Apr 22, 2026, 02_55_15 PM.svg"
+                    alt="Patricia avatar"
+                    width={56}
+                    height={56}
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.92rem", marginBottom: 3 }}>
                   Patrícia Gea H. Rodrigues
