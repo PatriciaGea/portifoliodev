@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { siteConfig, socialLinks } from "@/lib/portfolio-data";
 
 const socialIconByType = {
@@ -87,7 +87,7 @@ export default function Hero() {
           </div>
 
           {/* Main heading */}
-          <h1 style={{
+          <h1 className="hero-title" style={{
             fontSize: "clamp(1.9rem, 5.2vw, 3.2rem)",
             fontWeight: 600,
             lineHeight: 1.1,
@@ -103,7 +103,7 @@ export default function Hero() {
           {/* Tagline */}
           <p style={{
             fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
-            color: "white",
+            color: "var(--color-text)",
             maxWidth: 560,
             marginBottom: 40,
             lineHeight: 1.4,
@@ -125,9 +125,7 @@ export default function Hero() {
             lineHeight: 1.8,
             fontWeight: 300,
           }}>
-            Hi I’m Patrícia Gea 😃, a frontend developer transitioning from 17 years as a business owner, where I built 3 tattoo studios scaled a cross Brazil and Sweden, leading teams of up to 20 people.
-
-bringing experience in UX, product, and growth.
+            <strong style={{ color: "#791919", fontWeight: 700 }}>Hi Im Patricia Gea</strong>, a frontend developer transitioning from 17 years as a business owner, where I built 3 tattoo studios across Brazil and Sweden, leading teams of up to 20 people and bringing experience in UX, product, and growth.
           </p>
           <p style={{
             fontSize: "0.95rem",
@@ -209,26 +207,6 @@ bringing experience in UX, product, and growth.
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <a
-        href="#about"
-        style={{
-          position: "absolute",
-          bottom: 40,
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 8,
-          textDecoration: "none",
-          color: "var(--color-text-faint)",
-          animation: "float 3s ease-in-out infinite",
-        }}
-      >
-        <span style={{ fontFamily: "monospace", fontSize: "0.65rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>scroll</span>
-        <ArrowDown size={16} />
-      </a>
     </section>
   );
 }

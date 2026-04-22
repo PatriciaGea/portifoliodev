@@ -397,6 +397,10 @@ code, pre, .mono {
     width: 100%;
   }
 
+  .hero-title {
+    text-align: center;
+  }
+
   .hero-photo-wrap {
     width: 100%;
     justify-content: center;
