@@ -27,13 +27,15 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      alert("EmailJS is not fully configured yet. Add your Service ID to .env.local.");
+      setError("Contact form is not configured yet. Please try again later.");
       setLoading(false);
       return;
     }
@@ -56,7 +58,7 @@ export default function Contact() {
       setSent(true);
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch {
-      alert("Could not send message. Check your EmailJS configuration and try again.");
+      setError("Could not send your message right now. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -173,6 +175,10 @@ export default function Contact() {
 
           {/* Right: form */}
           <div className="card" style={{ padding: "36px 32px" }}>
+            <p className="sr-only" role="status" aria-live="polite">
+              {loading ? "Sending message" : sent ? "Message sent" : error ? error : ""}
+            </p>
+
             {sent ? (
               <div style={{ textAlign: "center", padding: "32px 0" }}>
                 <CheckCircle size={48} style={{ color: "#22c55e", margin: "0 auto 16px" }} />
@@ -190,6 +196,11 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                {error ? (
+                  <p role="alert" style={{ fontSize: "0.82rem", color: "#ef4444" }}>
+                    {error}
+                  </p>
+                ) : null}
                 <div className="contact-form-row">
                   {[
                     { id: "name", label: "Name", type: "text", placeholder: "Your name" },
@@ -203,6 +214,7 @@ export default function Contact() {
                         id={id}
                         type={type}
                         required
+                        autoComplete={id === "name" ? "name" : "email"}
                         placeholder={placeholder}
                         value={form[id as keyof typeof form]}
                         onChange={(e) => setForm({ ...form, [id]: e.target.value })}
@@ -228,6 +240,7 @@ export default function Contact() {
                   <input
                     id="subject"
                     type="text"
+                    autoComplete="off"
                     placeholder="What&apos;s it about?"
                     value={form.subject}
                     onChange={(e) => setForm({ ...form, subject: e.target.value })}
@@ -252,6 +265,7 @@ export default function Contact() {
                     id="message"
                     required
                     rows={5}
+                    autoComplete="off"
                     placeholder="Tell me about your project or opportunity..."
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}

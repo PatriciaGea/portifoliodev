@@ -21,6 +21,7 @@ export default function Navbar() {
   return (
     <>
       <nav
+        aria-label="Primary"
         style={{
           position: "fixed",
           top: 0,
@@ -85,6 +86,9 @@ export default function Navbar() {
             <button
               className="show-mobile"
               onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
               style={{
                 width: 40, height: 40, borderRadius: "50%",
                 border: "1px solid var(--color-border)",
@@ -104,7 +108,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div style={{
+        <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" style={{
           position: "fixed",
           inset: 0,
           zIndex: 99,
