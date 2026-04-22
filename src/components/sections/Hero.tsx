@@ -11,6 +11,58 @@ const socialIconByType = {
 } as const;
 
 export default function Hero() {
+  const renderRotatingPortrait = () => (
+    <div
+      className="animate-rotate-image hero-portrait"
+      style={{
+        borderRadius: "50%",
+        background: "linear-gradient(135deg, #5170ff, #ff66c4)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "1rem",
+        color: "white",
+        fontWeight: 700,
+        position: "relative",
+        transformStyle: "preserve-3d",
+        boxShadow: "0 20px 60px rgba(81,112,255,0.3)",
+      }}
+    >
+      <div style={{ width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
+        <Image
+          src="/images/profile-front.png"
+          alt="Patricia Gea portrait front"
+          fill
+          sizes="(max-width: 768px) 60vw, 300px"
+          priority
+          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
+        />
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          borderRadius: "50%",
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          transform: "rotateY(180deg)",
+          backfaceVisibility: "hidden",
+        }}
+      >
+        <Image
+          src="/images/profile-back.png"
+          alt="Patricia Gea portrait back"
+          fill
+          sizes="(max-width: 768px) 60vw, 300px"
+          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <section id="home" style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", overflow: "hidden", background: "linear-gradient(135deg, rgba(81,112,255,0.1) 0%, rgba(255,102,196,0.05) 100%)" }}>
       {/* Mesh gradients - otimizados */}
@@ -59,6 +111,10 @@ export default function Hero() {
           }}>
             With a background in business ownership, scale strategy, product and UX.
           </p>
+
+          <div className="hero-photo-inline" style={{ perspective: "1000px" }}>
+            {renderRotatingPortrait()}
+          </div>
 
           {/* Sub */}
           <p style={{
@@ -147,56 +203,8 @@ bringing experience in UX, product, and growth.
           </div>
 
           {/* Right: rotating image */}
-          <div className="hero-photo-wrap" style={{ perspective: "1000px" }}>
-            <div
-              className="animate-rotate-image hero-portrait"
-              style={{
-                borderRadius: "50%",
-                background: "linear-gradient(135deg, #5170ff, #ff66c4)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1rem",
-                color: "white",
-                fontWeight: 700,
-                position: "relative",
-                transformStyle: "preserve-3d",
-                boxShadow: "0 20px 60px rgba(81,112,255,0.3)",
-              }}
-            >
-              <div style={{ width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
-                <Image
-                  src="/images/profile-front.png"
-                  alt="Patricia Gea portrait front"
-                  fill
-                  sizes="(max-width: 768px) 78vw, 420px"
-                  priority
-                  style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
-                />
-              </div>
-              <div
-                style={{
-                  position: "absolute",
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transform: "rotateY(180deg)",
-                  backfaceVisibility: "hidden",
-                }}
-              >
-                <Image
-                  src="/images/profile-back.png"
-                  alt="Patricia Gea portrait back"
-                  fill
-                  sizes="(max-width: 768px) 78vw, 420px"
-                  style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
-                />
-              </div>
-            </div>
+          <div className="hero-photo-wrap hero-photo-desktop" style={{ perspective: "1000px" }}>
+            {renderRotatingPortrait()}
           </div>
         </div>
       </div>

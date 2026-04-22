@@ -111,10 +111,36 @@ code, pre, .mono {
   align-items: center;
 }
 
+.hero-photo-inline {
+  display: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 6px 0 20px;
+}
+
+.hero-photo-desktop {
+  display: flex;
+}
+
 .hero-portrait {
-  width: min(78vw, 420px);
-  height: min(78vw, 420px);
+  width: min(56vw, 300px);
+  height: min(56vw, 300px);
   cursor: pointer;
+}
+
+.about-cards-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
 /* Glow effects */
@@ -367,8 +393,33 @@ code, pre, .mono {
     gap: 28px;
   }
 
+  .hero-text {
+    width: 100%;
+  }
+
   .hero-photo-wrap {
     width: 100%;
     justify-content: center;
+  }
+
+  .hero-photo-inline {
+    display: flex;
+  }
+
+  .hero-photo-desktop {
+    display: none;
+  }
+
+  .hero-portrait {
+    width: min(60vw, 220px);
+    height: min(60vw, 220px);
+  }
+
+  .about-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-row {
+    grid-template-columns: 1fr;
   }
 }

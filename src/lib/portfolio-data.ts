@@ -74,7 +74,7 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const aboutHighlights = [
-  { icon: "mapPin", label: "Stockholm, Sweden", sub: "Based & available" },
+  { icon: "mapPin", label: "Stockholm, Sweden", sub: "10+ years based here" },
   { icon: "coffee", label: "17 Years", sub: "As a founder & CEO" },
   { icon: "zap", label: "Hyper Island", sub: "2025-2027 program" },
   { icon: "heart", label: "Product Mindset", sub: "UX-first thinking" },
@@ -82,16 +82,28 @@ export const aboutHighlights = [
 
 export const techCloud = [
   "React",
+  "React 18",
   "Next.js",
+  "Next.js App Router",
   "TypeScript",
   "JavaScript",
+  "Tailwind CSS",
+  "Framer Motion",
+  "Lucide React",
+  "next-themes",
+  "EmailJS",
   "Axios",
   "HTML5",
   "CSS3",
   "Node.js",
   "Express",
+  "MongoDB",
+  "Mongoose",
   "Git",
   "GitHub",
+  "Vercel",
+  "ESLint",
+  "PostCSS",
   "Agile",
   "Vite",
   "REST APIs",

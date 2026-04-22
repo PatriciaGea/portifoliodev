@@ -190,7 +190,7 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                <div className="contact-form-row">
                   {[
                     { id: "name", label: "Name", type: "text", placeholder: "Your name" },
                     { id: "email", label: "Email", type: "email", placeholder: "your@email.com" },
