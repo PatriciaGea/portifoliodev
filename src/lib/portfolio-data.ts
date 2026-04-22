@@ -142,6 +142,7 @@ export const projects: Project[] = [
     category: "Fullstack",
     accent: "#5170ff",
     emoji: "🖋️",
+    image: "/images/bookingsystem.webp",
   },
   {
     title: "Portfolio Website",

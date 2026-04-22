@@ -395,10 +395,21 @@ code, pre, .mono {
 
   .hero-text {
     width: 100%;
+    text-align: center;
+  }
+
+  .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-title {
     text-align: center;
+  }
+
+  .hero-cta-row,
+  .hero-social-row {
+    justify-content: center;
   }
 
   .hero-photo-wrap {

@@ -125,6 +125,11 @@ export default function About() {
                     <span style={{ fontSize: "0.76rem", color: "var(--color-text)", fontWeight: 600 }}>Studio Sao Paulo Brazil</span>
                     <span style={{ fontSize: "0.69rem", color: "var(--color-text-faint)", marginLeft: 8 }}>2013–2026</span>
                   </a>
+                  <a href="https://www.instagram.com/patriciagea/" target="_blank" rel="noopener noreferrer"
+                    style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span style={{ fontSize: "0.76rem", color: "var(--color-text)", fontWeight: 600 }}>@patriciagea</span>
+                    <span style={{ fontSize: "0.69rem", color: "var(--color-text-faint)", marginLeft: 8 }}>Tattoo Portfolio</span>
+                  </a>
                 </div>
               </div>
             </div>

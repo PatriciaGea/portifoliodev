@@ -74,7 +74,7 @@ export default function Hero() {
           {/* Left: text */}
           <div className="hero-text">
           {/* Availability badge */}
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 32 }}>
+          <div className="hero-availability" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 32 }}>
             <span style={{
               width: 8, height: 8, borderRadius: "50%",
               background: "#22c55e",
@@ -150,7 +150,7 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 56 }}>
+          <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 56 }}>
             <a href="#projects" className="btn-primary">
               View My Work
             </a>
@@ -168,7 +168,7 @@ export default function Hero() {
           </div>
 
           {/* Social row */}
-          <div style={{ display: "flex", gap: 16, alignItems: "center", marginTop: 24 }}>
+          <div className="hero-social-row" style={{ display: "flex", gap: 16, alignItems: "center", marginTop: 24 }}>
             {socialLinks
               .filter((social) => social.type !== "website")
               .map(({ type, href, label }) => {
