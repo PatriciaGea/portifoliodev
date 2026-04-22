@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import { MapPin, Coffee, Zap, Heart, GraduationCap, BookOpen, Palette, Instagram } from "lucide-react";
 import { aboutHighlights, languages } from "@/lib/portfolio-data";
 
@@ -39,6 +40,9 @@ const infoCards = [
 ] as const;
 
 export default function About() {
+  const { resolvedTheme } = useTheme();
+  const avatarBackground = resolvedTheme === "dark" ? "#000000" : "#ffffff";
+
   return (
     <section id="about" className="section">
       <div className="container">
@@ -58,17 +62,19 @@ export default function About() {
               <div style={{ borderRadius: 18, background: "var(--color-surface)", padding: "20px 18px", textAlign: "center" }}>
                 <div style={{
                   width: 56, height: 56, borderRadius: "50%",
-                  background: "linear-gradient(135deg, #5170ff, #ff66c4)",
+                  background: avatarBackground,
+                  padding: 2,
                   margin: "0 auto 10px",
                   overflow: "hidden",
+                  boxSizing: "border-box",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
                   <Image
                     src="/images/ChatGPT Image Apr 22, 2026, 02_55_15 PM.svg"
                     alt="Patricia avatar"
-                    width={56}
-                    height={56}
-                    style={{ objectFit: "cover" }}
+                    width={52}
+                    height={52}
+                    style={{ objectFit: "cover", borderRadius: "50%" }}
                   />
                 </div>
                 <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.92rem", marginBottom: 3 }}>
