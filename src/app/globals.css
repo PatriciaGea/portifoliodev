@@ -116,7 +116,7 @@ code, pre, .mono {
 
 .hero-highlight-name {
   font-weight: 700;
-  color: inherit;
+  color: #791919;
 }
 
 .fullstack-label {
@@ -124,7 +124,7 @@ code, pre, .mono {
 }
 
 .dark .hero-highlight-name {
-  color: #791919;
+  color: var(--color-text);
 }
 
 .dark .fullstack-label {

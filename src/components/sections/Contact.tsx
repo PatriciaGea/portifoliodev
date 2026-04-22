@@ -57,8 +57,18 @@ export default function Contact() {
 
       setSent(true);
       setForm({ name: "", email: "", subject: "", message: "" });
-    } catch {
-      setError("Could not send your message right now. Please try again.");
+    } catch (err) {
+      const providerMessage =
+        typeof err === "object" && err !== null && "text" in err
+          ? String((err as { text?: string }).text)
+          : "";
+
+      setError(
+        providerMessage
+          ? `Could not send your message: ${providerMessage}`
+          : "Could not send your message right now. Please try again.",
+      );
+      console.error("EmailJS send error:", err);
     } finally {
       setLoading(false);
     }
