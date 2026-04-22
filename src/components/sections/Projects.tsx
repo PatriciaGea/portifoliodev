@@ -15,10 +15,9 @@ export default function Projects() {
     <section id="projects" className="section">
       <div className="container">
         <div style={{ marginBottom: 56 }}>
-          <p className="section-label">{"// projects"}</p>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
-            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-              Projects <span className="gradient-text">{"// projects"}</span>
+          <div className="section-heading-row" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
+            <h2 className="section-title" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+              <span className="section-title-accent">Projects</span>
             </h2>
 
             {/* Filter tabs */}

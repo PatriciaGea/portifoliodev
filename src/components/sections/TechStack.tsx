@@ -10,9 +10,9 @@ export default function TechStack() {
   return (
     <section id="stack" className="section" style={{ background: "var(--color-bg-alt)" }}>
       <div className="container">
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            <span className="gradient-text">Skills</span>
+        <div className="section-heading-block" style={{ textAlign: "center", marginBottom: 64 }}>
+          <h2 className="section-title" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+            <span className="section-title-accent">Skills</span>
           </h2>
           <div className="divider" style={{ margin: "16px auto" }} />
         </div>

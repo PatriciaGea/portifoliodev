@@ -287,6 +287,10 @@ code, pre, .mono {
   padding: 100px 0;
 }
 
+section[id] {
+  scroll-margin-top: 96px;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -341,6 +345,25 @@ code, pre, .mono {
   text-transform: uppercase;
   color: var(--primary);
   margin-bottom: 12px;
+}
+
+.section-heading-block {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.section-title-accent {
+  background: linear-gradient(135deg, #5170ff 0%, #ff66c4 52%, #791919 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 6px 14px rgba(81, 112, 255, 0.14));
 }
 
 /* Divider */
@@ -434,6 +457,17 @@ code, pre, .mono {
 @media (max-width: 768px) {
   .section { padding: 64px 0; }
   h1 { font-size: clamp(2.5rem, 10vw, 5rem); }
+
+  .section-title {
+    text-align: center;
+  }
+
+  .section-heading-row {
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+  }
 
   .hero-layout {
     flex-direction: column;

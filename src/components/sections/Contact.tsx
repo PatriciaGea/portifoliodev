@@ -77,10 +77,9 @@ export default function Contact() {
   return (
     <section id="contact" className="section">
       <div className="container">
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <p className="section-label">{"// contact"}</p>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Let&apos;s <span className="gradient-text">work together</span>
+        <div className="section-heading-block" style={{ textAlign: "center", marginBottom: 64 }}>
+          <h2 className="section-title" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+            Let&apos;s <span className="section-title-accent">Work Together</span>
           </h2>
           <div className="divider" style={{ margin: "16px auto" }} />
           <p style={{ color: "var(--color-text-muted)", maxWidth: 500, margin: "0 auto" }}>

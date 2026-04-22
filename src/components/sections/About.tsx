@@ -42,6 +42,13 @@ export default function About() {
   return (
     <section id="about" className="section">
       <div className="container">
+        <div className="section-heading-block">
+          <h2 className="section-title">
+            <span className="section-title-accent">About Me</span>
+          </h2>
+          <div className="divider" />
+        </div>
+
         <div style={{
           display: "flex",
           justifyContent: "center",
