@@ -28,10 +28,10 @@ export default function Hero() {
     >
       <div style={{ width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
         <Image
-          src="/images/profile-front.png"
+          src="/images/profile-front2.png"
           alt="Patricia Gea portrait front"
           fill
-          sizes="(max-width: 768px) 60vw, 410px"
+          sizes="(max-width: 768px) 60vw, 360px"
           priority
           style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
         />
@@ -54,7 +54,7 @@ export default function Hero() {
           src="/images/profile-back.png"
           alt="Patricia Gea portrait back"
           fill
-          sizes="(max-width: 768px) 60vw, 410px"
+          sizes="(max-width: 768px) 60vw, 360px"
           style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
         />
       </div>

@@ -178,8 +178,8 @@ code, pre, .mono {
 }
 
 .hero-portrait {
-  width: min(78vw, 410px);
-  height: min(78vw, 410px);
+  width: min(74vw, 360px);
+  height: min(74vw, 360px);
   cursor: pointer;
 }
 
@@ -623,8 +623,8 @@ section[id] {
   }
 
   .hero-portrait {
-    width: min(60vw, 240px);
-    height: min(60vw, 240px);
+    width: min(56vw, 210px);
+    height: min(56vw, 210px);
   }
 
   .about-cards-grid {
