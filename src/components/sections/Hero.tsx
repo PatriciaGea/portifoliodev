@@ -57,7 +57,6 @@ export default function Hero() {
           justifyContent: "center",
           transform: "rotateY(180deg)",
           backfaceVisibility: "hidden",
-          position: "absolute",
         }}
       >
         <Image
@@ -120,7 +119,14 @@ export default function Hero() {
                 marginBottom: 24,
               }}
             >
-              Mobile / <span style={{ color: "#1E293B", textDecoration: "none" }}>Frontend</span>{" "}
+              <span style={{
+                color: "#8B5CF6",
+                textDecoration: "underline",
+                textDecorationColor: "#FBBF24",
+                textDecorationStyle: "wavy",
+                textDecorationThickness: "4px",
+                textUnderlineOffset: "6px",
+              }}>Mobile / Frontend</span>{" "}
               <span style={{
                 color: "#8B5CF6",
                 textDecoration: "underline",
@@ -141,7 +147,18 @@ export default function Hero() {
               lineHeight: 1.6,
               fontWeight: 500,
             }}>
-              With a background in business ownership, scale strategy, product and UX.
+              With a background in Product, UX, and scalable strategy.
+            </p>
+            <p style={{
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontSize: "clamp(0.75rem, 1vw, 0.8125rem)",
+              color: "#7d858f",
+              maxWidth: 520,
+              marginBottom: 32,
+              lineHeight: 1.6,
+              fontWeight: 200,
+            }}>
+               BASED IN STOCKHOLM, SWEDEN.
             </p>
 
             {/* Mobile portrait */}
@@ -159,7 +176,8 @@ export default function Hero() {
               lineHeight: 1.8,
               fontWeight: 400,
             }}>
-              <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong> — a frontend developer transitioning from 17 years as a business owner, building 3 tattoo studios across Brazil and Sweden, leading teams of up to 20 people with experience in UX, product, and growth.
+              <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong> — a Mobile and Frontend Developer, with 17 years of previous experience as a business owner, where I built and
+managed 3 tattoo studios across Brazil and Sweden with a team of 20 people.
             </p>
             <p style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
