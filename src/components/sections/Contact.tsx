@@ -52,9 +52,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="section" style={{ background: "#F1F5F9" }}>
-      <div aria-hidden="true" style={{ position: "absolute", top: 40, right: 60, width: 0, height: 0, borderLeft: "18px solid transparent", borderRight: "18px solid transparent", borderBottom: "30px solid #8B5CF6", opacity: 0.2, pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 50, left: 80, width: 55, height: 55, borderRadius: "50%", background: "#34D399", opacity: 0.2, pointerEvents: "none" }} />
-
       <div className="container">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <p className="section-label">05 — Contact</p>

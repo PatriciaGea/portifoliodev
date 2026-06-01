@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react";
 import { siteConfig, socialLinks } from "@/lib/portfolio-data";
 
@@ -17,7 +16,7 @@ export default function Hero() {
       style={{
         borderRadius: "50%",
         border: "2px solid #1E293B",
-        background: "#fff",
+        background: "linear-gradient(135deg, #8B5CF6 0%, #F472B6 45%, #FBBF24 100%)",
         boxShadow: "8px 8px 0px 0px #1E293B",
         display: "flex",
         alignItems: "center",
@@ -26,15 +25,29 @@ export default function Hero() {
         transformStyle: "preserve-3d",
       }}
     >
-      <div style={{ width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
-        <Image
-          src="/images/profile-front2.png"
-          alt="Patricia Gea portrait front"
-          fill
-          sizes="(max-width: 768px) 60vw, 360px"
-          priority
-          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
-        />
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          backfaceVisibility: "hidden",
+          borderRadius: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "'Outfit', system-ui, sans-serif",
+            fontSize: "clamp(2rem, 7vw, 4rem)",
+            fontWeight: 800,
+            color: "#FFFFFF",
+            letterSpacing: "-0.03em",
+            textShadow: "2px 2px 0px #1E293B",
+          }}
+        >
+          PG
+        </span>
       </div>
       <div
         style={{
@@ -42,21 +55,25 @@ export default function Hero() {
           width: "100%",
           height: "100%",
           borderRadius: "50%",
-          overflow: "hidden",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           transform: "rotateY(180deg)",
           backfaceVisibility: "hidden",
+          background: "linear-gradient(135deg, #34D399 0%, #8B5CF6 100%)",
         }}
       >
-        <Image
-          src="/images/profile-back.png"
-          alt="Patricia Gea portrait back"
-          fill
-          sizes="(max-width: 768px) 60vw, 360px"
-          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
-        />
+        <span
+          style={{
+            fontFamily: "'Outfit', system-ui, sans-serif",
+            fontSize: "clamp(1.1rem, 3.5vw, 1.6rem)",
+            fontWeight: 700,
+            color: "#FFFFFF",
+            textShadow: "2px 2px 0px #1E293B",
+          }}
+        >
+          Frontend
+        </span>
       </div>
     </div>
   );
@@ -73,75 +90,6 @@ export default function Hero() {
         background: "#FFFDF5",
       }}
     >
-      {/* Decorative: large yellow circle behind text */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: -120,
-          transform: "translateY(-50%)",
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          background: "#FBBF24",
-          opacity: 0.18,
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      {/* Decorative: dot grid behind portrait */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "5%",
-          right: "5%",
-          width: 360,
-          height: 360,
-          backgroundImage: "radial-gradient(circle, #CBD5E1 1.5px, transparent 1.5px)",
-          backgroundSize: "22px 22px",
-          borderRadius: 24,
-          opacity: 0.7,
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      {/* Decorative: pink triangle */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "10%",
-          left: "42%",
-          width: 0,
-          height: 0,
-          borderLeft: "18px solid transparent",
-          borderRight: "18px solid transparent",
-          borderBottom: "32px solid #F472B6",
-          opacity: 0.6,
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      {/* Decorative: emerald circle */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          bottom: "12%",
-          right: "38%",
-          width: 28,
-          height: 28,
-          borderRadius: "50%",
-          background: "#34D399",
-          border: "2px solid #1E293B",
-          opacity: 0.9,
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-
       <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: 120, paddingBottom: 80 }}>
         <div className="hero-layout">
 

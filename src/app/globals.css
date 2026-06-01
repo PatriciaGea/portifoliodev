@@ -382,12 +382,6 @@ section[id] {
   padding: 0 24px;
 }
 
-/* Dot grid background pattern */
-.dot-bg {
-  background-image: radial-gradient(circle, #CBD5E1 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
 /* Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }

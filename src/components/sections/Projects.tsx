@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
@@ -15,10 +14,6 @@ export default function Projects() {
 
   return (
     <section id="projects" className="section" style={{ background: "#FFFDF5" }}>
-      {/* Decorative */}
-      <div aria-hidden="true" style={{ position: "absolute", top: 50, right: 40, width: 60, height: 60, borderRadius: "50%", background: "#FBBF24", opacity: 0.2, pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 80, left: 60, width: 0, height: 0, borderLeft: "20px solid transparent", borderRight: "20px solid transparent", borderBottom: "34px solid #F472B6", opacity: 0.2, pointerEvents: "none" }} />
-
       <div className="container">
         <div style={{ marginBottom: 48 }}>
           <div className="section-heading-row" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
@@ -89,15 +84,9 @@ export default function Projects() {
                   position: "relative",
                   overflow: "hidden",
                 }}>
-                  {project.image && (
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} preview`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 380px"
-                      style={{ objectFit: "cover" }}
-                    />
-                  )}
+                  <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "#475569" }}>
+                    Preview unavailable
+                  </span>
                   {/* Overlay */}
                   <div className="project-overlay">
                     <a

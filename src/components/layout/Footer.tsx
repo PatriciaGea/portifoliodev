@@ -26,11 +26,6 @@ export default function Footer() {
         overflow: "hidden",
       }}
     >
-      {/* Decorative blobs */}
-      <div aria-hidden="true" style={{ position: "absolute", top: -30, right: 80, width: 80, height: 80, borderRadius: "50%", background: "#8B5CF6", opacity: 0.15, pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: -20, left: 60, width: 60, height: 60, borderRadius: "50%", background: "#F472B6", opacity: 0.15, pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", top: 20, left: "50%", width: 0, height: 0, borderLeft: "14px solid transparent", borderRight: "14px solid transparent", borderBottom: "24px solid #FBBF24", opacity: 0.2, pointerEvents: "none" }} />
-
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 24, marginBottom: 32 }}>
           {/* Logo */}

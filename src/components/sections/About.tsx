@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { MapPin, Coffee, Zap, Heart, GraduationCap, BookOpen, Palette, Instagram } from "lucide-react";
 import { aboutHighlights, languages } from "@/lib/portfolio-data";
 
@@ -28,10 +27,6 @@ const cardAccents = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
 export default function About() {
   return (
     <section id="about" className="section" style={{ background: "#FFFDF5" }}>
-      {/* Decorative shapes */}
-      <div aria-hidden="true" style={{ position: "absolute", top: 40, right: 60, width: 80, height: 80, borderRadius: "50%", background: "#F472B6", opacity: 0.15, pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 60, left: 40, width: 0, height: 0, borderLeft: "22px solid transparent", borderRight: "22px solid transparent", borderBottom: "38px solid #FBBF24", opacity: 0.25, pointerEvents: "none" }} />
-
       <div className="container">
         <div className="section-heading-block">
           <p className="section-label">01 — About</p>
@@ -64,16 +59,12 @@ export default function About() {
                 borderRadius: "50%",
                 border: "2px solid #1E293B",
                 margin: "0 auto 12px",
-                overflow: "hidden",
                 background: "#8B5CF622",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}>
-                <Image
-                  src="/images/ChatGPT Image Apr 22, 2026, 02_55_15 PM.svg"
-                  alt="Patricia avatar"
-                  width={64}
-                  height={64}
-                  style={{ objectFit: "cover" }}
-                />
+                <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, color: "#8B5CF6", fontSize: "1rem" }}>PG</span>
               </div>
               <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1rem", marginBottom: 4, color: "#1E293B" }}>
                 Patrícia Gea H. Rodrigues

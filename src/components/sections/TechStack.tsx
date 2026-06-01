@@ -7,10 +7,6 @@ const pillColors = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
 export default function TechStack() {
   return (
     <section id="stack" className="section" style={{ background: "#F1F5F9" }}>
-      {/* Decorative shapes */}
-      <div aria-hidden="true" style={{ position: "absolute", top: 30, left: 80, width: 0, height: 0, borderLeft: "16px solid transparent", borderRight: "16px solid transparent", borderBottom: "28px solid #8B5CF6", opacity: 0.2, pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{ position: "absolute", bottom: 40, right: 100, width: 50, height: 50, borderRadius: "50%", background: "#FBBF24", opacity: 0.2, pointerEvents: "none" }} />
-
       <div className="container">
         <div className="section-heading-block" style={{ textAlign: "center", marginBottom: 56 }}>
           <p className="section-label">02 — Skills</p>
