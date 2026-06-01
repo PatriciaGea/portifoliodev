@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react";
 import { siteConfig, socialLinks } from "@/lib/portfolio-data";
 
@@ -16,7 +17,7 @@ export default function Hero() {
       style={{
         borderRadius: "50%",
         border: "2px solid #1E293B",
-        background: "linear-gradient(135deg, #8B5CF6 0%, #F472B6 45%, #FBBF24 100%)",
+        background: "#fff",
         boxShadow: "8px 8px 0px 0px #1E293B",
         display: "flex",
         alignItems: "center",
@@ -31,23 +32,18 @@ export default function Hero() {
           height: "100%",
           backfaceVisibility: "hidden",
           borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          overflow: "hidden",
+          position: "relative",
         }}
       >
-        <span
-          style={{
-            fontFamily: "'Outfit', system-ui, sans-serif",
-            fontSize: "clamp(2rem, 7vw, 4rem)",
-            fontWeight: 800,
-            color: "#FFFFFF",
-            letterSpacing: "-0.03em",
-            textShadow: "2px 2px 0px #1E293B",
-          }}
-        >
-          PG
-        </span>
+        <Image
+          src="/images/profile-front2.png"
+          alt="Patricia Gea portrait front"
+          fill
+          sizes="(max-width: 768px) 60vw, 360px"
+          priority
+          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
+        />
       </div>
       <div
         style={{
@@ -55,25 +51,22 @@ export default function Hero() {
           width: "100%",
           height: "100%",
           borderRadius: "50%",
+          overflow: "hidden",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           transform: "rotateY(180deg)",
           backfaceVisibility: "hidden",
-          background: "linear-gradient(135deg, #34D399 0%, #8B5CF6 100%)",
+          position: "absolute",
         }}
       >
-        <span
-          style={{
-            fontFamily: "'Outfit', system-ui, sans-serif",
-            fontSize: "clamp(1.1rem, 3.5vw, 1.6rem)",
-            fontWeight: 700,
-            color: "#FFFFFF",
-            textShadow: "2px 2px 0px #1E293B",
-          }}
-        >
-          Frontend
-        </span>
+        <Image
+          src="/images/profile-back.png"
+          alt="Patricia Gea portrait back"
+          fill
+          sizes="(max-width: 768px) 60vw, 360px"
+          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
+        />
       </div>
     </div>
   );
