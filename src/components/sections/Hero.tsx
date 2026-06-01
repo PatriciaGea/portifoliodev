@@ -117,28 +117,18 @@ export default function Hero() {
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
                 color: "#1E293B",
-                marginBottom: 8,
+                marginBottom: 24,
               }}
             >
-              Frontend
-            </h1>
-            <h1
-              style={{
-                fontFamily: "'Outfit', system-ui, sans-serif",
-                fontSize: "clamp(2.6rem, 6vw, 5.2rem)",
-                fontWeight: 800,
-                lineHeight: 1.05,
-                letterSpacing: "-0.03em",
+              Mobile / <span style={{ color: "#1E293B", textDecoration: "none" }}>Frontend</span>{" "}
+              <span style={{
                 color: "#8B5CF6",
-                marginBottom: 24,
                 textDecoration: "underline",
                 textDecorationColor: "#FBBF24",
                 textDecorationStyle: "wavy",
                 textDecorationThickness: "4px",
                 textUnderlineOffset: "6px",
-              }}
-            >
-              Developer.
+              }}>Developer</span>
             </h1>
 
             {/* Tagline */}
