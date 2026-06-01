@@ -8,36 +8,41 @@ import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
 export default function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
   const formatFilterLabel = (value: Filter) => (value === "Fullstack" ? "Full-Stack" : value);
-
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
 
   return (
     <section id="projects" className="section">
       <div className="container">
-        <div style={{ marginBottom: 56 }}>
+        <div style={{ marginBottom: 48 }}>
           <div className="section-heading-row" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
-            <h2 className="section-title">
-              <span className="section-title-accent">Projects</span>
-            </h2>
+            <div>
+              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#525252", marginBottom: 10 }}>
+                03 — Work
+              </p>
+              <h2 className="section-title">
+                <span className="section-title-accent">Projects</span>
+              </h2>
+            </div>
 
             {/* Filter tabs */}
-            <div style={{ display: "flex", gap: 8 }}>
+            <div style={{ display: "flex", gap: 0, border: "1px solid #000" }}>
               {(["All", "Frontend", "Fullstack"] as Filter[]).map((f) => (
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
                   style={{
                     padding: "7px 18px",
-                    borderRadius: 100,
-                    border: "1.5px solid",
-                    borderColor: filter === f ? "var(--primary)" : "var(--color-border)",
-                    background: filter === f ? "rgba(81,112,255,0.1)" : "transparent",
-                    color: filter === f ? "var(--primary)" : "var(--color-text-muted)",
-                    fontFamily: "Helvetica, Arial, sans-serif",
-                    fontWeight: 600,
-                    fontSize: "0.8rem",
+                    border: "none",
+                    borderRight: f !== "Fullstack" ? "1px solid #000" : "none",
+                    background: filter === f ? "#000" : "transparent",
+                    color: filter === f ? "#fff" : "#525252",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontWeight: 500,
+                    fontSize: "0.72rem",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
                     cursor: "pointer",
-                    transition: "all 0.2s ease",
+                    transition: "all 0.1s",
                   }}
                 >
                   {formatFilterLabel(f)}
@@ -45,30 +50,28 @@ export default function Projects() {
               ))}
             </div>
           </div>
-          <div className="divider" />
+          <div className="divider" style={{ marginTop: 16 }} />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 1, background: "#000" }}>
           {filtered.map((project) => (
-            <article key={project.title} className="card project-card" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-              {/* Top accent bar */}
-              <div style={{
-                height: 4,
-                background: `linear-gradient(90deg, ${project.accent}, ${project.accent}88)`,
-              }} />
-
-              {/* Mock preview area */}
+            <article
+              key={project.title}
+              className="project-card"
+              style={{ padding: 0, overflow: "hidden", position: "relative", background: "#fff" }}
+            >
+              {/* Image area */}
               <div style={{
                 height: 180,
-                background: `linear-gradient(135deg, ${project.accent}18, ${project.accent}08)`,
+                background: "#F5F5F5",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 position: "relative",
                 overflow: "hidden",
-                borderBottom: "1px solid var(--color-border)",
+                borderBottom: "1px solid #000",
               }}>
-                {project.image ? (
+                {project.image && (
                   <Image
                     src={project.image}
                     alt={`${project.title} preview`}
@@ -76,74 +79,57 @@ export default function Projects() {
                     sizes="(max-width: 768px) 100vw, 380px"
                     style={{ objectFit: "cover" }}
                   />
-                ) : null}
-                {/* Decorative circles */}
-                <div style={{
-                  position: "absolute",
-                  width: 160, height: 160,
-                  borderRadius: "50%",
-                  border: `1px solid ${project.accent}25`,
-                  top: -40, right: -40,
-                }} />
-                <div style={{
-                  position: "absolute",
-                  width: 100, height: 100,
-                  borderRadius: "50%",
-                  border: `1px solid ${project.accent}15`,
-                  bottom: -20, left: -20,
-                }} />
-
+                )}
                 {/* Overlay with links */}
-                <div className="project-overlay" style={{
-                  background: `linear-gradient(135deg, ${project.accent}dd, rgba(255,102,196,0.85))`,
-                }}>
+                <div className="project-overlay">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      width: 44, height: 44, borderRadius: "50%",
-                      background: "rgba(255,255,255,0.2)",
-                      border: "1px solid rgba(255,255,255,0.4)",
+                      width: 44, height: 44,
+                      border: "2px solid #fff",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      color: "white", textDecoration: "none",
-                      backdropFilter: "blur(8px)",
+                      color: "#fff", textDecoration: "none",
                     }}
                     aria-label="GitHub"
                   >
-                    <Github size={18} />
+                    <Github size={18} strokeWidth={1.5} />
                   </a>
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      width: 44, height: 44, borderRadius: "50%",
-                      background: "rgba(255,255,255,0.2)",
-                      border: "1px solid rgba(255,255,255,0.4)",
+                      width: 44, height: 44,
+                      border: "2px solid #fff",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      color: "white", textDecoration: "none",
-                      backdropFilter: "blur(8px)",
+                      color: "#fff", textDecoration: "none",
                     }}
                     aria-label="Deployed"
                   >
-                    <ExternalLink size={18} />
+                    <ExternalLink size={18} strokeWidth={1.5} />
                   </a>
                 </div>
               </div>
 
               {/* Content */}
-              <div style={{ padding: "24px 24px 20px" }}>
+              <div style={{ padding: "20px 20px 16px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-                  <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>{project.title}</h3>
-                  <span className={project.category === "Fullstack" ? "fullstack-label" : undefined} style={{
-                    padding: "3px 10px",
-                    borderRadius: 100,
-                    background: `${project.accent}15`,
-                    color: project.accent,
-                    fontSize: "0.68rem",
-                    fontFamily: "monospace",
-                    fontWeight: 500,
+                  <h3 style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontSize: "1.05rem",
+                    fontWeight: 700,
+                    color: "#000",
+                  }}>{project.title}</h3>
+                  <span style={{
+                    padding: "2px 8px",
+                    border: "1px solid #000",
+                    color: "#000",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "0.62rem",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
                     whiteSpace: "nowrap",
                     flexShrink: 0,
                     marginLeft: 8,
@@ -152,58 +138,48 @@ export default function Projects() {
                   </span>
                 </div>
 
-                <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.7, marginBottom: 16 }}>
+                <p style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontSize: "0.875rem", color: "#525252", lineHeight: 1.7, marginBottom: 14 }}>
                   {project.description}
                 </p>
 
                 {/* Features */}
-                <ul style={{ listStyle: "none", marginBottom: 16, display: "flex", flexDirection: "column", gap: 4 }}>
+                <ul style={{ listStyle: "none", marginBottom: 14, display: "flex", flexDirection: "column", gap: 3 }}>
                   {project.features.map((f) => (
-                    <li key={f} style={{ fontSize: "0.8rem", color: "var(--color-text-faint)", display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ width: 4, height: 4, borderRadius: "50%", background: project.accent, flexShrink: 0 }} />
+                    <li key={f} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", color: "#525252", display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ width: 3, height: 3, background: "#000", flexShrink: 0, display: "inline-block" }} />
                       {f}
                     </li>
                   ))}
                 </ul>
 
-                {/* Tech stack */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
+                {/* Tech pills */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 14 }}>
                   {project.tech.map((t) => (
-                    <span key={t} className="pill" style={{ fontSize: "0.7rem", padding: "3px 10px" }}>{t}</span>
+                    <span key={t} className="pill" style={{ fontSize: "0.65rem", padding: "2px 8px" }}>{t}</span>
                   ))}
                 </div>
 
                 {/* Links */}
-                <div style={{ display: "flex", gap: 12, paddingTop: 12, borderTop: "1px solid var(--color-border)" }}>
+                <div style={{ display: "flex", gap: 12, paddingTop: 12, borderTop: "1px solid #000" }}>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      display: "flex", alignItems: "center", gap: 6,
-                      fontSize: "0.8rem", color: "var(--color-text-muted)",
-                      textDecoration: "none", fontWeight: 500,
-                      transition: "color 0.2s",
-                    }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--primary)")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)")}
+                    style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", color: "#525252", textDecoration: "none", letterSpacing: "0.05em", textTransform: "uppercase", transition: "color 0.1s" }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#000")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#525252")}
                   >
-                    <Github size={14} /> Code
+                    <Github size={12} strokeWidth={1.5} /> Code
                   </a>
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      display: "flex", alignItems: "center", gap: 6,
-                      fontSize: "0.8rem", color: "var(--color-text-muted)",
-                      textDecoration: "none", fontWeight: 500,
-                      transition: "color 0.2s",
-                    }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--pink)")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)")}
+                    style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", color: "#525252", textDecoration: "none", letterSpacing: "0.05em", textTransform: "uppercase", transition: "color 0.1s" }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#000")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#525252")}
                   >
-                    <ExternalLink size={14} /> Deployed
+                    <ExternalLink size={12} strokeWidth={1.5} /> Live
                   </a>
                 </div>
               </div>
@@ -212,15 +188,9 @@ export default function Projects() {
         </div>
 
         {/* CTA */}
-        <div style={{ textAlign: "center", marginTop: 48 }}>
-          <a
-            href={siteConfig.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline"
-            style={{ gap: 10 }}
-          >
-            <Github size={16} /> See all on GitHub <ArrowRight size={14} />
+        <div style={{ textAlign: "center", marginTop: 40 }}>
+          <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ gap: 10 }}>
+            <Github size={14} strokeWidth={1.5} /> See all on GitHub <ArrowRight size={12} />
           </a>
         </div>
       </div>

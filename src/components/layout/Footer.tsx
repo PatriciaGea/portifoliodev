@@ -13,61 +13,59 @@ const iconByType = {
 export default function Footer() {
   return (
     <footer style={{
-      borderTop: "1px solid var(--color-border)",
+      borderTop: "4px solid #000",
       padding: "48px 0 32px",
-      background: "var(--color-bg-alt)",
+      background: "#000",
+      color: "#fff",
     }}>
       <div className="container">
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 24, marginBottom: 32 }}>
           <div>
-            <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: "1.2rem", marginBottom: 6 }}>
-              patrícia<span className="gradient-text">gea</span>
+            <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "1.3rem", marginBottom: 6, color: "#fff", letterSpacing: "-0.02em" }}>
+              patrícia<span style={{ fontStyle: "italic" }}>gea</span>
             </p>
-            <p style={{ color: "var(--color-text-muted)", fontSize: "0.875rem" }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", color: "#E5E5E5", fontSize: "0.72rem", letterSpacing: "0.06em" }}>
               {siteConfig.role} · {siteConfig.location}
             </p>
           </div>
 
-          <div style={{ display: "flex", gap: 12 }}>
+          <div style={{ display: "flex", gap: 8 }}>
             {socialLinks.filter(({ href }) => !href.includes("instagram.com")).map(({ type, href, label }) => {
               const Icon = iconByType[type];
-
               return (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                style={{
-                  width: 42, height: 42, borderRadius: "50%",
-                  border: "1px solid var(--color-border)",
-                  background: "var(--color-surface)",
-                  color: "var(--color-text-muted)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  textDecoration: "none",
-                  transition: "all 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--primary)";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--primary)";
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-3px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--color-border)";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)";
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-                }}
-              >
-                <Icon size={16} />
-              </a>
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  style={{
+                    width: 40, height: 40,
+                    border: "1px solid #525252",
+                    background: "transparent",
+                    color: "#E5E5E5",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    textDecoration: "none",
+                    transition: "all 0.1s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "#fff";
+                    (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "#525252";
+                    (e.currentTarget as HTMLAnchorElement).style.color = "#E5E5E5";
+                  }}
+                >
+                  <Icon size={15} strokeWidth={1.5} />
+                </a>
               );
             })}
           </div>
         </div>
 
         <div style={{
-          borderTop: "1px solid var(--color-border)",
+          borderTop: "1px solid #525252",
           paddingTop: 24,
           display: "flex",
           flexWrap: "wrap",
@@ -75,22 +73,23 @@ export default function Footer() {
           alignItems: "center",
           gap: 16,
         }}>
-          <p style={{ fontSize: "0.8rem", color: "var(--color-text-faint)" }}>
+          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "#E5E5E5", letterSpacing: "0.04em" }}>
             © {siteConfig.name} · Built with Next.js & TypeScript
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             style={{
               display: "flex", alignItems: "center", gap: 6,
-              fontSize: "0.8rem", color: "var(--color-text-faint)",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.68rem", color: "#E5E5E5",
               background: "none", border: "none", cursor: "pointer",
-              fontFamily: "DM Sans, sans-serif",
-              transition: "color 0.2s",
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              transition: "color 0.1s",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--primary)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-text-faint)")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#E5E5E5")}
           >
-            Back to top <ArrowUp size={14} />
+            Back to top <ArrowUp size={12} strokeWidth={1.5} />
           </button>
         </div>
       </div>

@@ -16,16 +16,13 @@ export default function Hero() {
       className="animate-rotate-image hero-portrait"
       style={{
         borderRadius: "50%",
-        background: "linear-gradient(135deg, #5170ff, #ff66c4)",
+        border: "2px solid #000",
+        background: "#fff",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontSize: "1rem",
-        color: "white",
-        fontWeight: 700,
         position: "relative",
         transformStyle: "preserve-3d",
-        boxShadow: "0 20px 60px rgba(81,112,255,0.3)",
       }}
     >
       <div style={{ width: "100%", height: "100%", backfaceVisibility: "hidden", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
@@ -33,7 +30,7 @@ export default function Hero() {
           src="/images/profile-front.png"
           alt="Patricia Gea portrait front"
           fill
-          sizes="(max-width: 768px) 60vw, 460px"
+          sizes="(max-width: 768px) 60vw, 410px"
           priority
           style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
         />
@@ -56,7 +53,7 @@ export default function Hero() {
           src="/images/profile-back.png"
           alt="Patricia Gea portrait back"
           fill
-          sizes="(max-width: 768px) 60vw, 460px"
+          sizes="(max-width: 768px) 60vw, 410px"
           style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
         />
       </div>
@@ -64,150 +61,167 @@ export default function Hero() {
   );
 
   return (
-    <section id="home" style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", overflow: "hidden", background: "linear-gradient(135deg, rgba(81,112,255,0.1) 0%, rgba(255,102,196,0.05) 100%)" }}>
-      {/* Mesh gradients - otimizados */}
-      <div className="mesh-bg" style={{ width: 400, height: 400, background: "#5170ff", top: -50, right: -100, opacity: 0.08 }} />
-      <div className="mesh-bg" style={{ width: 300, height: 300, background: "#ff66c4", bottom: -50, left: -50, opacity: 0.06 }} />
-      <div className="mesh-bg" style={{ width: 520, height: 520, background: "#791919", top: 120, right: -160, opacity: 0.12 }} />
-
+    <section
+      id="home"
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        overflow: "hidden",
+        background: "#fff",
+        borderBottom: "4px solid #000",
+      }}
+    >
       <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: 120, paddingBottom: 80 }}>
-        <div className="hero-layout" style={{ maxWidth: 1200 }}>
+        <div className="hero-layout">
+
           {/* Left: text */}
           <div className="hero-text">
-          {/* Availability badge */}
-          <div className="hero-availability" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 32 }}>
-            <span style={{
-              width: 8, height: 8, borderRadius: "50%",
-              background: "#22c55e",
-              boxShadow: "0 0 0 3px rgba(34,197,94,0.2)",
-              animation: "pulse-glow 2s ease-in-out infinite",
-            }} />
-            <span style={{ fontFamily: "monospace", fontSize: "0.75rem", color: "var(--color-text-muted)", letterSpacing: "0.1em" }}>
-              Available for internship · Stockholm
-            </span>
-          </div>
 
-          {/* Main heading */}
-          <h1 className="hero-title" style={{
-            fontSize: "clamp(1.9rem, 5.2vw, 3.2rem)",
-            fontWeight: 600,
-            lineHeight: 1.1,
-            marginBottom: 16,
-            background: "linear-gradient(135deg, #5170ff 0%, #ff66c4 50%, #791919 100%)",
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}>
-            Frontend Developer
-          </h1>
+            {/* Availability badge */}
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 28, border: "1px solid #000", padding: "5px 12px" }}>
+              <span style={{ width: 6, height: 6, background: "#000", display: "inline-block" }} />
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#525252", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                Available for internship · Stockholm
+              </span>
+            </div>
 
-          {/* Tagline */}
-          <p style={{
-            fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
-            color: "var(--color-text)",
-            maxWidth: 560,
-            marginBottom: 40,
-            lineHeight: 1.4,
-            fontWeight: 400,
-          }}>
-            With a background in business ownership, scale strategy, product and UX.
-          </p>
-
-          <div className="hero-photo-inline" style={{ perspective: "1000px" }}>
-            {renderRotatingPortrait()}
-          </div>
-
-          {/* Sub */}
-          <p style={{
-            fontSize: "0.95rem",
-            color: "var(--color-text-muted)",
-            maxWidth: 560,
-            marginBottom: 40,
-            lineHeight: 1.8,
-            fontWeight: 300,
-          }}>
-            <strong className="hero-highlight-name">Hi, I&apos;m Patricia Gea</strong>, a frontend developer transitioning from 17 years as a business owner, where I built 3 tattoo studios across Brazil and Sweden, leading teams of up to 20 people and bringing experience in UX, product, and growth.
-          </p>
-          <p style={{
-            fontSize: "0.95rem",
-            color: "var(--color-text-muted)",
-            maxWidth: 560,
-            marginBottom: 0,
-            lineHeight: 1.8,
-            fontWeight: 300,
-          }}>
-            Now studying at <strong style={{ color: "var(--color-text)", fontWeight: 600 }}>Hyper Island</strong> in Stockholm, I bring that experience into how I think about UX, architecture, and what actually matters to end users.
-          </p>
-
-          <p style={{
-            fontFamily: "monospace",
-            fontSize: "0.8rem",
-            color: "var(--color-text-faint)",
-            marginBottom: 40,
-            marginTop: 32,
-            letterSpacing: "0.05em",
-          }}>
-            React · Next.js · TypeScript · Node.js · Express
-          </p>
-
-          {/* CTAs */}
-          <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 56 }}>
-            <a href="#projects" className="btn-primary">
-              View My Work
-            </a>
-            <a href="/cv.pdf" download className="btn-outline">
-              Download CV
-            </a>
-            <a
-              href={siteConfig.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline"
+            {/* Main heading */}
+            <h1
+              className="hero-title"
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "clamp(2.4rem, 6vw, 5rem)",
+                fontWeight: 700,
+                lineHeight: 1.05,
+                letterSpacing: "-0.03em",
+                color: "#000",
+                marginBottom: 8,
+              }}
             >
-              <Github size={16} /> GitHub
-            </a>
-          </div>
+              Frontend
+            </h1>
+            <h1
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "clamp(2.4rem, 6vw, 5rem)",
+                fontWeight: 700,
+                fontStyle: "italic",
+                lineHeight: 1.05,
+                letterSpacing: "-0.03em",
+                color: "#000",
+                marginBottom: 24,
+              }}
+            >
+              Developer.
+            </h1>
 
-          {/* Social row */}
-          <div className="hero-social-row" style={{ display: "flex", gap: 16, alignItems: "center", marginTop: 24 }}>
-            {socialLinks
-              .filter((social) => social.type !== "website")
-              .map(({ type, href, label }) => {
-                const Icon = socialIconByType[type as keyof typeof socialIconByType];
+            {/* Thick rule decorative element */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 28 }}>
+              <div style={{ height: 4, width: 48, background: "#000" }} />
+              <div style={{ width: 10, height: 10, border: "2px solid #000" }} />
+            </div>
 
-                return (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                style={{
-                  color: "var(--color-text-faint)",
-                  transition: "color 0.2s",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--primary)")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-faint)")}
-              >
-                <Icon size={20} />
+            {/* Tagline */}
+            <p style={{
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontSize: "clamp(1rem, 2vw, 1.2rem)",
+              color: "#000",
+              maxWidth: 520,
+              marginBottom: 32,
+              lineHeight: 1.5,
+              fontWeight: 400,
+            }}>
+              With a background in business ownership, scale strategy, product and UX.
+            </p>
+
+            {/* Mobile portrait */}
+            <div className="hero-photo-inline" style={{ perspective: "1000px" }}>
+              {renderRotatingPortrait()}
+            </div>
+
+            {/* Bio */}
+            <p style={{
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontSize: "0.95rem",
+              color: "#525252",
+              maxWidth: 540,
+              marginBottom: 20,
+              lineHeight: 1.8,
+            }}>
+              <strong style={{ color: "#000", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong> — a frontend developer transitioning from 17 years as a business owner, building 3 tattoo studios across Brazil and Sweden, leading teams of up to 20 people with experience in UX, product, and growth.
+            </p>
+            <p style={{
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontSize: "0.95rem",
+              color: "#525252",
+              maxWidth: 540,
+              marginBottom: 0,
+              lineHeight: 1.8,
+            }}>
+              Now studying at <strong style={{ color: "#000", fontWeight: 700 }}>Hyper Island</strong> in Stockholm, I bring that experience into how I think about UX, architecture, and what actually matters to end users.
+            </p>
+
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.72rem",
+              color: "#525252",
+              marginBottom: 36,
+              marginTop: 24,
+              letterSpacing: "0.08em",
+            }}>
+              React · Next.js · TypeScript · Node.js · Express
+            </p>
+
+            {/* CTAs */}
+            <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 48 }}>
+              <a href="#projects" className="btn-primary">
+                View My Work →
               </a>
-                );
-              })}
-            <div style={{ width: 1, height: 20, background: "var(--color-border)", margin: "0 4px" }} />
-            <span style={{ fontFamily: "monospace", fontSize: "0.72rem", color: "var(--color-text-faint)" }}>
-              Hyper Island · Stockholm
-            </span>
-          </div>
+              <a href="/cv.pdf" download className="btn-outline">
+                Download CV
+              </a>
+              <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="btn-outline">
+                <Github size={14} strokeWidth={1.5} /> GitHub
+              </a>
+            </div>
+
+            {/* Social row */}
+            <div className="hero-social-row" style={{ display: "flex", gap: 20, alignItems: "center" }}>
+              {socialLinks
+                .filter((s) => s.type !== "website")
+                .map(({ type, href, label }) => {
+                  const Icon = socialIconByType[type as keyof typeof socialIconByType];
+                  if (!Icon) return null;
+                  return (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      style={{ color: "#525252", transition: "color 0.1s", textDecoration: "none" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#000")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#525252")}
+                    >
+                      <Icon size={18} strokeWidth={1.5} />
+                    </a>
+                  );
+                })}
+              <div style={{ width: 1, height: 16, background: "#000" }} />
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "#525252", letterSpacing: "0.05em" }}>
+                Hyper Island · Stockholm
+              </span>
+            </div>
           </div>
 
-          {/* Right: rotating image */}
+          {/* Right: rotating portrait (desktop) */}
           <div className="hero-photo-wrap hero-photo-desktop" style={{ perspective: "1000px" }}>
             {renderRotatingPortrait()}
           </div>
         </div>
       </div>
-
     </section>
   );
 }
