@@ -18,34 +18,23 @@ const infoIconByKey = {
 } as const;
 
 const infoCards = [
-  {
-    title: "Hyper Island",
-    subtitle: "Frontend Developer Program",
-    details: "Stockholm, Sweden · 2025-2027",
-    icon: "graduationCap",
-  },
-  {
-    title: "Bachelor in Computer Science",
-    subtitle: "Nove de Julho University (UNINOVE)",
-    details: "Sao Paulo, Brazil · 2006-2007",
-    icon: "bookOpen",
-  },
-  {
-    title: "Interests",
-    subtitle: "Music · Art · Illustration · Coding",
-    details: "Creative problem solving",
-    icon: "palette",
-  },
+  { title: "Hyper Island", subtitle: "Frontend Developer Program", details: "Stockholm, Sweden · 2025-2027", icon: "graduationCap" },
+  { title: "Bachelor in CS", subtitle: "Nove de Julho University", details: "Sao Paulo, Brazil · 2006-2007", icon: "bookOpen" },
+  { title: "Interests", subtitle: "Music · Art · Illustration · Coding", details: "Creative problem solving", icon: "palette" },
 ] as const;
+
+const cardAccents = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
 
 export default function About() {
   return (
-    <section id="about" className="section">
+    <section id="about" className="section" style={{ background: "#FFFDF5" }}>
+      {/* Decorative shapes */}
+      <div aria-hidden="true" style={{ position: "absolute", top: 40, right: 60, width: 80, height: 80, borderRadius: "50%", background: "#F472B6", opacity: 0.15, pointerEvents: "none" }} />
+      <div aria-hidden="true" style={{ position: "absolute", bottom: 60, left: 40, width: 0, height: 0, borderLeft: "22px solid transparent", borderRight: "22px solid transparent", borderBottom: "38px solid #FBBF24", opacity: 0.25, pointerEvents: "none" }} />
+
       <div className="container">
         <div className="section-heading-block">
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#525252", marginBottom: 10 }}>
-            01 — About
-          </p>
+          <p className="section-label">01 — About</p>
           <h2 className="section-title">
             About <span className="section-title-accent">Me</span>
           </h2>
@@ -53,81 +42,99 @@ export default function About() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, width: "100%", maxWidth: 1100 }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20, width: "100%", maxWidth: 1100 }}>
 
-            {/* Profile card */}
+            {/* Profile card — Sticker */}
             <div style={{
-              border: "2px solid #000",
+              background: "#fff",
+              border: "2px solid #1E293B",
+              borderRadius: 20,
+              boxShadow: "6px 6px 0px #F472B6",
               width: "100%",
               maxWidth: 340,
-              padding: "20px 18px",
+              padding: "24px 20px",
               textAlign: "center",
-              background: "#fff",
-            }}>
+              transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+            }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "rotate(-1deg) scale(1.02)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "8px 8px 0px #F472B6"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "6px 6px 0px #F472B6"; }}
+            >
               <div style={{
-                width: 56, height: 56,
-                border: "2px solid #000",
+                width: 64, height: 64,
                 borderRadius: "50%",
-                margin: "0 auto 10px",
+                border: "2px solid #1E293B",
+                margin: "0 auto 12px",
                 overflow: "hidden",
-                display: "flex", alignItems: "center", justifyContent: "center",
+                background: "#8B5CF622",
               }}>
                 <Image
                   src="/images/ChatGPT Image Apr 22, 2026, 02_55_15 PM.svg"
                   alt="Patricia avatar"
-                  width={56}
-                  height={56}
+                  width={64}
+                  height={64}
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "0.95rem", marginBottom: 4, color: "#000" }}>
+              <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1rem", marginBottom: 4, color: "#1E293B" }}>
                 Patrícia Gea H. Rodrigues
               </p>
-              <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "#525252", letterSpacing: "0.04em" }}>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.75rem", color: "#64748B", fontWeight: 500 }}>
                 Frontend Developer with Product & UX Background
               </p>
             </div>
 
-            {/* Grid de cards */}
+            {/* Cards grid */}
             <div className="about-cards-grid">
-              {aboutHighlights.map(({ icon, label, sub }) => {
+              {aboutHighlights.map(({ icon, label, sub }, i) => {
                 const Icon = iconByKey[icon];
+                const accent = cardAccents[i % cardAccents.length];
                 return (
-                  <div key={label} className="card" style={{ padding: "12px 14px", minHeight: 102 }}>
-                    <Icon size={14} strokeWidth={1.5} style={{ color: "#000", marginBottom: 6 }} />
-                    <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "#000" }}>{label}</p>
-                    <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "#525252" }}>{sub}</p>
+                  <div key={label} className="card" style={{ padding: "16px 14px" }}>
+                    <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${accent}22`, border: `2px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                      <Icon size={14} strokeWidth={2.5} style={{ color: accent }} />
+                    </div>
+                    <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "#1E293B" }}>{label}</p>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.72rem", color: "#64748B" }}>{sub}</p>
                   </div>
                 );
               })}
 
-              <div className="card" style={{ padding: "12px 14px", minHeight: 102 }}>
-                <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 8, color: "#000" }}>Languages</p>
+              <div className="card" style={{ padding: "16px 14px" }}>
+                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#8B5CF622", border: "2px solid #8B5CF6", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                  <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "#8B5CF6", fontFamily: "Outfit, system-ui, sans-serif" }}>AB</span>
+                </div>
+                <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 8, color: "#1E293B" }}>Languages</p>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5 }}>
                   {(languages ?? []).map(({ name, level }) => (
-                    <p key={name} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "#525252" }}>
-                      {name} <span style={{ color: "#000" }}>({level})</span>
+                    <p key={name} style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.7rem", color: "#64748B" }}>
+                      {name} <span style={{ color: "#8B5CF6", fontWeight: 600 }}>({level})</span>
                     </p>
                   ))}
                 </div>
               </div>
 
-              {infoCards.map((card) => (
-                <div key={card.title} className="card" style={{ padding: "12px 14px", minHeight: 102 }}>
+              {infoCards.map((card, i) => (
+                <div key={card.title} className="card" style={{ padding: "16px 14px" }}>
                   {(() => {
                     const Icon = infoIconByKey[card.icon];
-                    return <Icon size={14} strokeWidth={1.5} style={{ color: "#000", marginBottom: 6 }} />;
+                    const accent = cardAccents[(i + 1) % cardAccents.length];
+                    return (
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${accent}22`, border: `2px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                        <Icon size={14} strokeWidth={2.5} style={{ color: accent }} />
+                      </div>
+                    );
                   })()}
-                  <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "#000" }}>{card.title}</p>
-                  <p style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontSize: "0.72rem", color: "#525252", marginBottom: 2 }}>{card.subtitle}</p>
-                  <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "#525252" }}>{card.details}</p>
+                  <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "#1E293B" }}>{card.title}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.74rem", color: "#64748B", marginBottom: 2 }}>{card.subtitle}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.67rem", color: "#94A3B8" }}>{card.details}</p>
                 </div>
               ))}
 
-              <div className="card" style={{ padding: "12px 14px", minHeight: 102 }}>
-                <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 10, display: "flex", alignItems: "center", gap: 6, color: "#000" }}>
-                  <Instagram size={14} strokeWidth={1.5} /> Instagram
-                </p>
+              <div className="card" style={{ padding: "16px 14px" }}>
+                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#F472B622", border: "2px solid #F472B6", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                  <Instagram size={14} strokeWidth={2.5} style={{ color: "#F472B6" }} />
+                </div>
+                <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 10, color: "#1E293B" }}>Instagram</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                   {[
                     { href: "https://www.instagram.com/tattooink.se", label: "Studio Stockholm Sweden", meta: "2018–2025" },
@@ -136,8 +143,8 @@ export default function About() {
                   ].map(({ href, label, meta }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                       style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <span style={{ fontFamily: "'Source Serif 4', Georgia, serif", fontSize: "0.76rem", color: "#000", fontWeight: 600 }}>{label}</span>
-                      <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "#525252", marginLeft: 8 }}>{meta}</span>
+                      <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.76rem", color: "#1E293B", fontWeight: 600 }}>{label}</span>
+                      <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.65rem", color: "#94A3B8", marginLeft: 8 }}>{meta}</span>
                     </a>
                   ))}
                 </div>

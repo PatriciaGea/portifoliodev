@@ -32,7 +32,7 @@ export const siteConfig = {
   role: "Frontend Developer",
   location: "Stockholm, Sweden",
   email: "patricia.gea@gmail.com",
-  phone: "+46 729 23 11 63",
+  phone: "+46 700 00 00 00",
   website: "https://patriciageadev.vercel.app",
   github: "https://github.com/PatriciaGea",
   linkedin: "https://www.linkedin.com/in/patriciageadev/",
@@ -40,9 +40,9 @@ export const siteConfig = {
 };
 
 export const seoConfig = {
-  title: "Patricia Gea - Frontend Developer",
+  title: "Patricia Gea - Mobile / Frontend Developer",
   description:
-    "Frontend developer with a product and UX background. Building accessible, beautiful web experiences. Based in Stockholm, Sweden.",
+    "xxx Based in Stockholm, Sweden.",
   keywords: [
     "Frontend Developer",
     "Fullstack Developer",

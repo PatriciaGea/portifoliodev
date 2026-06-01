@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react";
 import { siteConfig, socialLinks } from "@/lib/portfolio-data";
 
 const socialIconByType = {
@@ -16,8 +16,9 @@ export default function Hero() {
       className="animate-rotate-image hero-portrait"
       style={{
         borderRadius: "50%",
-        border: "2px solid #000",
+        border: "2px solid #1E293B",
         background: "#fff",
+        boxShadow: "8px 8px 0px 0px #1E293B",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -69,10 +70,78 @@ export default function Hero() {
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        background: "#fff",
-        borderBottom: "4px solid #000",
+        background: "#FFFDF5",
       }}
     >
+      {/* Decorative: large yellow circle behind text */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: -120,
+          transform: "translateY(-50%)",
+          width: 600,
+          height: 600,
+          borderRadius: "50%",
+          background: "#FBBF24",
+          opacity: 0.18,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Decorative: dot grid behind portrait */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "5%",
+          right: "5%",
+          width: 360,
+          height: 360,
+          backgroundImage: "radial-gradient(circle, #CBD5E1 1.5px, transparent 1.5px)",
+          backgroundSize: "22px 22px",
+          borderRadius: 24,
+          opacity: 0.7,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Decorative: pink triangle */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "10%",
+          left: "42%",
+          width: 0,
+          height: 0,
+          borderLeft: "18px solid transparent",
+          borderRight: "18px solid transparent",
+          borderBottom: "32px solid #F472B6",
+          opacity: 0.6,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Decorative: emerald circle */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: "12%",
+          right: "38%",
+          width: 28,
+          height: 28,
+          borderRadius: "50%",
+          background: "#34D399",
+          border: "2px solid #1E293B",
+          opacity: 0.9,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
       <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: 120, paddingBottom: 80 }}>
         <div className="hero-layout">
 
@@ -80,9 +149,19 @@ export default function Hero() {
           <div className="hero-text">
 
             {/* Availability badge */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 28, border: "1px solid #000", padding: "5px 12px" }}>
-              <span style={{ width: 6, height: 6, background: "#000", display: "inline-block" }} />
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "#525252", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              marginBottom: 28,
+              background: "#34D399",
+              border: "2px solid #1E293B",
+              borderRadius: 9999,
+              padding: "6px 14px",
+              boxShadow: "3px 3px 0px #1E293B",
+            }}>
+              <span style={{ width: 8, height: 8, background: "#1E293B", borderRadius: "50%", display: "inline-block" }} />
+              <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.75rem", fontWeight: 700, color: "#1E293B", letterSpacing: "0.04em" }}>
                 Available for internship · Stockholm
               </span>
             </div>
@@ -91,12 +170,12 @@ export default function Hero() {
             <h1
               className="hero-title"
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: "clamp(2.4rem, 6vw, 5rem)",
-                fontWeight: 700,
+                fontFamily: "'Outfit', system-ui, sans-serif",
+                fontSize: "clamp(2.6rem, 6vw, 5.2rem)",
+                fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
-                color: "#000",
+                color: "#1E293B",
                 marginBottom: 8,
               }}
             >
@@ -104,34 +183,32 @@ export default function Hero() {
             </h1>
             <h1
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: "clamp(2.4rem, 6vw, 5rem)",
-                fontWeight: 700,
-                fontStyle: "italic",
+                fontFamily: "'Outfit', system-ui, sans-serif",
+                fontSize: "clamp(2.6rem, 6vw, 5.2rem)",
+                fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
-                color: "#000",
+                color: "#8B5CF6",
                 marginBottom: 24,
+                textDecoration: "underline",
+                textDecorationColor: "#FBBF24",
+                textDecorationStyle: "wavy",
+                textDecorationThickness: "4px",
+                textUnderlineOffset: "6px",
               }}
             >
               Developer.
             </h1>
 
-            {/* Thick rule decorative element */}
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 28 }}>
-              <div style={{ height: 4, width: 48, background: "#000" }} />
-              <div style={{ width: 10, height: 10, border: "2px solid #000" }} />
-            </div>
-
             {/* Tagline */}
             <p style={{
-              fontFamily: "'Source Serif 4', Georgia, serif",
-              fontSize: "clamp(1rem, 2vw, 1.2rem)",
-              color: "#000",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontSize: "clamp(1rem, 2vw, 1.15rem)",
+              color: "#64748B",
               maxWidth: 520,
               marginBottom: 32,
-              lineHeight: 1.5,
-              fontWeight: 400,
+              lineHeight: 1.6,
+              fontWeight: 500,
             }}>
               With a background in business ownership, scale strategy, product and UX.
             </p>
@@ -143,52 +220,61 @@ export default function Hero() {
 
             {/* Bio */}
             <p style={{
-              fontFamily: "'Source Serif 4', Georgia, serif",
-              fontSize: "0.95rem",
-              color: "#525252",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontSize: "0.97rem",
+              color: "#64748B",
               maxWidth: 540,
-              marginBottom: 20,
+              marginBottom: 16,
               lineHeight: 1.8,
+              fontWeight: 400,
             }}>
-              <strong style={{ color: "#000", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong> — a frontend developer transitioning from 17 years as a business owner, building 3 tattoo studios across Brazil and Sweden, leading teams of up to 20 people with experience in UX, product, and growth.
+              <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong> — a frontend developer transitioning from 17 years as a business owner, building 3 tattoo studios across Brazil and Sweden, leading teams of up to 20 people with experience in UX, product, and growth.
             </p>
             <p style={{
-              fontFamily: "'Source Serif 4', Georgia, serif",
-              fontSize: "0.95rem",
-              color: "#525252",
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontSize: "0.97rem",
+              color: "#64748B",
               maxWidth: 540,
               marginBottom: 0,
               lineHeight: 1.8,
+              fontWeight: 400,
             }}>
-              Now studying at <strong style={{ color: "#000", fontWeight: 700 }}>Hyper Island</strong> in Stockholm, I bring that experience into how I think about UX, architecture, and what actually matters to end users.
+              Now studying at <strong style={{ color: "#8B5CF6", fontWeight: 700 }}>Hyper Island</strong> in Stockholm, I bring that experience into how I think about UX, architecture, and what actually matters to end users.
             </p>
 
-            <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.72rem",
-              color: "#525252",
-              marginBottom: 36,
-              marginTop: 24,
-              letterSpacing: "0.08em",
-            }}>
-              React · Next.js · TypeScript · Node.js · Express
-            </p>
+            {/* Tech tags */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32, marginTop: 20 }}>
+              {["React", "Next.js", "TypeScript", "Node.js"].map((tech, i) => {
+                const colors = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
+                return (
+                  <span key={tech} style={{
+                    fontFamily: "'Outfit', system-ui, sans-serif",
+                    fontSize: "0.72rem",
+                    fontWeight: 700,
+                    padding: "4px 12px",
+                    borderRadius: 9999,
+                    background: `${colors[i % colors.length]}22`,
+                    border: `2px solid ${colors[i % colors.length]}`,
+                    color: "#1E293B",
+                  }}>
+                    {tech}
+                  </span>
+                );
+              })}
+            </div>
 
             {/* CTAs */}
-            <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 48 }}>
+            <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 40 }}>
               <a href="#projects" className="btn-primary">
-                View My Work →
+                View My Work <ArrowRight size={16} strokeWidth={2.5} />
               </a>
               <a href="/cv.pdf" download className="btn-outline">
-                Download CV
-              </a>
-              <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="btn-outline">
-                <Github size={14} strokeWidth={1.5} /> GitHub
+                <Download size={16} strokeWidth={2.5} /> Download CV
               </a>
             </div>
 
             {/* Social row */}
-            <div className="hero-social-row" style={{ display: "flex", gap: 20, alignItems: "center" }}>
+            <div className="hero-social-row" style={{ display: "flex", gap: 12, alignItems: "center" }}>
               {socialLinks
                 .filter((s) => s.type !== "website")
                 .map(({ type, href, label }) => {
@@ -201,16 +287,34 @@ export default function Hero() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      style={{ color: "#525252", transition: "color 0.1s", textDecoration: "none" }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#000")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#525252")}
+                      style={{
+                        width: 44, height: 44,
+                        borderRadius: "50%",
+                        border: "2px solid #1E293B",
+                        background: "#fff",
+                        boxShadow: "3px 3px 0px #1E293B",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#1E293B",
+                        textDecoration: "none",
+                        transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.transform = "translate(-2px,-2px) rotate(5deg)";
+                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "5px 5px 0px #1E293B";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.transform = "";
+                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "3px 3px 0px #1E293B";
+                      }}
                     >
-                      <Icon size={18} strokeWidth={1.5} />
+                      <Icon size={18} strokeWidth={2.5} />
                     </a>
                   );
                 })}
-              <div style={{ width: 1, height: 16, background: "#000" }} />
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "#525252", letterSpacing: "0.05em" }}>
+              <div style={{ width: 1, height: 20, background: "#CBD5E1", marginLeft: 4 }} />
+              <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.75rem", fontWeight: 600, color: "#64748B" }}>
                 Hyper Island · Stockholm
               </span>
             </div>
