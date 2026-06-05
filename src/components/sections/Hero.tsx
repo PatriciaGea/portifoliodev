@@ -112,7 +112,7 @@ export default function Hero() {
               className="hero-title"
               style={{
               fontFamily: "'Outfit', system-ui, sans-serif",
-                fontSize: "clamp(1.95rem, 4.2vw, 3.4rem)",
+                fontSize: "clamp(1.55rem, 3.3vw, 2.7rem)",
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
