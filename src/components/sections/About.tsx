@@ -29,12 +29,12 @@ export default function About() {
   return (
     <section id="about" className="section" style={{ background: "#FFFDF5" }}>
       <div className="container">
-        <div className="section-heading-block">
+        <div className="section-heading-block" style={{ textAlign: "center" }}>
           <p className="section-label">01 — About</p>
           <h2 className="section-title">
             About <span className="section-title-accent">Me</span>
           </h2>
-          <div className="divider" />
+          <div className="divider" style={{ margin: "16px auto" }} />
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -72,7 +72,7 @@ export default function About() {
                   alt="Patrícia Gea"
                   fill
                   sizes="92px"
-                  style={{ objectFit: "cover", objectPosition: "center 42%", transform: "scale(0.96)" }}
+                  style={{ objectFit: "cover", objectPosition: "center 42%", transform: "scale(0.88)" }}
                   priority
                 />
               </div>

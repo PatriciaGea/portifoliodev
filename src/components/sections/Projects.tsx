@@ -16,8 +16,8 @@ export default function Projects() {
   return (
     <section id="projects" className="section" style={{ background: "#FFFDF5" }}>
       <div className="container">
-        <div style={{ marginBottom: 48 }}>
-          <div className="section-heading-row" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
+        <div style={{ marginBottom: 48, textAlign: "center" }}>
+          <div className="section-heading-row" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}>
             <div>
               <p className="section-label">03 — Work</p>
               <h2 className="section-title">
@@ -26,7 +26,7 @@ export default function Projects() {
             </div>
 
             {/* Filter buttons — pill group */}
-            <div style={{ display: "flex", gap: 8 }}>
+            <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 8 }}>
               {(["All", "Mobile", "Frontend", "Fullstack"] as Filter[]).map((f) => {
                 const color = filterColors[f] ?? "#8B5CF6";
                 const active = filter === f;
@@ -54,10 +54,10 @@ export default function Projects() {
               })}
             </div>
           </div>
-          <div className="divider" style={{ marginTop: 16 }} />
+          <div className="divider" style={{ margin: "16px auto 0" }} />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 360px))", justifyContent: "center", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 24 }}>
           {filtered.map((project, i) => {
             const shadowColor = cardShadowColors[i % cardShadowColors.length];
             const isMobile = project.category === "Mobile" || project.tech.some((t) => {

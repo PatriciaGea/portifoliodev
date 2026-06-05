@@ -64,7 +64,7 @@ export default function Hero() {
           alt="Patricia Gea portrait back"
           fill
           sizes="(max-width: 768px) 60vw, 360px"
-          style={{ objectFit: "cover", objectPosition: "center 55%", transform: "scale(0.98)", transformOrigin: "center 55%" }}
+          style={{ objectFit: "cover", objectPosition: "center 68%", transform: "scale(0.98)", transformOrigin: "center 68%" }}
         />
       </div>
     </div>
