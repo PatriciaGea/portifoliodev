@@ -17,7 +17,7 @@ const infoIconByKey = {
 } as const;
 
 const infoCards = [
-  { title: "Hyper Island", subtitle: "Frontend Developer Program", details: "Stockholm, Sweden · 2025-2027", icon: "graduationCap" },
+  { title: "Hyper Island", subtitle: "Frontend Developer Program", details: "Stockholm, Sweden · 2025-2027 · Yrkeshögskola", icon: "graduationCap" },
   { title: "Bachelor in Computer Science", subtitle: "Nove de Julho University", details: "Sao Paulo, Brazil · 2006-2007 (incomplete)", icon: "bookOpen" },
   { title: "Interests", subtitle: "Music · Art · Illustration · Coding", details: "Creative problem solving", icon: "palette" },
 ] as const;

@@ -113,7 +113,7 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Hire Me CTA */}
+            {/* Contact CTA */}
             <button
               onClick={() => scrollTo("#contact")}
               style={{
@@ -134,7 +134,7 @@ export default function Navbar() {
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = ""; (e.currentTarget as HTMLButtonElement).style.boxShadow = "3px 3px 0px #1E293B"; }}
               onMouseDown={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translate(1px,1px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "1px 1px 0px #1E293B"; }}
             >
-              Hire Me
+              Contact
             </button>
 
             {/* Mobile menu toggle */}
@@ -201,7 +201,7 @@ export default function Navbar() {
             className="btn-primary"
             style={{ marginTop: 12 }}
           >
-            Hire Me
+            Contact
           </button>
         </div>
       )}

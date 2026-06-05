@@ -82,6 +82,7 @@ export default function Hero() {
         background: "#FFFDF5",
       }}
     >
+      
       <div className="container" style={{ position: "relative", zIndex: 1, paddingTop: 120, paddingBottom: 80 }}>
         <div className="hero-layout">
 
@@ -173,26 +174,7 @@ export default function Hero() {
               <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong> — a Mobile and Frontend Developer, with 17 years of previous experience as a business owner, where I built and
 scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people. Experience applied to programming development.
             </p>
-            {/* Tech tags */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32, marginTop: 20 }}>
-              {["React", "Next.js", "TypeScript", "Node.js"].map((tech, i) => {
-                const colors = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
-                return (
-                  <span key={tech} style={{
-                    fontFamily: "'Outfit', system-ui, sans-serif",
-                    fontSize: "0.72rem",
-                    fontWeight: 700,
-                    padding: "4px 12px",
-                    borderRadius: 9999,
-                    background: `${colors[i % colors.length]}22`,
-                    border: `2px solid ${colors[i % colors.length]}`,
-                    color: "#1E293B",
-                  }}>
-                    {tech}
-                  </span>
-                );
-              })}
-            </div>
+            {/* Tech tags removed */}
 
             {/* CTAs */}
             <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 40 }}>
@@ -257,6 +239,7 @@ scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people. Exper
           </div>
         </div>
       </div>
+      
     </section>
   );
 }
