@@ -84,7 +84,7 @@ export const aboutHighlights = [
 export const techCloud = [
   {
     title: "Mobile",
-    items: ["Kotlin", "Android Studio", "Jetpack Compose"]
+    items: ["Kotlin", "Android Studio", "Jetpack Compose", "Material 3", "Intents (ACTION_VIEW, ACTION_DIAL)"]
   },
   {
     title: "Frontend",
@@ -111,6 +111,39 @@ export const techCloud = [
 
 
 export const projects: Project[] = [
+  {
+    title: "Business Card App (Android)",
+    description:
+      "Android app showcasing reusable composables, Material 3 and basic navigation via intents. Built as a focused UI exercise and demo of modern Android patterns.",
+    tech: ["Kotlin", "Jetpack Compose", "Material 3", "Android Studio", "Intents"],
+    features: ["Reusable composables", "Material 3 UI", "External intents (call, web)"],
+    github: "https://github.com/PatriciaGea/BusinessCardPatriciaGea",
+    live: "",
+    category: "Mobile",
+    accent: "#5170ff",
+    emoji: "📱",
+    image: "/images/screenshotandroidcard.png",
+  },
+  {
+    title: "Random Quotes App",
+    description:
+      "Android app delivering philosophical and motivational quotes with a modern Jetpack Compose UI and responsive layout.",
+    tech: ["Kotlin", "Jetpack Compose", "State Management", "UI Design", "Android Resources"],
+    features: [
+      "Random quote generator",
+      "Philosophical and motivational quotes",
+      "Modern Jetpack Compose UI",
+      "Background image support",
+      "Responsive layout",
+      "Soft aesthetic design",
+    ],
+    github: "https://github.com/PatriciaGea/AppAndroid.git",
+    live: "",
+    category: "Mobile",
+    accent: "#F472B6",
+    emoji: "✨",
+    image: "/images/gifapp.gif",
+  },
   {
     title: "Booking System with Login",
     description:

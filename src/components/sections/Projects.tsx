@@ -60,6 +60,11 @@ export default function Projects() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 24 }}>
           {filtered.map((project, i) => {
             const shadowColor = cardShadowColors[i % cardShadowColors.length];
+            const isMobile = project.category === "Mobile" || project.tech.some((t) => {
+              const lower = t.toLowerCase();
+              return lower.includes("android") || lower.includes("kotlin");
+            });
+            const liveHref = (project.live && project.live.trim()) ? project.live : project.image ? project.image : null;
             return (
               <article
                 key={project.title}
@@ -91,7 +96,7 @@ export default function Projects() {
                       alt={`${project.title} preview`}
                       fill
                       sizes="(max-width: 768px) 100vw, 340px"
-                      style={{ objectFit: "cover" }}
+                      style={{ objectFit: "contain", objectPosition: "center" }}
                     />
                   ) : (
                     <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "#475569" }}>
@@ -117,30 +122,37 @@ export default function Projects() {
                     >
                       <Github size={18} strokeWidth={2.5} />
                     </a>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        width: 48, height: 48,
-                        borderRadius: "50%",
-                        border: "2px solid #fff",
-                        background: "rgba(255,255,255,0.15)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        color: "#fff", textDecoration: "none",
-                        backdropFilter: "blur(4px)",
-                      }}
-                      aria-label="Live"
-                    >
-                      <ExternalLink size={18} strokeWidth={2.5} />
-                    </a>
+                    {liveHref && (
+                      <a
+                        href={liveHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          width: 48, height: 48,
+                          borderRadius: "50%",
+                          border: "2px solid #fff",
+                          background: "rgba(255,255,255,0.15)",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          color: "#fff", textDecoration: "none",
+                          backdropFilter: "blur(4px)",
+                        }}
+                        aria-label="Live"
+                      >
+                        <ExternalLink size={18} strokeWidth={2.5} />
+                      </a>
+                    )}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div style={{ padding: "20px 20px 16px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-                    <h3 style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "1.05rem", fontWeight: 800, color: "#1E293B" }}>{project.title}</h3>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      {isMobile && (
+                        <Image src="/images/android_logo.webp" alt="Android" width={40} height={40} style={{ display: "block" }} />
+                      )}
+                      <h3 style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "1.05rem", fontWeight: 800, color: "#1E293B", margin: 0 }}>{project.title}</h3>
+                    </div>
                     <span style={{
                       padding: "3px 12px",
                       borderRadius: 9999,
@@ -165,16 +177,21 @@ export default function Projects() {
                   {/* Tech pills */}
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
                     {project.tech.map((t) => (
-                      <span key={t} style={{
-                        padding: "3px 10px",
-                        borderRadius: 9999,
-                        background: "#F1F5F9",
-                        border: "1px solid #E2E8F0",
-                        fontFamily: "'Outfit', system-ui, sans-serif",
-                        fontSize: "0.67rem",
-                        fontWeight: 600,
-                        color: "#64748B",
-                      }}>{t}</span>
+                      <span
+                        key={t}
+                        style={{
+                          padding: "3px 10px",
+                          borderRadius: 9999,
+                          background: "#F1F5F9",
+                          border: "1px solid #E2E8F0",
+                          fontFamily: "'Outfit', system-ui, sans-serif",
+                          fontSize: "0.67rem",
+                          fontWeight: 600,
+                          color: "#64748B",
+                        }}
+                      >
+                        {t}
+                      </span>
                     ))}
                   </div>
 
@@ -190,16 +207,18 @@ export default function Projects() {
                     >
                       <Github size={13} strokeWidth={2.5} /> Code
                     </a>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "#64748B", textDecoration: "none", transition: "color 0.2s" }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#8B5CF6")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#64748B")}
-                    >
-                      <ExternalLink size={13} strokeWidth={2.5} /> Live
-                    </a>
+                    {liveHref && (
+                      <a
+                        href={liveHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "#64748B", textDecoration: "none", transition: "color 0.2s" }}
+                        onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#8B5CF6")}
+                        onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#64748B")}
+                      >
+                        <ExternalLink size={13} strokeWidth={2.5} /> Live
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
