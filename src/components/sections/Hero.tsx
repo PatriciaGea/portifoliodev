@@ -111,14 +111,13 @@ export default function Hero() {
             <h1
               className="hero-title"
               style={{
-                fontFamily: "'Outfit', system-ui, sans-serif",
+              fontFamily: "'Outfit', system-ui, sans-serif",
                 fontSize: "clamp(1.95rem, 4.2vw, 3.4rem)",
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
-                color: "#1E293B",
+                color: "var(--foreground)",
                 marginBottom: 12,
-                whiteSpace: "nowrap",
               }}
             >
                 Mobile / Frontend{" "}

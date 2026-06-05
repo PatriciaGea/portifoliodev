@@ -42,6 +42,24 @@
   --shadow-sticker:   8px 8px 0px 0px #E2E8F0;
 }
 
+/* Dark theme overrides (toggle by adding class 'dark' to html element) */
+.dark {
+  --background:       #0F1724;
+  --foreground:       #E6EEF6;
+  --muted:            #0B1220;
+  --muted-foreground: #94A3B8;
+  --accent:           #7C3AED;
+  --accent-fg:        #FFF;
+  --secondary:        #F472B6;
+  --tertiary:         #FBBF24;
+  --quaternary:       #34D399;
+  --border:           #1F2937;
+  --card:             #0B1220;
+  --ring:             #7C3AED;
+  --shadow-pop:       0 6px 18px rgba(0,0,0,0.6);
+  --nav-bg:           rgba(8,12,20,0.9);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -596,6 +614,11 @@ section[id] {
 
   .hero-title {
     text-align: center;
+  }
+  .hero-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    white-space: normal;
+    overflow-wrap: break-word;
   }
 
   .hero-cta-row,
