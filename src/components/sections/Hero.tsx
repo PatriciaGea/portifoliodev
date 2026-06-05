@@ -64,7 +64,7 @@ export default function Hero() {
           alt="Patricia Gea portrait back"
           fill
           sizes="(max-width: 768px) 60vw, 360px"
-          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
+          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.08)", transformOrigin: "center top" }}
         />
       </div>
     </div>
@@ -132,7 +132,7 @@ export default function Hero() {
             </h1>
 
             {/* Tagline */}
-            <p style={{
+            <p className="hero-tagline" style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: "clamp(1rem, 2vw, 1.15rem)",
               color: "#64748B",
@@ -143,7 +143,7 @@ export default function Hero() {
             }}>
               With a background in Product, UX, and scalable strategy.
             </p>
-            <p style={{
+            <p className="hero-location" style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: "clamp(0.75rem, 1vw, 0.8125rem)",
               color: "#7d858f",

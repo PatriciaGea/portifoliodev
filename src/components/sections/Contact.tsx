@@ -79,7 +79,7 @@ export default function Contact() {
     <section id="contact" className="section" style={{ background: "#F1F5F9" }}>
       <div className="container">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <p className="section-label">05 ? Contact</p>
+          <p className="section-label">05 - Contact</p>
           <h2 className="section-title">Let&apos;s <span className="section-title-accent">work together</span></h2>
           <div className="divider" style={{ margin: "16px auto" }} />
           <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "#64748B", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>

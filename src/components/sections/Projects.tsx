@@ -57,7 +57,7 @@ export default function Projects() {
           <div className="divider" style={{ marginTop: 16 }} />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 360px))", justifyContent: "center", gap: 24 }}>
           {filtered.map((project, i) => {
             const shadowColor = cardShadowColors[i % cardShadowColors.length];
             const isMobile = project.category === "Mobile" || project.tech.some((t) => {

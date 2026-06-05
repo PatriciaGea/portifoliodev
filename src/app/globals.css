@@ -598,9 +598,17 @@ section[id] {
     text-align: center;
   }
   .hero-title {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-size: clamp(1.8rem, 7vw, 2.45rem);
     white-space: normal;
     overflow-wrap: break-word;
+  }
+
+  .hero-tagline {
+    font-size: 0.92rem !important;
+  }
+
+  .hero-location {
+    font-size: 0.7rem !important;
   }
 
   .hero-cta-row,
