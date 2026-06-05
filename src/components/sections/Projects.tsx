@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
@@ -84,9 +85,19 @@ export default function Projects() {
                   position: "relative",
                   overflow: "hidden",
                 }}>
-                  <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "#475569" }}>
-                    Preview unavailable
-                  </span>
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 340px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  ) : (
+                    <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "#475569" }}>
+                      Preview unavailable
+                    </span>
+                  )}
                   {/* Overlay */}
                   <div className="project-overlay">
                     <a

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { siteConfig, socialLinks } from "@/lib/portfolio-data";
 
 const socialIconByType = {
@@ -100,9 +100,9 @@ export default function Hero() {
               padding: "6px 14px",
               boxShadow: "3px 3px 0px #1E293B",
             }}>
-              <span style={{ width: 8, height: 8, background: "#1E293B", borderRadius: "50%", display: "inline-block" }} />
-              <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.75rem", fontWeight: 700, color: "#1E293B", letterSpacing: "0.04em" }}>
-                Available for internship · Stockholm
+              <span style={{ width: 7, height: 7, background: "#1E293B", borderRadius: "50%", display: "inline-block" }} />
+              <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.62rem", fontWeight: 700, color: "#1E293B", letterSpacing: "0.04em" }}>
+                Available for project inquiries & quotes worldwide
               </span>
             </div>
 
@@ -111,30 +111,24 @@ export default function Hero() {
               className="hero-title"
               style={{
                 fontFamily: "'Outfit', system-ui, sans-serif",
-                fontSize: "clamp(2.6rem, 6vw, 5.2rem)",
+                fontSize: "clamp(1.95rem, 4.2vw, 3.4rem)",
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
                 color: "#1E293B",
                 marginBottom: 24,
+                whiteSpace: "nowrap",
               }}
             >
-              <span style={{
-                color: "#8B5CF6",
-                textDecoration: "underline",
-                textDecorationColor: "#FBBF24",
-                textDecorationStyle: "wavy",
-                textDecorationThickness: "4px",
-                textUnderlineOffset: "6px",
-              }}>Mobile / Frontend</span>{" "}
-              <span style={{
-                color: "#8B5CF6",
-                textDecoration: "underline",
-                textDecorationColor: "#FBBF24",
-                textDecorationStyle: "wavy",
-                textDecorationThickness: "4px",
-                textUnderlineOffset: "6px",
-              }}>Developer</span>
+                Mobile / Frontend{" "}
+                <span style={{
+                  color: "#8B5CF6",
+                  textDecoration: "underline",
+                  textDecorationColor: "#FBBF24",
+                  textDecorationStyle: "wavy",
+                  textDecorationThickness: "4px",
+                  textUnderlineOffset: "6px",
+                }}>Developer</span>
             </h1>
 
             {/* Tagline */}
@@ -177,20 +171,8 @@ export default function Hero() {
               fontWeight: 400,
             }}>
               <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong> — a Mobile and Frontend Developer, with 17 years of previous experience as a business owner, where I built and
-managed 3 tattoo studios across Brazil and Sweden with a team of 20 people.
+scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people. Experience applied to programming development.
             </p>
-            <p style={{
-              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-              fontSize: "0.97rem",
-              color: "#64748B",
-              maxWidth: 540,
-              marginBottom: 0,
-              lineHeight: 1.8,
-              fontWeight: 400,
-            }}>
-              Now studying at <strong style={{ color: "#8B5CF6", fontWeight: 700 }}>Hyper Island</strong> in Stockholm, I bring that experience into how I think about UX, architecture, and what actually matters to end users.
-            </p>
-
             {/* Tech tags */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32, marginTop: 20 }}>
               {["React", "Next.js", "TypeScript", "Node.js"].map((tech, i) => {
@@ -215,10 +197,10 @@ managed 3 tattoo studios across Brazil and Sweden with a team of 20 people.
             {/* CTAs */}
             <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 40 }}>
               <a href="#projects" className="btn-primary">
-                View My Work <ArrowRight size={16} strokeWidth={2.5} />
+                View My Work
               </a>
               <a href="/cv.pdf" download className="btn-outline">
-                <Download size={16} strokeWidth={2.5} /> Download CV
+                Download CV
               </a>
             </div>
 

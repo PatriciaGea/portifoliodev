@@ -18,7 +18,7 @@ const infoIconByKey = {
 
 const infoCards = [
   { title: "Hyper Island", subtitle: "Frontend Developer Program", details: "Stockholm, Sweden · 2025-2027", icon: "graduationCap" },
-  { title: "Bachelor in CS", subtitle: "Nove de Julho University", details: "Sao Paulo, Brazil · 2006-2007", icon: "bookOpen" },
+  { title: "Bachelor in Computer Science", subtitle: "Nove de Julho University", details: "Sao Paulo, Brazil · 2006-2007 (incomplete)", icon: "bookOpen" },
   { title: "Interests", subtitle: "Music · Art · Illustration · Coding", details: "Creative problem solving", icon: "palette" },
 ] as const;
 
@@ -67,7 +67,7 @@ export default function About() {
                 <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, color: "#8B5CF6", fontSize: "1rem" }}>PG</span>
               </div>
               <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1rem", marginBottom: 4, color: "#1E293B" }}>
-                Patrícia Gea H. Rodrigues
+                Patrícia Gea Rodrigues
               </p>
               <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.75rem", color: "#64748B", fontWeight: 500 }}>
                 Frontend Developer with Product & UX Background
