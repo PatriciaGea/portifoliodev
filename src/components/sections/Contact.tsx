@@ -58,10 +58,9 @@ export default function Contact() {
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
       setTouched({});
-    } catch {
+    } catch (err) {
       // Capture and show error
       setStatus("error");
-      const err = (arguments && arguments[0]) || undefined;
       const message = (err && (err as any).message) || "Unexpected error sending message.";
       setErrorMessage(message);
       console.error("EmailJS send error:", err);
