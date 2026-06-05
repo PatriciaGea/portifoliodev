@@ -56,7 +56,7 @@ export default function About() {
               onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "6px 6px 0px #F472B6"; }}
             >
               <div style={{
-                width: 84, height: 84,
+                width: 76, height: 76,
                 borderRadius: "50%",
                 border: "2px solid #1E293B",
                 margin: "0 auto 12px",
@@ -71,7 +71,7 @@ export default function About() {
                   src="/images/cat.webp"
                   alt="Patrícia Gea"
                   fill
-                  sizes="84px"
+                  sizes="76px"
                   style={{ objectFit: "cover", objectPosition: "center 100%", transform: "scale(0.86)" }}
                   priority
                 />
