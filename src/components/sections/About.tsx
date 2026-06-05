@@ -56,7 +56,7 @@ export default function About() {
               onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "6px 6px 0px #F472B6"; }}
             >
               <div style={{
-                width: 120, height: 120,
+                width: 100, height: 100,
                 borderRadius: "50%",
                 border: "2px solid #1E293B",
                 margin: "0 auto 12px",
@@ -71,15 +71,15 @@ export default function About() {
                   src="/images/cat.webp"
                   alt="Patrícia Gea"
                   fill
-                  sizes="120px"
+                  sizes="100px"
                   style={{ objectFit: "cover" }}
                   priority
                 />
               </div>
-              <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.05rem", marginBottom: 4, color: "#1E293B" }}>
+              <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "0.95rem", marginBottom: 4, color: "#1E293B" }}>
                 Patrícia Gea Rodrigues
               </p>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0. Eightrem", color: "#64748B", fontWeight: 500 }}>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.85rem", color: "#64748B", fontWeight: 500 }}>
                 Frontend Developer with Product & UX Background
               </p>
             </div>
@@ -107,7 +107,7 @@ export default function About() {
                 <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 8, color: "#1E293B" }}>Languages</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-start" }}>
                 {(languages ?? []).map(({ name, level }) => (
-                  <p key={name} style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.8rem", color: "#64748B", margin: 0 }}>
+                  <p key={name} style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.72rem", color: "#64748B", margin: 0 }}>
                     {name} <span style={{ color: "#8B5CF6", fontWeight: 600 }}>({level})</span>
                   </p>
                 ))}
