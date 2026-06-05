@@ -22,6 +22,7 @@ export default function Contact() {
   const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [touched, setTouched] = useState<Partial<Record<keyof FormState, boolean>>>({});
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -35,6 +36,18 @@ export default function Contact() {
     e.preventDefault();
     if (!isValid) return;
     setStatus("sending");
+    setErrorMessage(null);
+    // Check EmailJS env variables before attempting send
+    if (
+      !process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ||
+      !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ||
+      !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    ) {
+      setStatus("error");
+      setErrorMessage("Email service is not configured. Missing environment variables.");
+      console.error("Missing EmailJS environment variables.");
+      return;
+    }
     try {
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
@@ -46,7 +59,12 @@ export default function Contact() {
       setForm({ name: "", email: "", message: "" });
       setTouched({});
     } catch {
+      // Capture and show error
       setStatus("error");
+      const err = (arguments && arguments[0]) || undefined;
+      const message = (err && (err as any).message) || "Unexpected error sending message.";
+      setErrorMessage(message);
+      console.error("EmailJS send error:", err);
     }
   };
 
@@ -55,7 +73,7 @@ export default function Contact() {
       <div className="container">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <p className="section-label">05 — Contact</p>
-          <h2 className="section-title">Let&apos;s <span className="section-title-accent">Connect</span></h2>
+          <h2 className="section-title">Let&apos;s <span className="section-title-accent">work together</span></h2>
           <div className="divider" style={{ margin: "16px auto" }} />
           <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "#64748B", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>
             Do you have a project in mind? Feel free to reach out. I look forward to hearing from you.
@@ -120,9 +138,10 @@ export default function Contact() {
                   <textarea id="c-msg" name="message" value={form.message} onChange={handleChange} onBlur={() => handleBlur("message")} placeholder="Tell me about your project..." required minLength={10} rows={5} className="field-input" style={{ resize: "vertical", minHeight: 120 }} />
                 </div>
                 {status === "error" && (
-                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.82rem", color: "#EF4444", padding: "10px 14px", background: "#FEF2F2", border: "2px solid #FCA5A5", borderRadius: 8 }}>
-                    Something went wrong. Please try again.
-                  </p>
+                  <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.82rem", color: "#EF4444", padding: "10px 14px", background: "#FEF2F2", border: "2px solid #FCA5A5", borderRadius: 8 }}>
+                    <p style={{ margin: 0, fontWeight: 700 }}>Something went wrong. Please try again.</p>
+                    {errorMessage && <p style={{ margin: "6px 0 0", fontSize: "0.78rem", color: "#B91C1C" }}>{errorMessage}</p>}
+                  </div>
                 )}
                 <button type="submit" disabled={!isValid || status === "sending"} className="btn-primary" style={{ opacity: !isValid || status === "sending" ? 0.6 : 1, cursor: !isValid || status === "sending" ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
                   {status === "sending" ? "Sending…" : <><Send size={15} strokeWidth={2.5} /> Send Message</>}

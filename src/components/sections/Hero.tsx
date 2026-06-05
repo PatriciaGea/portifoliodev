@@ -117,7 +117,7 @@ export default function Hero() {
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
                 color: "#1E293B",
-                marginBottom: 24,
+                marginBottom: 12,
                 whiteSpace: "nowrap",
               }}
             >
@@ -138,7 +138,7 @@ export default function Hero() {
               fontSize: "clamp(1rem, 2vw, 1.15rem)",
               color: "#64748B",
               maxWidth: 520,
-              marginBottom: 32,
+              marginBottom: 8,
               lineHeight: 1.6,
               fontWeight: 500,
             }}>
@@ -149,7 +149,7 @@ export default function Hero() {
               fontSize: "clamp(0.75rem, 1vw, 0.8125rem)",
               color: "#7d858f",
               maxWidth: 520,
-              marginBottom: 32,
+              marginBottom: 28,
               lineHeight: 1.6,
               fontWeight: 200,
             }}>
@@ -167,16 +167,28 @@ export default function Hero() {
               fontSize: "1.05rem",
               color: "#64748B",
               maxWidth: 540,
-              marginBottom: 16,
+              marginBottom: 12,
               lineHeight: 1.8,
               fontWeight: 400,
             }}>
-              <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong>, a Mobile and Frontend Developer with 17 years of previous experience as a business owner, where I built and scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people. Experience applied to programming development.
+              <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong>, a Mobile and Frontend Developer with 17 years of previous experience as a business owner, where I built and scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people.
+            </p>
+            <p style={{
+              fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
+              fontSize: "1.05rem",
+              color: "#64748B",
+              maxWidth: 540,
+              marginTop: 8,
+              marginBottom: 20,
+              lineHeight: 1.8,
+              fontWeight: 400,
+            }}>
+              Experience applied to programming development.
             </p>
             {/* Tech tags removed */}
 
             {/* CTAs */}
-            <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 40 }}>
+            <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 20, marginBottom: 40 }}>
               <a href="#projects" className="btn-primary">
                 View My Work
               </a>
