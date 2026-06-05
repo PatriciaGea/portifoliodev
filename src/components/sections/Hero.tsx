@@ -191,7 +191,7 @@ export default function Hero() {
               <a href="#projects" className="btn-primary">
                 View My Work
               </a>
-              <a href="/cv.pdf" download className="btn-outline">
+              <a href="/CVPatriciaDeveloper.pdf" download className="btn-outline">
                 Download CV
               </a>
             </div>
