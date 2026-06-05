@@ -164,15 +164,14 @@ export default function Hero() {
             {/* Bio */}
             <p style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-              fontSize: "0.97rem",
+              fontSize: "1.05rem",
               color: "#64748B",
               maxWidth: 540,
               marginBottom: 16,
               lineHeight: 1.8,
               fontWeight: 400,
             }}>
-              <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong> — a Mobile and Frontend Developer, with 17 years of previous experience as a business owner, where I built and
-scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people. Experience applied to programming development.
+              <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong>, a Mobile and Frontend Developer with 17 years of previous experience as a business owner, where I built and scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people. Experience applied to programming development.
             </p>
             {/* Tech tags removed */}
 
@@ -187,7 +186,7 @@ scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people. Exper
             </div>
 
             {/* Social row */}
-            <div className="hero-social-row" style={{ display: "flex", gap: 12, alignItems: "center" }}>
+              <div className="hero-social-row" style={{ display: "flex", gap: 12, alignItems: "center" }}>
               {socialLinks
                 .filter((s) => s.type !== "website")
                 .map(({ type, href, label }) => {
@@ -227,9 +226,6 @@ scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people. Exper
                   );
                 })}
               <div style={{ width: 1, height: 20, background: "#CBD5E1", marginLeft: 4 }} />
-              <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.75rem", fontWeight: 600, color: "#64748B" }}>
-                Hyper Island · Stockholm
-              </span>
             </div>
           </div>
 

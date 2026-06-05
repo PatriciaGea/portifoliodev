@@ -58,7 +58,7 @@ export default function Contact() {
           <h2 className="section-title">Let&apos;s <span className="section-title-accent">Connect</span></h2>
           <div className="divider" style={{ margin: "16px auto" }} />
           <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "#64748B", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>
-            Have a project in mind or just want to say hi? I&apos;d love to hear from you.
+            Do you have a project in mind? Feel free to reach out. I look forward to hearing from you.
           </p>
         </div>
 
