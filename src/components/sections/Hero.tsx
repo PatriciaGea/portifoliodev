@@ -64,7 +64,7 @@ export default function Hero() {
           alt="Patricia Gea portrait back"
           fill
           sizes="(max-width: 768px) 60vw, 360px"
-          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.08)", transformOrigin: "center top" }}
+          style={{ objectFit: "cover", objectPosition: "center 28%", transform: "scale(0.98)", transformOrigin: "center 28%" }}
         />
       </div>
     </div>
@@ -112,12 +112,13 @@ export default function Hero() {
               className="hero-title"
               style={{
               fontFamily: "'Outfit', system-ui, sans-serif",
-                fontSize: "clamp(1.55rem, 3.3vw, 2.7rem)",
+                fontSize: "clamp(1.8rem, 3.7vw, 3rem)",
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
                 color: "#1E293B",
                 marginBottom: 12,
+                whiteSpace: "nowrap",
               }}
             >
                 Mobile / Frontend{" "}

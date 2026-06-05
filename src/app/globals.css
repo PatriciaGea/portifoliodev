@@ -598,17 +598,17 @@ section[id] {
     text-align: center;
   }
   .hero-title {
-    font-size: clamp(1.8rem, 7vw, 2.45rem);
+    font-size: clamp(2rem, 8vw, 2.65rem);
     white-space: normal;
     overflow-wrap: break-word;
   }
 
   .hero-tagline {
-    font-size: 0.92rem !important;
+    font-size: 0.82rem !important;
   }
 
   .hero-location {
-    font-size: 0.7rem !important;
+    font-size: 0.62rem !important;
   }
 
   .hero-cta-row,
