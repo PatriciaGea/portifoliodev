@@ -1,6 +1,6 @@
 export type SocialType = "github" | "linkedin" | "email" | "website";
 
-export type Filter = "All" | "Frontend" | "Fullstack";
+export type Filter = "All" | "Frontend" | "Fullstack" | "Mobile";
 
 export interface NavItem {
   label: string;

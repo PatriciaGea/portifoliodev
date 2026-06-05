@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
 
-const filterColors: Record<string, string> = { All: "#8B5CF6", Frontend: "#F472B6", Fullstack: "#34D399" };
+const filterColors: Record<string, string> = { All: "#8B5CF6", Mobile: "#06B6D4", Frontend: "#F472B6", Fullstack: "#34D399" };
 const cardShadowColors = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
 
 export default function Projects() {
@@ -27,7 +27,7 @@ export default function Projects() {
 
             {/* Filter buttons — pill group */}
             <div style={{ display: "flex", gap: 8 }}>
-              {(["All", "Frontend", "Fullstack"] as Filter[]).map((f) => {
+              {(["All", "Mobile", "Frontend", "Fullstack"] as Filter[]).map((f) => {
                 const color = filterColors[f] ?? "#8B5CF6";
                 const active = filter === f;
                 return (

@@ -1,5 +1,6 @@
-"use client";
+ "use client";
 
+import Image from "next/image";
 import { MapPin, Coffee, Zap, Heart, GraduationCap, BookOpen, Palette, Instagram } from "lucide-react";
 import { aboutHighlights, languages } from "@/lib/portfolio-data";
 
@@ -46,7 +47,7 @@ export default function About() {
               borderRadius: 20,
               boxShadow: "6px 6px 0px #F472B6",
               width: "100%",
-              maxWidth: 340,
+              maxWidth: 360,
               padding: "24px 20px",
               textAlign: "center",
               transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
@@ -55,21 +56,30 @@ export default function About() {
               onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "6px 6px 0px #F472B6"; }}
             >
               <div style={{
-                width: 64, height: 64,
+                width: 120, height: 120,
                 borderRadius: "50%",
                 border: "2px solid #1E293B",
                 margin: "0 auto 12px",
-                background: "#8B5CF622",
+                background: "#fff",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                overflow: "hidden",
+                position: "relative",
               }}>
-                <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, color: "#8B5CF6", fontSize: "1rem" }}>PG</span>
+                <Image
+                  src="/images/cat.webp"
+                  alt="Patrícia Gea"
+                  fill
+                  sizes="120px"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
               </div>
-              <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1rem", marginBottom: 4, color: "#1E293B" }}>
+              <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.05rem", marginBottom: 4, color: "#1E293B" }}>
                 Patrícia Gea Rodrigues
               </p>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.75rem", color: "#64748B", fontWeight: 500 }}>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0. Eightrem", color: "#64748B", fontWeight: 500 }}>
                 Frontend Developer with Product & UX Background
               </p>
             </div>
@@ -95,13 +105,13 @@ export default function About() {
                   <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "#8B5CF6", fontFamily: "Outfit, system-ui, sans-serif" }}>AB</span>
                 </div>
                 <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 8, color: "#1E293B" }}>Languages</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5 }}>
-                  {(languages ?? []).map(({ name, level }) => (
-                    <p key={name} style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.7rem", color: "#64748B" }}>
-                      {name} <span style={{ color: "#8B5CF6", fontWeight: 600 }}>({level})</span>
-                    </p>
-                  ))}
-                </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-start" }}>
+                {(languages ?? []).map(({ name, level }) => (
+                  <p key={name} style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.8rem", color: "#64748B", margin: 0 }}>
+                    {name} <span style={{ color: "#8B5CF6", fontWeight: 600 }}>({level})</span>
+                  </p>
+                ))}
+              </div>
               </div>
 
               {infoCards.map((card, i) => (
