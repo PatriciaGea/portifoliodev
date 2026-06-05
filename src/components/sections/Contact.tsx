@@ -15,11 +15,15 @@ const infoCards = [
 const socialIconByType = { github: Github, linkedin: Linkedin, email: Mail, website: Globe } as const;
 const mainSocialLinks = socialLinks.filter((s) => ["github", "linkedin", "email"].includes(s.type));
 
-type FormState = { name: string; email: string; message: string };
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+type FormState = { name: string; email: string; subject: string; message: string };
 type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
-  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
+  const [form, setForm] = useState<FormState>({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [touched, setTouched] = useState<Partial<Record<keyof FormState, boolean>>>({});
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -39,9 +43,9 @@ export default function Contact() {
     setErrorMessage(null);
     // Check EmailJS env variables before attempting send
     if (
-      !process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ||
-      !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ||
-      !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      !EMAILJS_SERVICE_ID ||
+      !EMAILJS_TEMPLATE_ID ||
+      !EMAILJS_PUBLIC_KEY
     ) {
       setStatus("error");
       setErrorMessage("Email service is not configured. Missing environment variables.");
@@ -50,20 +54,24 @@ export default function Contact() {
     }
     try {
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-        { from_name: form.name, from_email: form.email, message: form.message },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          subject: form.subject,
+          message: form.message,
+        },
+        EMAILJS_PUBLIC_KEY
       );
       setStatus("success");
-      setForm({ name: "", email: "", message: "" });
+      setForm({ name: "", email: "", subject: "", message: "" });
       setTouched({});
-    } catch (err) {
-      // Capture and show error
+    } catch (error) {
       setStatus("error");
-      const message = (err && (err as any).message) || "Unexpected error sending message.";
-      setErrorMessage(message);
-      console.error("EmailJS send error:", err);
+      console.log("EMAILJS ERROR:", error);
+      setErrorMessage("Erro ao enviar");
+      alert("Erro ao enviar");
     }
   };
 
@@ -71,7 +79,7 @@ export default function Contact() {
     <section id="contact" className="section" style={{ background: "#F1F5F9" }}>
       <div className="container">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <p className="section-label">05 — Contact</p>
+          <p className="section-label">05 ? Contact</p>
           <h2 className="section-title">Let&apos;s <span className="section-title-accent">work together</span></h2>
           <div className="divider" style={{ margin: "16px auto" }} />
           <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "#64748B", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>
@@ -79,9 +87,9 @@ export default function Contact() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 32, alignItems: "start" }}>
+        <div className="contact-layout" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 32, alignItems: "start" }}>
           {/* Info cards */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <div className="contact-info-column" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {infoCards.map(({ icon: Icon, label, value, href, color }) => (
               <div
                 key={label}
@@ -113,7 +121,7 @@ export default function Contact() {
           </div>
 
           {/* Form card */}
-          <div style={{ background: "#fff", border: "2px solid #1E293B", borderRadius: 20, boxShadow: "6px 6px 0px #8B5CF6", padding: "32px 28px" }}>
+          <div className="contact-form-card" style={{ background: "#fff", border: "2px solid #1E293B", borderRadius: 20, boxShadow: "6px 6px 0px #8B5CF6", padding: "32px 28px" }}>
             {status === "success" ? (
               <div style={{ textAlign: "center", padding: "40px 0" }}>
                 <div style={{ width: 64, height: 64, borderRadius: "50%", background: "#34D39918", border: "2px solid #34D399", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
@@ -143,7 +151,7 @@ export default function Contact() {
                   </div>
                 )}
                 <button type="submit" disabled={!isValid || status === "sending"} className="btn-primary" style={{ opacity: !isValid || status === "sending" ? 0.6 : 1, cursor: !isValid || status === "sending" ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-                  {status === "sending" ? "Sending…" : <><Send size={15} strokeWidth={2.5} /> Send Message</>}
+                  {status === "sending" ? "Sending?" : <><Send size={15} strokeWidth={2.5} /> Send Message</>}
                 </button>
               </form>
             )}

@@ -634,6 +634,27 @@ section[id] {
     grid-template-columns: 1fr;
   }
 
+  .contact-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .contact-info-column,
+  .contact-form-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .contact-form-card {
+    padding: 24px 18px !important;
+    border-radius: 16px !important;
+    box-shadow: 4px 4px 0px #8B5CF6 !important;
+  }
+
+  .field-input {
+    max-width: 100%;
+  }
+
   .card:hover {
     transform: none;
     box-shadow: var(--shadow-pop-sm);
