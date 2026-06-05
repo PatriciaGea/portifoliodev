@@ -62,7 +62,7 @@ export default function TechStack() {
                         fontFamily: "'Outfit', system-ui, sans-serif",
                         fontSize: "0.82rem",
                         fontWeight: 700,
-                        background: `${color}18`,
+                        background: "#fff",
                         border: `2px solid ${color}`,
                         color: "#1E293B",
                         boxShadow: `3px 3px 0px ${color}`,
