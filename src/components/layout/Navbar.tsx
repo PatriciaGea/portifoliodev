@@ -1,40 +1,19 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navItems, siteConfig } from "@/lib/portfolio-data";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("#home");
-  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    // initialize theme from localStorage or prefers-color-scheme
-    const saved = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
-    if (saved === "dark" || (!saved && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    } else {
-      setTheme("light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    if (next === "dark") document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-    try { localStorage.setItem("theme", next); } catch {}
-  };
 
   // Track active section
   useEffect(() => {
@@ -68,7 +47,7 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          background: scrolled ? "var(--nav-bg)" : "transparent",
+          background: scrolled ? "rgba(255,253,245,0.95)" : "transparent",
           backdropFilter: scrolled ? "blur(12px)" : "none",
           borderBottom: scrolled ? "2px solid #E2E8F0" : "none",
           transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
@@ -82,7 +61,7 @@ export default function Navbar() {
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: 4 }}
             aria-label="Go to top"
           >
-            <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.2rem", color: "var(--foreground)", letterSpacing: "-0.02em" }}>
+            <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.2rem", color: "#1E293B", letterSpacing: "-0.02em" }}>
               {siteConfig.displayName}
               <span style={{ color: "#8B5CF6" }}>.</span>
             </span>
@@ -134,22 +113,13 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Theme toggle */}
-            <button
-              aria-label="Toggle theme"
-              onClick={toggleTheme}
-              style={{ background: "none", border: "2px solid var(--foreground)", borderRadius: 8, padding: "8px", cursor: "pointer", color: "var(--foreground)", marginRight: 8 }}
-            >
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-
             {/* Contact CTA */}
             <button
               onClick={() => scrollTo("#contact")}
               style={{
                 padding: "9px 22px",
                 borderRadius: 9999,
-                border: "2px solid var(--foreground)",
+                border: "2px solid #1E293B",
                 background: "#8B5CF6",
                 color: "#fff",
                 fontFamily: "'Outfit', system-ui, sans-serif",
