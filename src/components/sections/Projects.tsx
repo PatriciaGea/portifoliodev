@@ -23,6 +23,7 @@ export default function Projects() {
               <h2 className="section-title">
                 Selected <span className="section-title-accent">Projects</span>
               </h2>
+              <div className="divider" style={{ margin: "16px auto 0" }} />
             </div>
 
             {/* Filter buttons — pill group */}
@@ -54,7 +55,6 @@ export default function Projects() {
               })}
             </div>
           </div>
-          <div className="divider" style={{ margin: "16px auto 0" }} />
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 24 }}>

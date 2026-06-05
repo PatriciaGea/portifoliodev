@@ -27,7 +27,7 @@ const cardAccents = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
 
 export default function About() {
   return (
-    <section id="about" className="section" style={{ background: "#FFFDF5" }}>
+    <section id="about" className="section" style={{ background: "#F1F5F9" }}>
       <div className="container">
         <div className="section-heading-block" style={{ textAlign: "center" }}>
           <p className="section-label">01 — About</p>
@@ -56,7 +56,7 @@ export default function About() {
               onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "6px 6px 0px #F472B6"; }}
             >
               <div style={{
-                width: 92, height: 92,
+                width: 84, height: 84,
                 borderRadius: "50%",
                 border: "2px solid #1E293B",
                 margin: "0 auto 12px",
@@ -71,8 +71,8 @@ export default function About() {
                   src="/images/cat.webp"
                   alt="Patrícia Gea"
                   fill
-                  sizes="92px"
-                  style={{ objectFit: "cover", objectPosition: "center 90%", transform: "scale(0.88)" }}
+                  sizes="84px"
+                  style={{ objectFit: "cover", objectPosition: "center 100%", transform: "scale(0.86)" }}
                   priority
                 />
               </div>
