@@ -5,222 +5,231 @@ import { useState } from "react";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
 
+const filterColors: Record<string, string> = { All: "#8B5CF6", Mobile: "#06B6D4", Frontend: "#F472B6", Fullstack: "#34D399" };
+const cardShadowColors = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
+
 export default function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
   const formatFilterLabel = (value: Filter) => (value === "Fullstack" ? "Full-Stack" : value);
-
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
 
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section" style={{ background: "#FFFDF5" }}>
       <div className="container">
-        <div style={{ marginBottom: 56 }}>
+        <div style={{ marginBottom: 48 }}>
           <div className="section-heading-row" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
-            <h2 className="section-title">
-              <span className="section-title-accent">Projects</span>
-            </h2>
+            <div>
+              <p className="section-label">03 — Work</p>
+              <h2 className="section-title">
+                Selected <span className="section-title-accent">Projects</span>
+              </h2>
+            </div>
 
-            {/* Filter tabs */}
+            {/* Filter buttons — pill group */}
             <div style={{ display: "flex", gap: 8 }}>
-              {(["All", "Frontend", "Fullstack"] as Filter[]).map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  style={{
-                    padding: "7px 18px",
-                    borderRadius: 100,
-                    border: "1.5px solid",
-                    borderColor: filter === f ? "var(--primary)" : "var(--color-border)",
-                    background: filter === f ? "rgba(81,112,255,0.1)" : "transparent",
-                    color: filter === f ? "var(--primary)" : "var(--color-text-muted)",
-                    fontFamily: "Helvetica, Arial, sans-serif",
-                    fontWeight: 600,
-                    fontSize: "0.8rem",
-                    cursor: "pointer",
-                    transition: "all 0.2s ease",
-                  }}
-                >
-                  {formatFilterLabel(f)}
-                </button>
-              ))}
+              {(["All", "Mobile", "Frontend", "Fullstack"] as Filter[]).map((f) => {
+                const color = filterColors[f] ?? "#8B5CF6";
+                const active = filter === f;
+                return (
+                  <button
+                    key={f}
+                    onClick={() => setFilter(f)}
+                    style={{
+                      padding: "8px 20px",
+                      borderRadius: 9999,
+                      border: `2px solid ${color}`,
+                      background: active ? color : "transparent",
+                      color: active ? "#fff" : "#1E293B",
+                      fontFamily: "'Outfit', system-ui, sans-serif",
+                      fontWeight: 700,
+                      fontSize: "0.78rem",
+                      cursor: "pointer",
+                      boxShadow: active ? `3px 3px 0px #1E293B` : "none",
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    {formatFilterLabel(f)}
+                  </button>
+                );
+              })}
             </div>
           </div>
-          <div className="divider" />
+          <div className="divider" style={{ marginTop: 16 }} />
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 24 }}>
-          {filtered.map((project) => (
-            <article key={project.title} className="card project-card" style={{ padding: 0, overflow: "hidden", position: "relative" }}>
-              {/* Top accent bar */}
-              <div style={{
-                height: 4,
-                background: `linear-gradient(90deg, ${project.accent}, ${project.accent}88)`,
-              }} />
-
-              {/* Mock preview area */}
-              <div style={{
-                height: 180,
-                background: `linear-gradient(135deg, ${project.accent}18, ${project.accent}08)`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                position: "relative",
-                overflow: "hidden",
-                borderBottom: "1px solid var(--color-border)",
-              }}>
-                {project.image ? (
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} preview`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 380px"
-                    style={{ objectFit: "cover" }}
-                  />
-                ) : null}
-                {/* Decorative circles */}
+          {filtered.map((project, i) => {
+            const shadowColor = cardShadowColors[i % cardShadowColors.length];
+            const isMobile = project.category === "Mobile" || project.tech.some((t) => {
+              const lower = t.toLowerCase();
+              return lower.includes("android") || lower.includes("kotlin");
+            });
+            const liveHref = (project.live && project.live.trim()) ? project.live : project.image ? project.image : null;
+            return (
+              <article
+                key={project.title}
+                className="project-card"
+                style={{
+                  background: "#fff",
+                  border: "2px solid #1E293B",
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  boxShadow: `6px 6px 0px ${shadowColor}`,
+                  transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "rotate(-0.8deg) scale(1.02)"; (e.currentTarget as HTMLElement).style.boxShadow = `8px 8px 0px ${shadowColor}`; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = ""; (e.currentTarget as HTMLElement).style.boxShadow = `6px 6px 0px ${shadowColor}`; }}
+              >
+                {/* Image area */}
                 <div style={{
-                  position: "absolute",
-                  width: 160, height: 160,
-                  borderRadius: "50%",
-                  border: `1px solid ${project.accent}25`,
-                  top: -40, right: -40,
-                }} />
-                <div style={{
-                  position: "absolute",
-                  width: 100, height: 100,
-                  borderRadius: "50%",
-                  border: `1px solid ${project.accent}15`,
-                  bottom: -20, left: -20,
-                }} />
-
-                {/* Overlay with links */}
-                <div className="project-overlay" style={{
-                  background: `linear-gradient(135deg, ${project.accent}dd, rgba(255,102,196,0.85))`,
+                  height: 180,
+                  background: `${shadowColor}18`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "relative",
+                  overflow: "hidden",
                 }}>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      width: 44, height: 44, borderRadius: "50%",
-                      background: "rgba(255,255,255,0.2)",
-                      border: "1px solid rgba(255,255,255,0.4)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      color: "white", textDecoration: "none",
-                      backdropFilter: "blur(8px)",
-                    }}
-                    aria-label="GitHub"
-                  >
-                    <Github size={18} />
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      width: 44, height: 44, borderRadius: "50%",
-                      background: "rgba(255,255,255,0.2)",
-                      border: "1px solid rgba(255,255,255,0.4)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      color: "white", textDecoration: "none",
-                      backdropFilter: "blur(8px)",
-                    }}
-                    aria-label="Deployed"
-                  >
-                    <ExternalLink size={18} />
-                  </a>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div style={{ padding: "24px 24px 20px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
-                  <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>{project.title}</h3>
-                  <span className={project.category === "Fullstack" ? "fullstack-label" : undefined} style={{
-                    padding: "3px 10px",
-                    borderRadius: 100,
-                    background: `${project.accent}15`,
-                    color: project.accent,
-                    fontSize: "0.68rem",
-                    fontFamily: "monospace",
-                    fontWeight: 500,
-                    whiteSpace: "nowrap",
-                    flexShrink: 0,
-                    marginLeft: 8,
-                  }}>
-                    {project.category === "Fullstack" ? "Full-Stack" : project.category}
-                  </span>
-                </div>
-
-                <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.7, marginBottom: 16 }}>
-                  {project.description}
-                </p>
-
-                {/* Features */}
-                <ul style={{ listStyle: "none", marginBottom: 16, display: "flex", flexDirection: "column", gap: 4 }}>
-                  {project.features.map((f) => (
-                    <li key={f} style={{ fontSize: "0.8rem", color: "var(--color-text-faint)", display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ width: 4, height: 4, borderRadius: "50%", background: project.accent, flexShrink: 0 }} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Tech stack */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
-                  {project.tech.map((t) => (
-                    <span key={t} className="pill" style={{ fontSize: "0.7rem", padding: "3px 10px" }}>{t}</span>
-                  ))}
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 340px"
+                      style={{ objectFit: "contain", objectPosition: "center" }}
+                    />
+                  ) : (
+                    <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "#475569" }}>
+                      Preview unavailable
+                    </span>
+                  )}
+                  {/* Overlay */}
+                  <div className="project-overlay">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        width: 48, height: 48,
+                        borderRadius: "50%",
+                        border: "2px solid #fff",
+                        background: "rgba(255,255,255,0.15)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        color: "#fff", textDecoration: "none",
+                        backdropFilter: "blur(4px)",
+                      }}
+                      aria-label="GitHub"
+                    >
+                      <Github size={18} strokeWidth={2.5} />
+                    </a>
+                    {liveHref && (
+                      <a
+                        href={liveHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          width: 48, height: 48,
+                          borderRadius: "50%",
+                          border: "2px solid #fff",
+                          background: "rgba(255,255,255,0.15)",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          color: "#fff", textDecoration: "none",
+                          backdropFilter: "blur(4px)",
+                        }}
+                        aria-label="Live"
+                      >
+                        <ExternalLink size={18} strokeWidth={2.5} />
+                      </a>
+                    )}
+                  </div>
                 </div>
 
-                {/* Links */}
-                <div style={{ display: "flex", gap: 12, paddingTop: 12, borderTop: "1px solid var(--color-border)" }}>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "flex", alignItems: "center", gap: 6,
-                      fontSize: "0.8rem", color: "var(--color-text-muted)",
-                      textDecoration: "none", fontWeight: 500,
-                      transition: "color 0.2s",
-                    }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--primary)")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)")}
-                  >
-                    <Github size={14} /> Code
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "flex", alignItems: "center", gap: 6,
-                      fontSize: "0.8rem", color: "var(--color-text-muted)",
-                      textDecoration: "none", fontWeight: 500,
-                      transition: "color 0.2s",
-                    }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--pink)")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)")}
-                  >
-                    <ExternalLink size={14} /> Deployed
-                  </a>
+                {/* Content */}
+                <div style={{ padding: "20px 20px 16px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      {isMobile && (
+                        <Image src="/images/android_logo.webp" alt="Android" width={40} height={40} style={{ display: "block" }} />
+                      )}
+                      <h3 style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "1.05rem", fontWeight: 800, color: "#1E293B", margin: 0 }}>{project.title}</h3>
+                    </div>
+                    <span style={{
+                      padding: "3px 12px",
+                      borderRadius: 9999,
+                      background: `${shadowColor}22`,
+                      border: `2px solid ${shadowColor}`,
+                      color: "#1E293B",
+                      fontFamily: "'Outfit', system-ui, sans-serif",
+                      fontSize: "0.62rem",
+                      fontWeight: 700,
+                      whiteSpace: "nowrap",
+                      flexShrink: 0,
+                      marginLeft: 8,
+                    }}>
+                      {project.category === "Fullstack" ? "Full-Stack" : project.category}
+                    </span>
+                  </div>
+
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.875rem", color: "#64748B", lineHeight: 1.7, marginBottom: 14 }}>
+                    {project.description}
+                  </p>
+
+                  {/* Tech pills */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        style={{
+                          padding: "3px 10px",
+                          borderRadius: 9999,
+                          background: "#F1F5F9",
+                          border: "1px solid #E2E8F0",
+                          fontFamily: "'Outfit', system-ui, sans-serif",
+                          fontSize: "0.67rem",
+                          fontWeight: 600,
+                          color: "#64748B",
+                        }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div style={{ display: "flex", gap: 12, paddingTop: 12, borderTop: "1px solid #E2E8F0" }}>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "#64748B", textDecoration: "none", transition: "color 0.2s" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#8B5CF6")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#64748B")}
+                    >
+                      <Github size={13} strokeWidth={2.5} /> Code
+                    </a>
+                    {liveHref && (
+                      <a
+                        href={liveHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "#64748B", textDecoration: "none", transition: "color 0.2s" }}
+                        onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#8B5CF6")}
+                        onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#64748B")}
+                      >
+                        <ExternalLink size={13} strokeWidth={2.5} /> Live
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         {/* CTA */}
         <div style={{ textAlign: "center", marginTop: 48 }}>
-          <a
-            href={siteConfig.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline"
-            style={{ gap: 10 }}
-          >
-            <Github size={16} /> See all on GitHub <ArrowRight size={14} />
+          <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" className="btn-outline">
+            <Github size={16} strokeWidth={2.5} /> See all on GitHub <ArrowRight size={14} strokeWidth={2.5} />
           </a>
         </div>
       </div>

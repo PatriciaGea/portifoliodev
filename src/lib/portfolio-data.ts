@@ -1,6 +1,6 @@
 export type SocialType = "github" | "linkedin" | "email" | "website";
 
-export type Filter = "All" | "Frontend" | "Fullstack";
+export type Filter = "All" | "Frontend" | "Fullstack" | "Mobile";
 
 export interface NavItem {
   label: string;
@@ -27,23 +27,26 @@ export interface Project {
 }
 
 export const siteConfig = {
-  name: "Patricia Gea H. Rodrigues",
-  displayName: "patriciagea",
-  role: "Frontend Developer",
+  name: "Patricia Gea Rodrigues",
+  displayName: "Patricia Gea Dev",
+  role: "Mobile / Frontend Developer",
   location: "Stockholm, Sweden",
   email: "patricia.gea@gmail.com",
-  phone: "+46 729 23 11 63",
+  phone: "+46 700 00 00 00",
   website: "https://patriciageadev.vercel.app",
   github: "https://github.com/PatriciaGea",
   linkedin: "https://www.linkedin.com/in/patriciageadev/",
-  availableFor: "internship",
+  availableFor: "projects, full-time roles, and freelance opportunities. Feel free to reach out for collaborations or just a chat about tech and design!",
 };
 
 export const seoConfig = {
-  title: "Patricia Gea - Frontend Developer",
+  title: "Patricia Gea - Mobile / Frontend Developer",
   description:
-    "Frontend developer with a product and UX background. Building accessible, beautiful web experiences. Based in Stockholm, Sweden.",
+    "Based in Stockholm, Sweden.",
   keywords: [
+     "Mobile Developer",
+     "Android Developer",
+    "Fullstack Developer",
     "Frontend Developer",
     "Fullstack Developer",
     "React",
@@ -59,7 +62,6 @@ export const navItems: NavItem[] = [
   { label: "About", href: "#about" },
   { label: "Stack", href: "#stack" },
   { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export const socialLinks: SocialLink[] = [
@@ -75,62 +77,73 @@ export const socialLinks: SocialLink[] = [
 
 export const aboutHighlights = [
   { icon: "mapPin", label: "Stockholm, Sweden", sub: "10+ years based here" },
-  { icon: "coffee", label: "17 Years", sub: "As a founder & CEO" },
-  { icon: "zap", label: "Hyper Island", sub: "2025-2027 program" },
-  { icon: "heart", label: "Product Mindset", sub: "UX-first thinking" },
+  { icon: "coffee", label: "17 Years", sub: "where I built and managed 3 tattoo studios across Brazil and Sweden with a team of 20 people." },
+  { icon: "heart", label: "Product Mindset", sub: "UX-first thinking, Creativity, Scalability" },
 ] as const;
 
 export const techCloud = [
-  "React",
-  "React 18",
-  "Next.js",
-  "Next.js App Router",
-  "TypeScript",
-  "JavaScript",
-  "Tailwind CSS",
-  "Framer Motion",
-  "Lucide React",
-  "next-themes",
-  "EmailJS",
-  "Axios",
-  "HTML5",
-  "CSS3",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "Mongoose",
-  "Git",
-  "GitHub",
-  "Vercel",
-  "ESLint",
-  "PostCSS",
-  "Agile",
-  "Vite",
-  "REST APIs",
-  "Jest",
-  "Cypress",
-  "Figma",
-  "Photoshop",
-  "Procreate",
-  "Responsive Design",
-  "Accessibility",
-  "UX Thinking",
-  "Product Iteration",
-  "Cross-cultural leadership",
+  {
+    title: "Mobile",
+    items: ["Kotlin", "Android Studio", "Jetpack Compose", "Material 3", "Intents (ACTION_VIEW, ACTION_DIAL)"]
+  },
+  {
+    title: "Frontend",
+    items: ["React", "Next.js", "TypeScript", "JavaScript", "Axios", "HTML5", "CSS3"]
+  },
+  {
+    title: "Backend",
+    items: ["Node.js", "Express", "MongoDB", "NoSQL", "REST APIs"]
+  },
+  {
+    title: "Tools & Workflow",
+    items: ["Vercel", "ESLint", "Agile", "Vite", "Git", "GitHub", "Render"]
+  },
+  {
+    title: "Design",
+    items: ["Figma", "Photoshop", "Procreate", "A-FRAME", "3D", "Motion", "Video Edition"]
+  },
+  {
+    title: "Practices",
+    items: ["Responsive Design", "Accessibility", "UX Thinking", "Design Systems", "APIs", "State Management", "Component Architecture"]
+  }
 ];
 
-export const techConcepts = [
-  "Responsive Design",
-  "Accessibility (a11y)",
-  "UX Thinking",
-  "Component Architecture",
-  "REST APIs",
-  "State Management",
-  "Git Flow",
-  "Performance Optimization",
-];
+
 
 export const projects: Project[] = [
+  {
+    title: "Business Card App (Android)",
+    description:
+      "Android app showcasing reusable composables, Material 3 and basic navigation via intents. Built as a focused UI exercise and demo of modern Android patterns.",
+    tech: ["Kotlin", "Jetpack Compose", "Material 3", "Android Studio", "Intents"],
+    features: ["Reusable composables", "Material 3 UI", "External intents (call, web)"],
+    github: "https://github.com/PatriciaGea/BusinessCardPatriciaGea",
+    live: "",
+    category: "Mobile",
+    accent: "#5170ff",
+    emoji: "📱",
+    image: "/images/screenshotandroidcard.png",
+  },
+  {
+    title: "Random Quotes App",
+    description:
+      "Android app delivering philosophical and motivational quotes with a modern Jetpack Compose UI and responsive layout.",
+    tech: ["Kotlin", "Jetpack Compose", "State Management", "UI Design", "Android Resources"],
+    features: [
+      "Random quote generator",
+      "Philosophical and motivational quotes",
+      "Modern Jetpack Compose UI",
+      "Background image support",
+      "Responsive layout",
+      "Soft aesthetic design",
+    ],
+    github: "https://github.com/PatriciaGea/AppAndroid.git",
+    live: "",
+    category: "Mobile",
+    accent: "#F472B6",
+    emoji: "✨",
+    image: "/images/gifapp.gif",
+  },
   {
     title: "Booking System with Login",
     description:

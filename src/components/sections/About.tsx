@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import Image from "next/image";
 import { MapPin, Coffee, Zap, Heart, GraduationCap, BookOpen, Palette, Instagram } from "lucide-react";
@@ -18,133 +18,136 @@ const infoIconByKey = {
 } as const;
 
 const infoCards = [
-  {
-    title: "Hyper Island",
-    subtitle: "Frontend Developer Program",
-    details: "Stockholm, Sweden · 2025-2027",
-    icon: "graduationCap",
-  },
-  {
-    title: "Bachelor in Computer Science",
-    subtitle: "Nove de Julho University (UNINOVE)",
-    details: "Sao Paulo, Brazil · 2006-2007",
-    icon: "bookOpen",
-  },
-  {
-    title: "Interests",
-    subtitle: "Music · Art · Illustration · Coding",
-    details: "Creative problem solving",
-    icon: "palette",
-  },
+  { title: "Hyper Island", subtitle: "Frontend Developer Program", details: "Stockholm, Sweden · 2025-2027 · Yrkeshögskola", icon: "graduationCap" },
+  { title: "Bachelor in Computer Science", subtitle: "Nove de Julho University", details: "Sao Paulo, Brazil · 2006-2007 (incomplete)", icon: "bookOpen" },
+  { title: "Interests", subtitle: "Music · Art · Illustration · Coding", details: "Creative problem solving", icon: "palette" },
 ] as const;
+
+const cardAccents = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
 
 export default function About() {
   return (
-    <section id="about" className="section">
+    <section id="about" className="section" style={{ background: "#FFFDF5" }}>
       <div className="container">
         <div className="section-heading-block">
+          <p className="section-label">01 — About</p>
           <h2 className="section-title">
-            <span className="section-title-accent">About Me</span>
+            About <span className="section-title-accent">Me</span>
           </h2>
           <div className="divider" />
         </div>
 
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-        }}>
-          {/* Cards compactos centrados */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12, width: "100%", maxWidth: 1100 }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20, width: "100%", maxWidth: 1100 }}>
 
-            {/* Profile card */}
+            {/* Profile card — Sticker */}
             <div style={{
-              position: "relative", padding: "2px", borderRadius: 20,
-              background: "linear-gradient(135deg, #5170ff, #ff66c4, #791919)",
-              width: "100%", maxWidth: 340,
-            }}>
-              <div style={{ borderRadius: 18, background: "var(--color-surface)", padding: "20px 18px", textAlign: "center" }}>
-                <div style={{
-                  width: 56, height: 56, borderRadius: "50%",
-                  background: "linear-gradient(135deg, #5170ff, #ff66c4)",
-                  margin: "0 auto 10px",
-                  overflow: "hidden",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <Image
-                    src="/images/ChatGPT Image Apr 22, 2026, 02_55_15 PM.svg"
-                    alt="Patricia avatar"
-                    width={56}
-                    height={56}
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.92rem", marginBottom: 3 }}>
-                  Patrícia Gea H. Rodrigues
-                </p>
-                <p className="gradient-accent-text" style={{ fontFamily: "monospace", fontSize: "0.72rem" }}>
-                  Frontend Developer with Product & UX Background
-                </p>
+              background: "#fff",
+              border: "2px solid #1E293B",
+              borderRadius: 20,
+              boxShadow: "6px 6px 0px #F472B6",
+              width: "100%",
+              maxWidth: 360,
+              padding: "24px 20px",
+              textAlign: "center",
+              transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+            }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "rotate(-1deg) scale(1.02)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "8px 8px 0px #F472B6"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "6px 6px 0px #F472B6"; }}
+            >
+              <div style={{
+                width: 100, height: 100,
+                borderRadius: "50%",
+                border: "2px solid #1E293B",
+                margin: "0 auto 12px",
+                background: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                position: "relative",
+              }}>
+                <Image
+                  src="/images/cat.webp"
+                  alt="Patrícia Gea"
+                  fill
+                  sizes="100px"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
               </div>
+              <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "0.95rem", marginBottom: 4, color: "#1E293B" }}>
+                Patrícia Gea Rodrigues
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.85rem", color: "#64748B", fontWeight: 500 }}>
+                Frontend Developer with Product & UX Background
+              </p>
             </div>
 
-            {/* Grid de cards lado a lado */}
+            {/* Cards grid */}
             <div className="about-cards-grid">
-              {aboutHighlights.map(({ icon, label, sub }) => {
+              {aboutHighlights.map(({ icon, label, sub }, i) => {
                 const Icon = iconByKey[icon];
+                const accent = cardAccents[i % cardAccents.length];
                 return (
-                  <div key={label} className="card" style={{ padding: "12px 14px", minHeight: 102 }}>
-                    <Icon size={14} style={{ color: "var(--primary)", marginBottom: 5 }} />
-                    <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.8rem", marginBottom: 2 }}>{label}</p>
-                    <p style={{ fontSize: "0.7rem", color: "var(--color-text-faint)" }}>{sub}</p>
+                  <div key={label} className="card" style={{ padding: "16px 14px" }}>
+                    <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${accent}22`, border: `2px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                      <Icon size={14} strokeWidth={2.5} style={{ color: accent }} />
+                    </div>
+                    <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "#1E293B" }}>{label}</p>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.72rem", color: "#64748B" }}>{sub}</p>
                   </div>
                 );
               })}
 
-              <div className="card" style={{ padding: "12px 14px", minHeight: 102 }}>
-                <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.8rem", marginBottom: 7 }}>Languages</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5 }}>
-                  {(languages ?? []).map(({ name, level }) => (
-                    <p key={name} style={{ fontSize: "0.72rem", color: "var(--color-text-muted)" }}>
-                      {name} <span style={{ color: "var(--color-text-faint)" }}>({level})</span>
-                    </p>
-                  ))}
+              <div className="card" style={{ padding: "16px 14px" }}>
+                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#8B5CF622", border: "2px solid #8B5CF6", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                  <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "#8B5CF6", fontFamily: "Outfit, system-ui, sans-serif" }}>AB</span>
                 </div>
+                <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 8, color: "#1E293B" }}>Languages</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-start" }}>
+                {(languages ?? []).map(({ name, level }) => (
+                  <p key={name} style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.72rem", color: "#64748B", margin: 0 }}>
+                    {name} <span style={{ color: "#8B5CF6", fontWeight: 600 }}>({level})</span>
+                  </p>
+                ))}
+              </div>
               </div>
 
-              {infoCards.map((card) => (
-                <div key={card.title} className="card" style={{ padding: "12px 14px", minHeight: 102 }}>
-                  <p style={{ fontSize: "0.72rem", color: "var(--color-text-faint)", marginBottom: 5 }}>
-                    {(() => {
-                      const Icon = infoIconByKey[card.icon];
-                      return <Icon size={14} style={{ color: "var(--primary)" }} />;
-                    })()}
-                  </p>
-                  <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.8rem", marginBottom: 3 }}>{card.title}</p>
-                  <p style={{ fontSize: "0.72rem", color: "var(--color-text-muted)", marginBottom: 2 }}>{card.subtitle}</p>
-                  <p style={{ fontSize: "0.69rem", color: "var(--color-text-faint)" }}>{card.details}</p>
+              {infoCards.map((card, i) => (
+                <div key={card.title} className="card" style={{ padding: "16px 14px" }}>
+                  {(() => {
+                    const Icon = infoIconByKey[card.icon];
+                    const accent = cardAccents[(i + 1) % cardAccents.length];
+                    return (
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${accent}22`, border: `2px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                        <Icon size={14} strokeWidth={2.5} style={{ color: accent }} />
+                      </div>
+                    );
+                  })()}
+                  <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "#1E293B" }}>{card.title}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.74rem", color: "#64748B", marginBottom: 2 }}>{card.subtitle}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.67rem", color: "#94A3B8" }}>{card.details}</p>
                 </div>
               ))}
 
-              <div className="card" style={{ padding: "12px 14px", minHeight: 102 }}>
-                <p style={{ fontFamily: "Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: "0.8rem", marginBottom: 9, display: "flex", alignItems: "center", gap: 6 }}>
-                  <Instagram size={14} style={{ color: "var(--primary)" }} /> Instagram
-                </p>
+              <div className="card" style={{ padding: "16px 14px" }}>
+                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#F472B622", border: "2px solid #F472B6", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                  <Instagram size={14} strokeWidth={2.5} style={{ color: "#F472B6" }} />
+                </div>
+                <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 10, color: "#1E293B" }}>Instagram</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                  <a href="https://www.instagram.com/tattooink.se" target="_blank" rel="noopener noreferrer"
-                    style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.76rem", color: "var(--color-text)", fontWeight: 600 }}>Studio Stockholm Sweden</span>
-                    <span style={{ fontSize: "0.69rem", color: "var(--color-text-faint)", marginLeft: 8 }}>2018–2025</span>
-                  </a>
-                  <a href="https://www.instagram.com/estudiotattooink" target="_blank" rel="noopener noreferrer"
-                    style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.76rem", color: "var(--color-text)", fontWeight: 600 }}>Studio Sao Paulo Brazil</span>
-                    <span style={{ fontSize: "0.69rem", color: "var(--color-text-faint)", marginLeft: 8 }}>2013–2026</span>
-                  </a>
-                  <a href="https://www.instagram.com/patriciagea/" target="_blank" rel="noopener noreferrer"
-                    style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.76rem", color: "var(--color-text)", fontWeight: 600 }}>@patriciagea</span>
-                    <span style={{ fontSize: "0.69rem", color: "var(--color-text-faint)", marginLeft: 8 }}>Tattoo Portfolio</span>
-                  </a>
+                  {[
+                    { href: "https://www.instagram.com/tattooink.se", label: "Studio Stockholm Sweden", meta: "2018–2025" },
+                    { href: "https://www.instagram.com/estudiotattooink", label: "Studio Sao Paulo Brazil", meta: "2013–2026" },
+                    { href: "https://www.instagram.com/patriciagea/", label: "@patriciagea", meta: "Tattoo Portfolio" },
+                  ].map(({ href, label, meta }) => (
+                    <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                      style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.76rem", color: "#1E293B", fontWeight: 600 }}>{label}</span>
+                      <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.65rem", color: "#94A3B8", marginLeft: 8 }}>{meta}</span>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
