@@ -1,311 +1,150 @@
 "use client";
 
+import { useState, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
-import { useState } from "react";
-import { Mail, MapPin, Phone, Github, Linkedin, Globe, Send, CheckCircle } from "lucide-react";
-import { contactInfo, socialLinks } from "@/lib/portfolio-data";
+import { Mail, MessageSquare, User, Send, MapPin, Github, Linkedin, Globe } from "lucide-react";
+import { siteConfig, socialLinks } from "@/lib/portfolio-data";
 
-const contactIconByType = {
-  email: Mail,
-  phone: Phone,
-  location: MapPin,
-  website: Globe,
-} as const;
+const infoCards = [
+  { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}`, color: "#8B5CF6" },
+  { icon: MapPin, label: "Location", value: siteConfig.location, href: undefined, color: "#F472B6" },
+  { icon: Github, label: "GitHub", value: "github.com/PatriciaGea", href: siteConfig.github, color: "#FBBF24" },
+  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/patriciageadev", href: siteConfig.linkedin, color: "#34D399" },
+];
 
-const socialIconByType = {
-  github: Github,
-  linkedin: Linkedin,
-  email: Mail,
-  website: Globe,
-} as const;
+const socialIconByType = { github: Github, linkedin: Linkedin, email: Mail, website: Globe } as const;
+const mainSocialLinks = socialLinks.filter((s) => ["github", "linkedin", "email"].includes(s.type));
 
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+type FormState = { name: string; email: string; message: string };
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<Status>("idle");
+  const [touched, setTouched] = useState<Partial<Record<keyof FormState, boolean>>>({});
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleBlur = (field: keyof FormState) => setTouched((prev) => ({ ...prev, [field]: true }));
+  const isValid =
+    form.name.trim().length >= 2 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) &&
+    form.message.trim().length >= 10;
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      alert("EmailJS is not fully configured yet. Add your Service ID to .env.local.");
-      setLoading(false);
+    if (!isValid) return;
+    setStatus("sending");
+    setErrorMessage(null);
+    // Check EmailJS env variables before attempting send
+    if (
+      !process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ||
+      !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ||
+      !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    ) {
+      setStatus("error");
+      setErrorMessage("Email service is not configured. Missing environment variables.");
+      console.error("Missing EmailJS environment variables.");
       return;
     }
-
     try {
       await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          from_email: form.email,
-          subject: form.subject,
-          message: form.message,
-        },
-        {
-          publicKey: EMAILJS_PUBLIC_KEY,
-        },
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        { from_name: form.name, from_email: form.email, message: form.message },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
-
-      setSent(true);
-      setForm({ name: "", email: "", subject: "", message: "" });
-    } catch {
-      alert("Could not send message. Check your EmailJS configuration and try again.");
-    } finally {
-      setLoading(false);
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+      setTouched({});
+    } catch (err) {
+      // Capture and show error
+      setStatus("error");
+      const message = (err && (err as any).message) || "Unexpected error sending message.";
+      setErrorMessage(message);
+      console.error("EmailJS send error:", err);
     }
   };
 
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section" style={{ background: "#F1F5F9" }}>
       <div className="container">
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <p className="section-label">{"// contact"}</p>
-          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Let&apos;s <span className="gradient-text">work together</span>
-          </h2>
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <p className="section-label">05 — Contact</p>
+          <h2 className="section-title">Let&apos;s <span className="section-title-accent">work together</span></h2>
           <div className="divider" style={{ margin: "16px auto" }} />
-          <p style={{ color: "var(--color-text-muted)", maxWidth: 500, margin: "0 auto" }}>
-            I&apos;m currently seeking an internship opportunity. If you have a project in mind or want to chat, I&apos;d love to hear from you.
+          <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "#64748B", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>
+            Do you have a project in mind? Feel free to reach out. I look forward to hearing from you.
           </p>
         </div>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: 48,
-          alignItems: "start",
-        }}>
-          {/* Left: info */}
-          <div>
-            <h3 style={{ fontSize: "1.3rem", marginBottom: 8 }}>Get in touch</h3>
-            <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem", marginBottom: 32, lineHeight: 1.7 }}>
-              Whether it&apos;s an internship, a project, or just a coffee chat ÔÇö feel free to reach out through any of the channels below.
-            </p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 32, alignItems: "start" }}>
+          {/* Info cards */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {infoCards.map(({ icon: Icon, label, value, href, color }) => (
+              <div
+                key={label}
+                style={{ display: "flex", alignItems: "center", gap: 14, padding: "16px 18px", background: "#fff", border: "2px solid #1E293B", borderRadius: 14, boxShadow: `4px 4px 0px ${color}`, transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s", cursor: href ? "pointer" : "default" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translate(-2px,-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = `6px 6px 0px ${color}`; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = ""; (e.currentTarget as HTMLElement).style.boxShadow = `4px 4px 0px ${color}`; }}
+                onClick={() => href && window.open(href, "_blank", "noopener,noreferrer")}
+              >
+                <div style={{ width: 42, height: 42, borderRadius: "50%", background: `${color}18`, border: `2px solid ${color}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <Icon size={18} strokeWidth={2.5} style={{ color }} />
+                </div>
+                <div>
+                  <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94A3B8", marginBottom: 2 }}>{label}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.85rem", fontWeight: 600, color: "#1E293B" }}>{value}</p>
+                </div>
+              </div>
+            ))}
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 40 }}>
-              {contactInfo.map(({ type, label, href }) => {
-                const Icon = contactIconByType[type];
-
+            <div style={{ display: "flex", gap: 10, marginTop: 6 }}>
+              {mainSocialLinks.map(({ label, href, type }) => {
+                const IconEl = socialIconByType[type as keyof typeof socialIconByType] ?? Globe;
                 return (
-                  <div key={label} style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                  <div style={{
-                    width: 42, height: 42, borderRadius: "50%",
-                    background: "var(--color-surface)",
-                    border: "1px solid var(--color-border)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "var(--primary)",
-                    flexShrink: 0,
-                  }}>
-                    <Icon size={16} />
-                  </div>
-                  {href ? (
-                    <a
-                      href={href}
-                      target={href.startsWith("http") ? "_blank" : undefined}
-                      rel="noopener noreferrer"
-                      style={{
-                        fontSize: "0.9rem", color: "var(--color-text-muted)",
-                        textDecoration: "none", transition: "color 0.2s",
-                      }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--primary)")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)")}
-                    >
-                      {label}
-                    </a>
-                  ) : (
-                    <span style={{ fontSize: "0.9rem", color: "var(--color-text-muted)" }}>{label}</span>
-                  )}
-                  </div>
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="icon-chip">
+                    <IconEl size={16} strokeWidth={2.5} />
+                  </a>
                 );
               })}
             </div>
-
-            <div className="card" style={{ padding: "18px 16px", marginBottom: 28 }}>
-              <p style={{ fontFamily: "monospace", fontSize: "0.72rem", color: "var(--color-text-faint)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>
-                Instagram links
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                <a href="https://www.instagram.com/tattooink.se" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-muted)", lineHeight: 1.5 }}>
-                  <strong style={{ color: "var(--color-text)" }}>Studio Stockholm Sweden</strong> - 2018-2025
-                </a>
-                <a href="https://www.instagram.com/estudiotattooink" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-muted)", lineHeight: 1.5 }}>
-                  <strong style={{ color: "var(--color-text)" }}>Studio Sao Paulo Brasil</strong> - 2013-2026
-                </a>
-                <a href="https://www.instagram.com/patriciagea/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-muted)", lineHeight: 1.5 }}>
-                  <strong style={{ color: "var(--color-text)" }}>@patriciagea</strong> - Tattoo portfolio
-                </a>
-              </div>
-            </div>
-
-            {/* Socials */}
-            <div>
-              <p style={{ fontFamily: "monospace", fontSize: "0.72rem", color: "var(--color-text-faint)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
-                Find me on
-              </p>
-              <div style={{ display: "flex", gap: 12 }}>
-                {socialLinks.filter(({ href }) => !href.includes("instagram.com")).map(({ type, href, label }) => {
-                  const Icon = socialIconByType[type];
-                  if (!Icon) return null;
-
-                  return (
-                    <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    style={{
-                      width: 44, height: 44, borderRadius: "50%",
-                      border: "1px solid var(--color-border)",
-                      background: "var(--color-surface)",
-                      color: "var(--color-text-muted)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      textDecoration: "none", transition: "all 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--primary)";
-                      (e.currentTarget as HTMLAnchorElement).style.color = "var(--primary)";
-                      (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-3px)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--color-border)";
-                      (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text-muted)";
-                      (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-                    }}
-                  >
-                    <Icon size={17} />
-                  </a>
-                  );
-                })}
-              </div>
-            </div>
           </div>
 
-          {/* Right: form */}
-          <div className="card" style={{ padding: "36px 32px" }}>
-            {sent ? (
-              <div style={{ textAlign: "center", padding: "32px 0" }}>
-                <CheckCircle size={48} style={{ color: "#22c55e", margin: "0 auto 16px" }} />
-                <h3 style={{ marginBottom: 8 }}>Message sent!</h3>
-                <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}>
-                  Thanks for reaching out. I&apos;ll get back to you soon.
-                </p>
-                <button
-                  onClick={() => { setSent(false); setForm({ name: "", email: "", subject: "", message: "" }); }}
-                  className="btn-outline"
-                  style={{ marginTop: 24 }}
-                >
-                  Send another
-                </button>
+          {/* Form card */}
+          <div style={{ background: "#fff", border: "2px solid #1E293B", borderRadius: 20, boxShadow: "6px 6px 0px #8B5CF6", padding: "32px 28px" }}>
+            {status === "success" ? (
+              <div style={{ textAlign: "center", padding: "40px 0" }}>
+                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "#34D39918", border: "2px solid #34D399", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
+                  <Send size={24} strokeWidth={2.5} style={{ color: "#34D399" }} />
+                </div>
+                <h3 style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.1rem", marginBottom: 8, color: "#1E293B" }}>Message sent!</h3>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "#64748B", fontSize: "0.9rem" }}>I&apos;ll get back to you soon.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                  {[
-                    { id: "name", label: "Name", type: "text", placeholder: "Your name" },
-                    { id: "email", label: "Email", type: "email", placeholder: "your@email.com" },
-                  ].map(({ id, label, type, placeholder }) => (
-                    <div key={id}>
-                      <label htmlFor={id} style={{ display: "block", fontSize: "0.78rem", color: "var(--color-text-faint)", fontFamily: "monospace", letterSpacing: "0.08em", marginBottom: 8 }}>
-                        {label} *
-                      </label>
-                      <input
-                        id={id}
-                        type={type}
-                        required
-                        placeholder={placeholder}
-                        value={form[id as keyof typeof form]}
-                        onChange={(e) => setForm({ ...form, [id]: e.target.value })}
-                        style={{
-                          width: "100%", padding: "12px 16px",
-                          borderRadius: 10, border: "1.5px solid var(--color-border)",
-                          background: "var(--color-bg)",
-                          color: "var(--color-text)",
-                          fontFamily: "DM Sans, sans-serif", fontSize: "0.9rem",
-                          outline: "none", transition: "border-color 0.2s",
-                        }}
-                        onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary)")}
-                        onBlur={(e) => (e.currentTarget.style.borderColor = "var(--color-border)")}
-                      />
-                    </div>
-                  ))}
-                </div>
-
+              <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 20 }}>
                 <div>
-                  <label htmlFor="subject" style={{ display: "block", fontSize: "0.78rem", color: "var(--color-text-faint)", fontFamily: "monospace", letterSpacing: "0.08em", marginBottom: 8 }}>
-                    Subject
-                  </label>
-                  <input
-                    id="subject"
-                    type="text"
-                    placeholder="What&apos;s it about?"
-                    value={form.subject}
-                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                    style={{
-                      width: "100%", padding: "12px 16px",
-                      borderRadius: 10, border: "1.5px solid var(--color-border)",
-                      background: "var(--color-bg)",
-                      color: "var(--color-text)",
-                      fontFamily: "DM Sans, sans-serif", fontSize: "0.9rem",
-                      outline: "none", transition: "border-color 0.2s",
-                    }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary)")}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = "var(--color-border)")}
-                  />
+                  <label htmlFor="c-name" className="field-label"><User size={10} strokeWidth={2.5} style={{ display: "inline", marginRight: 4 }} />Name</label>
+                  <input id="c-name" name="name" type="text" value={form.name} onChange={handleChange} onBlur={() => handleBlur("name")} placeholder="Your name" required minLength={2} className="field-input" autoComplete="name" />
                 </div>
-
                 <div>
-                  <label htmlFor="message" style={{ display: "block", fontSize: "0.78rem", color: "var(--color-text-faint)", fontFamily: "monospace", letterSpacing: "0.08em", marginBottom: 8 }}>
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={5}
-                    placeholder="Tell me about your project or opportunity..."
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    style={{
-                      width: "100%", padding: "12px 16px",
-                      borderRadius: 10, border: "1.5px solid var(--color-border)",
-                      background: "var(--color-bg)",
-                      color: "var(--color-text)",
-                      fontFamily: "DM Sans, sans-serif", fontSize: "0.9rem",
-                      outline: "none", transition: "border-color 0.2s",
-                      resize: "vertical",
-                    }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary)")}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = "var(--color-border)")}
-                  />
+                  <label htmlFor="c-email" className="field-label"><Mail size={10} strokeWidth={2.5} style={{ display: "inline", marginRight: 4 }} />Email</label>
+                  <input id="c-email" name="email" type="email" value={form.email} onChange={handleChange} onBlur={() => handleBlur("email")} placeholder="you@example.com" required className="field-input" autoComplete="email" />
                 </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="btn-primary"
-                  style={{
-                    justifyContent: "center",
-                    opacity: loading ? 0.7 : 1,
-                    cursor: loading ? "wait" : "pointer",
-                  }}
-                >
-                  {loading ? (
-                    <>Sending...</>
-                  ) : (
-                    <><Send size={16} /> Send Message</>
-                  )}
+                <div>
+                  <label htmlFor="c-msg" className="field-label"><MessageSquare size={10} strokeWidth={2.5} style={{ display: "inline", marginRight: 4 }} />Message</label>
+                  <textarea id="c-msg" name="message" value={form.message} onChange={handleChange} onBlur={() => handleBlur("message")} placeholder="Tell me about your project..." required minLength={10} rows={5} className="field-input" style={{ resize: "vertical", minHeight: 120 }} />
+                </div>
+                {status === "error" && (
+                  <div style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.82rem", color: "#EF4444", padding: "10px 14px", background: "#FEF2F2", border: "2px solid #FCA5A5", borderRadius: 8 }}>
+                    <p style={{ margin: 0, fontWeight: 700 }}>Something went wrong. Please try again.</p>
+                    {errorMessage && <p style={{ margin: "6px 0 0", fontSize: "0.78rem", color: "#B91C1C" }}>{errorMessage}</p>}
+                  </div>
+                )}
+                <button type="submit" disabled={!isValid || status === "sending"} className="btn-primary" style={{ opacity: !isValid || status === "sending" ? 0.6 : 1, cursor: !isValid || status === "sending" ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                  {status === "sending" ? "Sending…" : <><Send size={15} strokeWidth={2.5} /> Send Message</>}
                 </button>
-
-                <p style={{ fontSize: "0.75rem", color: "var(--color-text-faint)", textAlign: "center" }}>
-                  EmailJS connected. Missing only the Service ID in your local environment.
-                </p>
               </form>
             )}
           </div>
