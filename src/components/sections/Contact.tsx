@@ -150,7 +150,7 @@ export default function Contact() {
                     {errorMessage && <p style={{ margin: "6px 0 0", fontSize: "0.78rem", color: "#B91C1C" }}>{errorMessage}</p>}
                   </div>
                 )}
-                <button type="submit" disabled={!isValid || status === "sending"} className="btn-primary" style={{ opacity: !isValid || status === "sending" ? 0.6 : 1, cursor: !isValid || status === "sending" ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                <button type="submit" disabled={!isValid || status === "sending"} className="btn-primary" style={{ opacity: !isValid || status === "sending" ? 0.6 : 1, cursor: !isValid || status === "sending" ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, background: "#629FB1", border: "2px solid #000000", color: "#FFFFFF" }}>
                   {status === "sending" ? "Sending?" : <><Send size={15} strokeWidth={2.5} /> Send Message</>}
                 </button>
               </form>

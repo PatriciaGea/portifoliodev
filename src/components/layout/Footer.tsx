@@ -74,7 +74,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: 2, background: "var(--border)", borderRadius: 2, marginBottom: 24, opacity: 0.35 }} />
+        <div style={{ height: 2, background: "linear-gradient(90deg, var(--accent), var(--secondary), var(--tertiary))", borderRadius: 2, marginBottom: 24, opacity: 0.55 }} />
 
         {/* Bottom row */}
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 16 }}>

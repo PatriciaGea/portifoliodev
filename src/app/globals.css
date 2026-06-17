@@ -213,6 +213,10 @@ code, pre, .mono {
   margin-top: -20px;
 }
 
+.hero-availability-mobile {
+  display: none !important;
+}
+
 .hero-portrait {
   width: min(74vw, 360px);
   height: min(74vw, 360px);
@@ -392,6 +396,14 @@ code, pre, .mono {
   transform: translate(-2px, -2px);
 }
 
+.btn-cv {
+  background: var(--tertiary);
+}
+
+.btn-cv:hover {
+  background: transparent;
+}
+
 .btn-outline:active {
   transform: translate(1px, 1px);
 }
@@ -505,8 +517,8 @@ section[id] {
 }
 
 .project-card:hover .project-title-accent {
-  color: var(--accent);
-  text-decoration-color: var(--tertiary);
+  color: var(--foreground);
+  text-decoration-color: #D3712F;
   letter-spacing: 0.01em;
 }
 
@@ -656,6 +668,15 @@ section[id] {
 
   .hero-photo-inline {
     display: flex;
+  }
+
+  .hero-availability-desktop {
+    display: none !important;
+  }
+
+  .hero-availability-mobile {
+    display: inline-flex !important;
+    margin: 18px auto 24px !important;
   }
 
   .hero-photo-desktop {

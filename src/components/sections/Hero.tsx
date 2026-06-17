@@ -11,6 +11,28 @@ const socialIconByType = {
 } as const;
 
 export default function Hero() {
+  const renderAvailabilityBadge = (className?: string) => (
+    <div
+      className={className}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        marginBottom: 40,
+        background: "var(--card)",
+        border: "2px solid var(--foreground)",
+        borderRadius: 9999,
+        padding: "6px 14px",
+        boxShadow: "3px 3px 0px var(--foreground)",
+      }}
+    >
+      <span style={{ width: 7, height: 7, background: "#629FB1", borderRadius: "50%", display: "inline-block" }} />
+      <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.62rem", fontWeight: 700, color: "#629FB1", letterSpacing: "0.04em" }}>
+        Available for project inquiries & quotes worldwide
+      </span>
+    </div>
+  );
+
   const renderRotatingPortrait = () => (
     <div
       className="animate-rotate-image hero-portrait"
@@ -92,22 +114,7 @@ export default function Hero() {
           <div className="hero-text">
 
             {/* Availability badge */}
-            <div style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              marginBottom: 28,
-              background: "var(--card)",
-              border: "2px solid var(--foreground)",
-              borderRadius: 9999,
-              padding: "6px 14px",
-              boxShadow: "3px 3px 0px var(--foreground)",
-            }}>
-              <span style={{ width: 7, height: 7, background: "var(--foreground)", borderRadius: "50%", display: "inline-block" }} />
-              <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.62rem", fontWeight: 700, color: "var(--foreground)", letterSpacing: "0.04em" }}>
-                Available for project inquiries & quotes worldwide
-              </span>
-            </div>
+            {renderAvailabilityBadge("hero-availability-desktop")}
 
             {/* Main heading */}
             <h1
@@ -162,6 +169,7 @@ export default function Hero() {
             <div className="hero-photo-inline" style={{ perspective: "1000px" }}>
               {renderRotatingPortrait()}
             </div>
+            {renderAvailabilityBadge("hero-availability-mobile")}
 
             {/* Bio */}
             <p style={{
@@ -194,7 +202,7 @@ export default function Hero() {
               <a href="#projects" className="btn-primary">
                 View My Work
               </a>
-              <a href="/CVPatriciaDeveloper.pdf" download className="btn-outline">
+              <a href="/CVPatriciaDeveloper.pdf" download className="btn-outline btn-cv">
                 Download CV
               </a>
             </div>

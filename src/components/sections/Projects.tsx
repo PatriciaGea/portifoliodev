@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, ChevronRight } from "lucide-react";
 import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
 
 const filterColors: Record<string, string> = { All: "var(--accent)", Mobile: "var(--foreground)", Frontend: "var(--foreground)", Fullstack: "var(--foreground)" };
@@ -10,8 +10,10 @@ const cardShadowColors = ["var(--foreground)", "var(--foreground)", "var(--foreg
 
 export default function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
+  const [bookingImageIndex, setBookingImageIndex] = useState(0);
   const formatFilterLabel = (value: Filter) => (value === "Fullstack" ? "Full-Stack" : value);
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
+  const bookingImages = ["/images/bookingsystem.webp", "/images/bookingsystem1.webp", "/images/bookingsystem2.webp", "/images/bookingsystem3.webp"];
 
   return (
     <section id="projects" className="section" style={{ background: "var(--background)" }}>
@@ -65,6 +67,8 @@ export default function Projects() {
               return lower.includes("android") || lower.includes("kotlin");
             });
             const liveHref = (project.live && project.live.trim()) ? project.live : project.image ? project.image : null;
+            const isBookingSystem = project.title === "Booking System with Login";
+            const imageSrc = isBookingSystem ? bookingImages[bookingImageIndex] : project.image;
             return (
               <article
                 key={project.title}
@@ -90,22 +94,48 @@ export default function Projects() {
                   position: "relative",
                   overflow: "hidden",
                 }}>
-                  {project.image ? (
+                  {imageSrc ? (
                     <Image
-                      src={project.image}
+                      src={imageSrc}
                       alt={`${project.title} preview`}
                       fill
                       sizes="(max-width: 768px) 100vw, 520px"
                       style={{
-                        objectFit: isMobile ? "contain" : "cover",
+                        objectFit: "contain",
                         objectPosition: "center",
-                        transform: isMobile ? "scale(0.9)" : "scale(0.96)",
+                        transform: isMobile ? "scale(0.9)" : "scale(0.94)",
                       }}
                     />
                   ) : (
                     <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "var(--muted-foreground)" }}>
                       Preview unavailable
                     </span>
+                  )}
+                  {isBookingSystem && (
+                    <button
+                      type="button"
+                      onClick={() => setBookingImageIndex((current) => (current + 1) % bookingImages.length)}
+                      aria-label="Next Booking System image"
+                      style={{
+                        position: "absolute",
+                        right: 14,
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        width: 42,
+                        height: 42,
+                        borderRadius: "50%",
+                        border: "2px solid #FFFFFF",
+                        background: "rgba(0,0,0,0.72)",
+                        color: "#FFFFFF",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        cursor: "pointer",
+                        zIndex: 2,
+                      }}
+                    >
+                      <ChevronRight size={22} strokeWidth={2.7} />
+                    </button>
                   )}
                 </div>
 
@@ -161,27 +191,27 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div style={{ display: "flex", gap: 12, paddingTop: 12, borderTop: "1px solid var(--border)" }}>
+                  <div style={{ display: "flex", gap: 14, paddingTop: 14, borderTop: "1px solid var(--border)" }}>
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "var(--muted-foreground)", textDecoration: "none", transition: "color 0.2s" }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")}
+                      style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", borderRadius: 9999, border: "2px solid var(--foreground)", fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "0.86rem", color: "var(--foreground)", background: "var(--card)", textDecoration: "none", transition: "background 0.2s, color 0.2s, transform 0.2s" }}
+                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--foreground)"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--background)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)"; }}
+                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--card)"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)"; (e.currentTarget as HTMLAnchorElement).style.transform = ""; }}
                     >
-                      <Github size={13} strokeWidth={2.5} /> Code
+                      <Github size={16} strokeWidth={2.5} /> Code
                     </a>
                     {liveHref && (
                       <a
                         href={liveHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "var(--muted-foreground)", textDecoration: "none", transition: "color 0.2s" }}
-                        onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)")}
-                        onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")}
+                        style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", borderRadius: 9999, border: "2px solid var(--foreground)", fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "0.86rem", color: "var(--foreground)", background: "var(--card)", textDecoration: "none", transition: "background 0.2s, color 0.2s, transform 0.2s" }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--foreground)"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--background)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)"; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--card)"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)"; (e.currentTarget as HTMLAnchorElement).style.transform = ""; }}
                       >
-                        <ExternalLink size={13} strokeWidth={2.5} /> Live
+                        <ExternalLink size={16} strokeWidth={2.5} /> Live
                       </a>
                     )}
                   </div>
