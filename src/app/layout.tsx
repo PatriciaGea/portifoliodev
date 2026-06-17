@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { seoConfig, siteConfig } from "@/lib/portfolio-data";
 
 const siteUrl = siteConfig.website;
@@ -52,10 +53,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <a href="#main-content" className="skip-link">Skip to main content</a>
-        {children}
+        <ThemeProvider>
+          <a href="#main-content" className="skip-link">Skip to main content</a>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -649,7 +649,7 @@ section[id] {
 /* Mobile */
 @media (max-width: 768px) {
   :root {
-    --hero-back-transform: translateY(36px) scale(1.38);
+    --hero-back-transform: translateY(44px) scale(1.24);
   }
 
   .section { padding: 64px 0; }

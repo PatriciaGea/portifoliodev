@@ -24,6 +24,7 @@ export interface Project {
   accent: string;
   emoji: string;
   image?: string;
+  categoryLabel?: string;
 }
 
 export const siteConfig = {
@@ -202,6 +203,20 @@ export const projects: Project[] = [
     accent: "#D3712F",
     emoji: "✅",
     image: "/images/site3.webp",
+  },
+  {
+    title: "Sailor Jerry VR 3D Experience",
+    description:
+      "Immersive WebXR experience exploring the legacy of Sailor Jerry and the evolution of tattoo technology through an interactive virtual showroom. Designed to connect documentary storytelling, tattoo culture, and emerging 3D web technologies.",
+    tech: ["A-Frame", "WebXR", "JavaScript", "HTML & CSS", "Meshy AI", "ChatGPT"],
+    features: ["Interactive virtual showroom", "3D tattoo machines", "Documentary storytelling", "WebXR experience"],
+    github: "https://github.com/PatriciaGea/TattooMachineShowRoom",
+    live: "https://patriciagea.github.io/TattooMachineShowRoom/",
+    category: "Frontend",
+    categoryLabel: "VR / WebXR",
+    accent: "#629FB1",
+    emoji: "⚓",
+    image: "/images/sailor1.gif",
   },
 ];
 

@@ -12,10 +12,12 @@ export default function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
   const [bookingImageIndex, setBookingImageIndex] = useState(0);
   const [plantImageIndex, setPlantImageIndex] = useState(0);
+  const [sailorJerryImageIndex, setSailorJerryImageIndex] = useState(0);
   const formatFilterLabel = (value: Filter) => (value === "Fullstack" ? "Full-Stack" : value);
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
   const bookingImages = ["/images/bookingsystem.webp", "/images/bookingsystem1.webp", "/images/bookingsystem2.webp", "/images/bookingsystem3.webp"];
   const plantImages = ["/images/gifplant.gif", "/images/screenshotplant.png"];
+  const sailorJerryImages = ["/images/sailor1.gif", "/images/sailor2.webp"];
 
   return (
     <section id="projects" className="section" style={{ background: "var(--background)" }}>
@@ -43,7 +45,7 @@ export default function Projects() {
                       padding: "8px 20px",
                       borderRadius: 9999,
                       border: `2px solid ${color}`,
-                      background: active ? color : "transparent",
+                      background: active ? "#629FB1" : "transparent",
                       color: active ? "var(--accent-fg)" : "var(--foreground)",
                       fontFamily: "'Outfit', system-ui, sans-serif",
                       fontWeight: 700,
@@ -72,9 +74,16 @@ export default function Projects() {
             const liveHref = (project.live && project.live.trim()) ? project.live : project.image ? project.image : null;
             const isBookingSystem = project.title === "Booking System with Login";
             const isPlantLovers = project.title === "Plant Lovers App";
+            const isSailorJerry = project.title === "Sailor Jerry VR 3D Experience";
             const isUserManagement = project.title === "User Management System";
-            const carouselImages = isBookingSystem ? bookingImages : isPlantLovers ? plantImages : null;
-            const imageSrc = isBookingSystem ? bookingImages[bookingImageIndex] : isPlantLovers ? plantImages[plantImageIndex] : project.image;
+            const carouselImages = isBookingSystem ? bookingImages : isPlantLovers ? plantImages : isSailorJerry ? sailorJerryImages : null;
+            const imageSrc = isBookingSystem
+              ? bookingImages[bookingImageIndex]
+              : isPlantLovers
+                ? plantImages[plantImageIndex]
+                : isSailorJerry
+                  ? sailorJerryImages[sailorJerryImageIndex]
+                  : project.image;
             return (
               <article
                 key={project.title}
@@ -91,15 +100,26 @@ export default function Projects() {
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = ""; (e.currentTarget as HTMLElement).style.boxShadow = `6px 6px 0px ${shadowColor}`; }}
               >
                 {/* Image area */}
-                <div style={{
-                  height: 260,
-                  background: "#000000",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  position: "relative",
-                  overflow: "hidden",
-                }}>
+                <div
+                  role={liveHref ? "link" : undefined}
+                  tabIndex={liveHref ? 0 : undefined}
+                  onClick={() => liveHref && window.open(liveHref, "_blank", "noopener,noreferrer")}
+                  onKeyDown={(e) => {
+                    if (!liveHref || (e.key !== "Enter" && e.key !== " ")) return;
+                    e.preventDefault();
+                    window.open(liveHref, "_blank", "noopener,noreferrer");
+                  }}
+                  style={{
+                    height: 260,
+                    background: "#000000",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "relative",
+                    overflow: "hidden",
+                    cursor: liveHref ? "pointer" : "default",
+                  }}
+                >
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
@@ -120,11 +140,14 @@ export default function Projects() {
                   {carouselImages && (
                     <button
                       type="button"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         if (isBookingSystem) {
                           setBookingImageIndex((current) => (current + 1) % bookingImages.length);
-                        } else {
+                        } else if (isPlantLovers) {
                           setPlantImageIndex((current) => (current + 1) % plantImages.length);
+                        } else {
+                          setSailorJerryImageIndex((current) => (current + 1) % sailorJerryImages.length);
                         }
                       }}
                       aria-label={`Next ${project.title} image`}
@@ -173,7 +196,7 @@ export default function Projects() {
                       flexShrink: 0,
                       marginLeft: 8,
                     }}>
-                      {project.category === "Fullstack" ? "Full-Stack" : project.category}
+                      {project.categoryLabel ?? (project.category === "Fullstack" ? "Full-Stack" : project.category)}
                     </span>
                   </div>
 
