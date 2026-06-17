@@ -162,7 +162,7 @@ export const projects: Project[] = [
     title: "Booking System with Login",
     description:
       "A full-stack booking system inspired by real tattoo studio operations - built from first-hand experience running studios across two countries. Improves scheduling flow and client management with a clean, intuitive UI.",
-    tech: ["React", "TypeScript", "Node.js", "Express"],
+    tech: ["React", "TypeScript", "Node.js", "Express", "API", "MongoDB"],
     features: ["Appointment scheduling", "Client data management", "Responsive UI", "REST API"],
     github: "https://github.com/PatriciaGea/BookingSystem.git",
     live: "https://patriciagea.github.io/BookingSystem/",
