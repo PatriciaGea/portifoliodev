@@ -65,7 +65,7 @@ export default function Hero() {
           fill
           sizes="(max-width: 768px) 60vw, 360px"
           priority
-          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top" }}
+          style={{ objectFit: "cover", objectPosition: "center top", transform: "scale(1.3)", transformOrigin: "center top", backgroundColor: "#FFFFFF" }}
         />
       </div>
       <div

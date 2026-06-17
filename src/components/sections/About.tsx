@@ -72,7 +72,7 @@ export default function About() {
                   alt="Patrícia Gea"
                   fill
                   sizes="76px"
-                  style={{ objectFit: "contain", objectPosition: "center bottom", transform: "translateY(6px) scale(0.82)" }}
+                  style={{ objectFit: "contain", objectPosition: "center bottom", transform: "translateY(6px) scale(0.82)", backgroundColor: "#FFFFFF" }}
                   priority
                 />
               </div>
