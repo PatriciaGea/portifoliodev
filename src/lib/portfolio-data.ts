@@ -216,7 +216,7 @@ export const projects: Project[] = [
     categoryLabel: "VR / WebXR",
     accent: "#629FB1",
     emoji: "⚓",
-    image: "/images/IMG_3367.gif",
+    image: "/images/IMG_3367.GIF",
   },
 ];
 

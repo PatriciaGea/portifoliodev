@@ -17,7 +17,7 @@ export default function Projects() {
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
   const bookingImages = ["/images/bookingsystem.webp", "/images/bookingsystem1.webp", "/images/bookingsystem2.webp", "/images/bookingsystem3.webp"];
   const plantImages = ["/images/gifplant.gif", "/images/screenshotplant.png"];
-  const sailorJerryImages = ["/images/IMG_3367.gif", "/images/sailor2.webp"];
+  const sailorJerryImages = ["/images/IMG_3367.GIF", "/images/sailor2.webp"];
 
   return (
     <section id="projects" className="section" style={{ background: "var(--background)" }}>
