@@ -1,18 +1,25 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import { useTheme } from "next-themes";
 import { navItems, siteConfig } from "@/lib/portfolio-data";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("#home");
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
   // Track active section
@@ -37,6 +44,7 @@ export default function Navbar() {
   }, []);
 
   const accentColors = ["var(--accent)", "var(--accent)", "var(--accent)", "var(--accent)", "var(--accent)"];
+  const isDark = mounted && theme === "dark";
 
   return (
     <>
@@ -112,6 +120,30 @@ export default function Navbar() {
                 );
               })}
             </div>
+
+            <button
+              onClick={() => setTheme(isDark ? "light" : "dark")}
+              style={{
+                width: 42,
+                height: 42,
+                borderRadius: "50%",
+                border: "2px solid var(--foreground)",
+                background: "var(--card)",
+                color: "var(--foreground)",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                boxShadow: "3px 3px 0px var(--foreground)",
+                transition: "transform 0.25s ease, box-shadow 0.25s ease, background 0.2s ease",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translate(-2px,-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "5px 5px 0px var(--foreground)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = ""; (e.currentTarget as HTMLButtonElement).style.boxShadow = "3px 3px 0px var(--foreground)"; }}
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+              title={isDark ? "Light mode" : "Dark mode"}
+            >
+              {isDark ? <Sun size={18} strokeWidth={2.5} /> : <Moon size={18} strokeWidth={2.5} />}
+            </button>
 
             {/* Contact CTA */}
             <button

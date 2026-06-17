@@ -20,7 +20,7 @@
   --hover-primary:    #9A0F42;
   --hover-secondary:  #4F8698;
   --hover-accent:     #B85E24;
-  --hero-back-transform: translateY(36px) scale(1.06);
+  --hero-back-transform: translateY(40px) scale(1.18);
 
   --radius-sm:        8px;
   --radius-md:        16px;
@@ -62,7 +62,7 @@
   --hover-primary:    #E84B84;
   --hover-secondary:  #9AD0DF;
   --hover-accent:     #FFA96A;
-  --hero-back-transform: translateY(36px) scale(1.06);
+  --hero-back-transform: translateY(40px) scale(1.18);
 
   --color-bg:         #000000;
   --color-bg-alt:     #111111;
@@ -649,7 +649,7 @@ section[id] {
 /* Mobile */
 @media (max-width: 768px) {
   :root {
-    --hero-back-transform: translateY(24px) scale(1.22);
+    --hero-back-transform: translateY(36px) scale(1.38);
   }
 
   .section { padding: 64px 0; }

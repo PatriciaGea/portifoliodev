@@ -112,6 +112,19 @@ export const techCloud = [
 
 export const projects: Project[] = [
   {
+    title: "Plant Lovers App",
+    description:
+      "Android app displaying categorized plant collections with filtering, interactive cards, and a modern Material 3 UI. Developed as a Jetpack Compose exercise focused on reusable components and state-driven interfaces.",
+    tech: ["Kotlin", "Jetpack Compose", "Material 3", "UI Design", "State Management"],
+    features: ["Categorized plant collections", "Filtering", "Interactive cards", "State-driven UI"],
+    github: "https://github.com/PatriciaGea/PlantAppKotlin",
+    live: "",
+    category: "Mobile",
+    accent: "#629FB1",
+    emoji: "🌿",
+    image: "/images/gifplant.gif",
+  },
+  {
     title: "Business Card App (Android)",
     description:
       "Android app showcasing reusable composables, Material 3 and basic navigation via intents. Built as a focused UI exercise and demo of modern Android patterns.",

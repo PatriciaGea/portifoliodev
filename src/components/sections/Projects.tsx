@@ -11,9 +11,11 @@ const cardShadowColors = ["var(--foreground)", "var(--foreground)", "var(--foreg
 export default function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
   const [bookingImageIndex, setBookingImageIndex] = useState(0);
+  const [plantImageIndex, setPlantImageIndex] = useState(0);
   const formatFilterLabel = (value: Filter) => (value === "Fullstack" ? "Full-Stack" : value);
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
   const bookingImages = ["/images/bookingsystem.webp", "/images/bookingsystem1.webp", "/images/bookingsystem2.webp", "/images/bookingsystem3.webp"];
+  const plantImages = ["/images/gifplant.gif", "/images/screenshotplant.png"];
 
   return (
     <section id="projects" className="section" style={{ background: "var(--background)" }}>
@@ -66,10 +68,13 @@ export default function Projects() {
               const lower = t.toLowerCase();
               return lower.includes("android") || lower.includes("kotlin");
             });
+            const githubHref = project.github && project.github.trim() ? project.github : null;
             const liveHref = (project.live && project.live.trim()) ? project.live : project.image ? project.image : null;
             const isBookingSystem = project.title === "Booking System with Login";
+            const isPlantLovers = project.title === "Plant Lovers App";
             const isUserManagement = project.title === "User Management System";
-            const imageSrc = isBookingSystem ? bookingImages[bookingImageIndex] : project.image;
+            const carouselImages = isBookingSystem ? bookingImages : isPlantLovers ? plantImages : null;
+            const imageSrc = isBookingSystem ? bookingImages[bookingImageIndex] : isPlantLovers ? plantImages[plantImageIndex] : project.image;
             return (
               <article
                 key={project.title}
@@ -112,11 +117,17 @@ export default function Projects() {
                       Preview unavailable
                     </span>
                   )}
-                  {isBookingSystem && (
+                  {carouselImages && (
                     <button
                       type="button"
-                      onClick={() => setBookingImageIndex((current) => (current + 1) % bookingImages.length)}
-                      aria-label="Next Booking System image"
+                      onClick={() => {
+                        if (isBookingSystem) {
+                          setBookingImageIndex((current) => (current + 1) % bookingImages.length);
+                        } else {
+                          setPlantImageIndex((current) => (current + 1) % plantImages.length);
+                        }
+                      }}
+                      aria-label={`Next ${project.title} image`}
                       style={{
                         position: "absolute",
                         right: 14,
@@ -193,16 +204,18 @@ export default function Projects() {
 
                   {/* Links */}
                   <div style={{ display: "flex", gap: 14, paddingTop: 14, borderTop: "1px solid var(--border)" }}>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", borderRadius: 9999, border: "2px solid var(--foreground)", fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "0.86rem", color: "var(--foreground)", background: "var(--card)", textDecoration: "none", transition: "background 0.2s, color 0.2s, transform 0.2s" }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--foreground)"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--background)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)"; }}
-                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--card)"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)"; (e.currentTarget as HTMLAnchorElement).style.transform = ""; }}
-                    >
-                      <Github size={16} strokeWidth={2.5} /> Code
-                    </a>
+                    {githubHref && (
+                      <a
+                        href={githubHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", borderRadius: 9999, border: "2px solid var(--foreground)", fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "0.86rem", color: "var(--foreground)", background: "var(--card)", textDecoration: "none", transition: "background 0.2s, color 0.2s, transform 0.2s" }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--foreground)"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--background)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-1px)"; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--card)"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--foreground)"; (e.currentTarget as HTMLAnchorElement).style.transform = ""; }}
+                      >
+                        <Github size={16} strokeWidth={2.5} /> Code
+                      </a>
+                    )}
                     {liveHref && (
                       <a
                         href={liveHref}
