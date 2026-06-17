@@ -129,7 +129,7 @@ export default function Projects() {
                       style={{
                         objectFit: "contain",
                         objectPosition: "center",
-                        transform: isUserManagement ? "scale(1.04)" : isMobile ? "scale(0.9)" : "scale(0.94)",
+                        transform: isBookingSystem ? "scale(1.12)" : isUserManagement ? "scale(1.08)" : isMobile ? "scale(0.98)" : "scale(1.02)",
                       }}
                     />
                   ) : (
