@@ -20,6 +20,7 @@
   --hover-primary:    #9A0F42;
   --hover-secondary:  #4F8698;
   --hover-accent:     #B85E24;
+  --hero-back-transform: translateY(36px) scale(1.06);
 
   --radius-sm:        8px;
   --radius-md:        16px;
@@ -61,6 +62,7 @@
   --hover-primary:    #E84B84;
   --hover-secondary:  #9AD0DF;
   --hover-accent:     #FFA96A;
+  --hero-back-transform: translateY(36px) scale(1.06);
 
   --color-bg:         #000000;
   --color-bg-alt:     #111111;
@@ -306,12 +308,18 @@ code, pre, .mono {
   border-radius: 10px;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
+.field-input:hover,
 .field-input:focus {
-  border-color: var(--accent);
-  box-shadow: 4px 4px 0px var(--accent);
+  border-color: #629FB1;
+  box-shadow: none;
+}
+
+.field-input:focus-visible {
+  outline: none;
+  border-color: #629FB1;
 }
 
 /* Pill badge */
@@ -413,6 +421,47 @@ code, pre, .mono {
   outline-offset: 3px;
 }
 
+.hero-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  background: var(--card);
+  color: var(--foreground);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border: 2px solid var(--foreground);
+  cursor: pointer;
+  box-shadow: var(--shadow-pop);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.hero-action-primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.hero-action-secondary {
+  background: var(--tertiary);
+  color: var(--foreground);
+}
+
+.hero-action-btn:hover {
+  background: #FFFFFF;
+  color: #000000;
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-pop-hover);
+}
+
+.hero-action-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-pop-sm);
+}
+
 /* Section padding */
 .section {
   padding: 96px 0;
@@ -495,7 +544,7 @@ section[id] {
 }
 
 .section-title-accent {
-  color: var(--accent);
+  color: var(--foreground);
 }
 
 /* Divider */
@@ -599,6 +648,10 @@ section[id] {
 
 /* Mobile */
 @media (max-width: 768px) {
+  :root {
+    --hero-back-transform: translateY(24px) scale(1.22);
+  }
+
   .section { padding: 64px 0; }
   h1 { font-size: clamp(2.2rem, 9vw, 5rem); }
 

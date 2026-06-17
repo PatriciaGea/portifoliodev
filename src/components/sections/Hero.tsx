@@ -88,7 +88,7 @@ export default function Hero() {
           alt="Patricia Gea portrait back"
           fill
           sizes="(max-width: 768px) 60vw, 360px"
-          style={{ objectFit: "cover", objectPosition: "center bottom", transform: "translateY(36px) scale(1.06)", transformOrigin: "center bottom" }}
+          style={{ objectFit: "cover", objectPosition: "center bottom", transform: "var(--hero-back-transform)", transformOrigin: "center bottom" }}
         />
       </div>
     </div>
@@ -199,10 +199,10 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="hero-cta-row" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 20, marginBottom: 40 }}>
-              <a href="#projects" className="btn-primary">
+              <a href="#projects" className="hero-action-btn hero-action-primary">
                 View My Work
               </a>
-              <a href="/CVPatriciaDeveloper.pdf" download className="btn-outline btn-cv">
+              <a href="/CVPatriciaDeveloper.pdf" download className="hero-action-btn hero-action-secondary">
                 Download CV
               </a>
             </div>

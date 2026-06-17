@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ExternalLink, Github, ArrowRight, ChevronRight } from "lucide-react";
 import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
 
-const filterColors: Record<string, string> = { All: "var(--accent)", Mobile: "var(--foreground)", Frontend: "var(--foreground)", Fullstack: "var(--foreground)" };
+const filterColors: Record<string, string> = { All: "var(--foreground)", Mobile: "var(--foreground)", Frontend: "var(--foreground)", Fullstack: "var(--foreground)" };
 const cardShadowColors = ["var(--foreground)", "var(--foreground)", "var(--foreground)", "var(--foreground)"];
 
 export default function Projects() {
@@ -31,7 +31,7 @@ export default function Projects() {
             {/* Filter buttons — pill group */}
             <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 8 }}>
               {(["All", "Mobile", "Frontend", "Fullstack"] as Filter[]).map((f) => {
-                const color = filterColors[f] ?? "var(--accent)";
+                const color = filterColors[f] ?? "var(--foreground)";
                 const active = filter === f;
                 return (
                   <button
@@ -68,6 +68,7 @@ export default function Projects() {
             });
             const liveHref = (project.live && project.live.trim()) ? project.live : project.image ? project.image : null;
             const isBookingSystem = project.title === "Booking System with Login";
+            const isUserManagement = project.title === "User Management System";
             const imageSrc = isBookingSystem ? bookingImages[bookingImageIndex] : project.image;
             return (
               <article
@@ -103,7 +104,7 @@ export default function Projects() {
                       style={{
                         objectFit: "contain",
                         objectPosition: "center",
-                        transform: isMobile ? "scale(0.9)" : "scale(0.94)",
+                        transform: isUserManagement ? "scale(1.04)" : isMobile ? "scale(0.9)" : "scale(0.94)",
                       }}
                     />
                   ) : (
