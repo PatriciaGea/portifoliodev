@@ -2,15 +2,13 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useTheme } from "next-themes";
 import { navItems, siteConfig } from "@/lib/portfolio-data";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("#home");
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -19,7 +17,11 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setMounted(true);
+    const savedTheme = window.localStorage.getItem("theme");
+    const shouldUseDark = savedTheme === "dark" || document.documentElement.classList.contains("dark");
+
+    document.documentElement.classList.toggle("dark", shouldUseDark);
+    setIsDark(shouldUseDark);
   }, []);
 
   // Track active section
@@ -43,8 +45,15 @@ export default function Navbar() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   }, []);
 
+  const toggleTheme = useCallback(() => {
+    const nextIsDark = !isDark;
+
+    document.documentElement.classList.toggle("dark", nextIsDark);
+    window.localStorage.setItem("theme", nextIsDark ? "dark" : "light");
+    setIsDark(nextIsDark);
+  }, [isDark]);
+
   const accentColors = ["var(--accent)", "var(--accent)", "var(--accent)", "var(--accent)", "var(--accent)"];
-  const isDark = mounted && theme === "dark";
 
   return (
     <>
@@ -122,7 +131,7 @@ export default function Navbar() {
             </div>
 
             <button
-              onClick={() => setTheme(isDark ? "light" : "dark")}
+              onClick={toggleTheme}
               style={{
                 width: 42,
                 height: 42,

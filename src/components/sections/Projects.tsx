@@ -17,7 +17,7 @@ export default function Projects() {
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
   const bookingImages = ["/images/bookingsystem.webp", "/images/bookingsystem1.webp", "/images/bookingsystem2.webp", "/images/bookingsystem3.webp"];
   const plantImages = ["/images/gifplant.gif", "/images/screenshotplant.png"];
-  const sailorJerryImages = ["/images/sailor1.gif", "/images/sailor2.webp"];
+  const sailorJerryImages = ["/images/IMG_3367.gif", "/images/sailor2.webp"];
 
   return (
     <section id="projects" className="section" style={{ background: "var(--background)" }}>
@@ -74,7 +74,7 @@ export default function Projects() {
             const liveHref = (project.live && project.live.trim()) ? project.live : project.image ? project.image : null;
             const isBookingSystem = project.title === "Booking System with Login";
             const isPlantLovers = project.title === "Plant Lovers App";
-            const isSailorJerry = project.title === "Sailor Jerry VR 3D Experience";
+            const isSailorJerry = project.title === "Web XR VR 3D Experience";
             const isUserManagement = project.title === "User Management System";
             const carouselImages = isBookingSystem ? bookingImages : isPlantLovers ? plantImages : isSailorJerry ? sailorJerryImages : null;
             const imageSrc = isBookingSystem

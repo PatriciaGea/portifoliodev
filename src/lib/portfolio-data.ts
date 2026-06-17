@@ -205,7 +205,7 @@ export const projects: Project[] = [
     image: "/images/site3.webp",
   },
   {
-    title: "Sailor Jerry VR 3D Experience",
+    title: "Web XR VR 3D Experience",
     description:
       "Immersive WebXR experience exploring the legacy of Sailor Jerry and the evolution of tattoo technology through an interactive virtual showroom. Designed to connect documentary storytelling, tattoo culture, and emerging 3D web technologies.",
     tech: ["A-Frame", "WebXR", "JavaScript", "HTML & CSS", "Meshy AI", "ChatGPT"],
@@ -216,7 +216,7 @@ export const projects: Project[] = [
     categoryLabel: "VR / WebXR",
     accent: "#629FB1",
     emoji: "⚓",
-    image: "/images/sailor1.gif",
+    image: "/images/IMG_3367.gif",
   },
 ];
 
