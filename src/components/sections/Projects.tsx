@@ -5,8 +5,8 @@ import { useState } from "react";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { Filter, projects, siteConfig } from "@/lib/portfolio-data";
 
-const filterColors: Record<string, string> = { All: "#8B5CF6", Mobile: "#06B6D4", Frontend: "#F472B6", Fullstack: "#34D399" };
-const cardShadowColors = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
+const filterColors: Record<string, string> = { All: "var(--accent)", Mobile: "var(--foreground)", Frontend: "var(--foreground)", Fullstack: "var(--foreground)" };
+const cardShadowColors = ["var(--foreground)", "var(--foreground)", "var(--foreground)", "var(--foreground)"];
 
 export default function Projects() {
   const [filter, setFilter] = useState<Filter>("All");
@@ -14,7 +14,7 @@ export default function Projects() {
   const filtered = projects.filter((p) => filter === "All" || p.category === filter);
 
   return (
-    <section id="projects" className="section" style={{ background: "#FFFDF5" }}>
+    <section id="projects" className="section" style={{ background: "var(--background)" }}>
       <div className="container">
         <div style={{ marginBottom: 48, textAlign: "center" }}>
           <div className="section-heading-row" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}>
@@ -29,7 +29,7 @@ export default function Projects() {
             {/* Filter buttons — pill group */}
             <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 8 }}>
               {(["All", "Mobile", "Frontend", "Fullstack"] as Filter[]).map((f) => {
-                const color = filterColors[f] ?? "#8B5CF6";
+                const color = filterColors[f] ?? "var(--accent)";
                 const active = filter === f;
                 return (
                   <button
@@ -40,12 +40,12 @@ export default function Projects() {
                       borderRadius: 9999,
                       border: `2px solid ${color}`,
                       background: active ? color : "transparent",
-                      color: active ? "#fff" : "#1E293B",
+                      color: active ? "var(--accent-fg)" : "var(--foreground)",
                       fontFamily: "'Outfit', system-ui, sans-serif",
                       fontWeight: 700,
                       fontSize: "0.78rem",
                       cursor: "pointer",
-                      boxShadow: active ? `3px 3px 0px #1E293B` : "none",
+                      boxShadow: active ? "3px 3px 0px var(--foreground)" : "none",
                       transition: "all 0.2s ease",
                     }}
                   >
@@ -57,7 +57,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))", gap: 48 }}>
           {filtered.map((project, i) => {
             const shadowColor = cardShadowColors[i % cardShadowColors.length];
             const isMobile = project.category === "Mobile" || project.tech.some((t) => {
@@ -70,20 +70,20 @@ export default function Projects() {
                 key={project.title}
                 className="project-card"
                 style={{
-                  background: "#fff",
-                  border: "2px solid #1E293B",
+                  background: "var(--card)",
+                  border: "2px solid var(--foreground)",
                   borderRadius: 16,
                   overflow: "hidden",
                   boxShadow: `6px 6px 0px ${shadowColor}`,
                   transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "rotate(-0.8deg) scale(1.02)"; (e.currentTarget as HTMLElement).style.boxShadow = `8px 8px 0px ${shadowColor}`; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "scale(1.02)"; (e.currentTarget as HTMLElement).style.boxShadow = `8px 8px 0px ${shadowColor}`; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = ""; (e.currentTarget as HTMLElement).style.boxShadow = `6px 6px 0px ${shadowColor}`; }}
               >
                 {/* Image area */}
                 <div style={{
-                  height: 180,
-                  background: `${shadowColor}18`,
+                  height: 260,
+                  background: "#000000",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -95,70 +95,35 @@ export default function Projects() {
                       src={project.image}
                       alt={`${project.title} preview`}
                       fill
-                      sizes="(max-width: 768px) 100vw, 340px"
-                      style={{ objectFit: "contain", objectPosition: "center" }}
+                      sizes="(max-width: 768px) 100vw, 520px"
+                      style={{
+                        objectFit: isMobile ? "contain" : "cover",
+                        objectPosition: "center",
+                        transform: isMobile ? "scale(0.9)" : "scale(0.96)",
+                      }}
                     />
                   ) : (
-                    <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "#475569" }}>
+                    <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "var(--muted-foreground)" }}>
                       Preview unavailable
                     </span>
                   )}
-                  {/* Overlay */}
-                  <div className="project-overlay">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        width: 48, height: 48,
-                        borderRadius: "50%",
-                        border: "2px solid #fff",
-                        background: "rgba(255,255,255,0.15)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        color: "#fff", textDecoration: "none",
-                        backdropFilter: "blur(4px)",
-                      }}
-                      aria-label="GitHub"
-                    >
-                      <Github size={18} strokeWidth={2.5} />
-                    </a>
-                    {liveHref && (
-                      <a
-                        href={liveHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          width: 48, height: 48,
-                          borderRadius: "50%",
-                          border: "2px solid #fff",
-                          background: "rgba(255,255,255,0.15)",
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          color: "#fff", textDecoration: "none",
-                          backdropFilter: "blur(4px)",
-                        }}
-                        aria-label="Live"
-                      >
-                        <ExternalLink size={18} strokeWidth={2.5} />
-                      </a>
-                    )}
-                  </div>
                 </div>
 
                 {/* Content */}
-                <div style={{ padding: "20px 20px 16px" }}>
+                <div style={{ padding: "24px 24px 20px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                       {isMobile && (
                         <Image src="/images/android_logo.webp" alt="Android" width={40} height={40} style={{ display: "block" }} />
                       )}
-                      <h3 style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "1.05rem", fontWeight: 800, color: "#1E293B", margin: 0 }}>{project.title}</h3>
+                      <h3 className="project-title-accent" style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "1.18rem", fontWeight: 800, margin: 0 }}>{project.title}</h3>
                     </div>
                     <span style={{
                       padding: "3px 12px",
                       borderRadius: 9999,
-                      background: `${shadowColor}22`,
+                      background: "var(--card)",
                       border: `2px solid ${shadowColor}`,
-                      color: "#1E293B",
+                      color: "var(--foreground)",
                       fontFamily: "'Outfit', system-ui, sans-serif",
                       fontSize: "0.62rem",
                       fontWeight: 700,
@@ -170,7 +135,7 @@ export default function Projects() {
                     </span>
                   </div>
 
-                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.875rem", color: "#64748B", lineHeight: 1.7, marginBottom: 14 }}>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.875rem", color: "var(--muted-foreground)", lineHeight: 1.7, marginBottom: 14 }}>
                     {project.description}
                   </p>
 
@@ -182,12 +147,12 @@ export default function Projects() {
                         style={{
                           padding: "3px 10px",
                           borderRadius: 9999,
-                          background: "#F1F5F9",
-                          border: "1px solid #E2E8F0",
+                          background: "var(--muted)",
+                          border: "1px solid var(--border)",
                           fontFamily: "'Outfit', system-ui, sans-serif",
                           fontSize: "0.67rem",
                           fontWeight: 600,
-                          color: "#64748B",
+                          color: "var(--muted-foreground)",
                         }}
                       >
                         {t}
@@ -196,14 +161,14 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div style={{ display: "flex", gap: 12, paddingTop: 12, borderTop: "1px solid #E2E8F0" }}>
+                  <div style={{ display: "flex", gap: 12, paddingTop: 12, borderTop: "1px solid var(--border)" }}>
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "#64748B", textDecoration: "none", transition: "color 0.2s" }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#8B5CF6")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#64748B")}
+                      style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "var(--muted-foreground)", textDecoration: "none", transition: "color 0.2s" }}
+                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)")}
+                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")}
                     >
                       <Github size={13} strokeWidth={2.5} /> Code
                     </a>
@@ -212,9 +177,9 @@ export default function Projects() {
                         href={liveHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "#64748B", textDecoration: "none", transition: "color 0.2s" }}
-                        onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#8B5CF6")}
-                        onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#64748B")}
+                        style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.74rem", color: "var(--muted-foreground)", textDecoration: "none", transition: "color 0.2s" }}
+                        onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)")}
+                        onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "var(--muted-foreground)")}
                       >
                         <ExternalLink size={13} strokeWidth={2.5} /> Live
                       </a>

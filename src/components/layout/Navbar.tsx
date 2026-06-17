@@ -36,7 +36,7 @@ export default function Navbar() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  const accentColors = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399", "#8B5CF6"];
+  const accentColors = ["var(--accent)", "var(--accent)", "var(--accent)", "var(--accent)", "var(--accent)"];
 
   return (
     <>
@@ -47,11 +47,11 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          background: scrolled ? "rgba(255,253,245,0.95)" : "transparent",
+          background: scrolled ? "var(--nav-bg)" : "transparent",
           backdropFilter: scrolled ? "blur(12px)" : "none",
-          borderBottom: scrolled ? "2px solid #E2E8F0" : "none",
+          borderBottom: scrolled ? "2px solid var(--border)" : "none",
           transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
-          boxShadow: scrolled ? "0 4px 0px #E2E8F0" : "none",
+          boxShadow: scrolled ? "0 2px 0px var(--border)" : "none",
         }}
       >
         <nav style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -61,9 +61,9 @@ export default function Navbar() {
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: 4 }}
             aria-label="Go to top"
           >
-            <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.2rem", color: "#1E293B", letterSpacing: "-0.02em" }}>
+            <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.2rem", color: "var(--foreground)", letterSpacing: "-0.02em" }}>
               {siteConfig.displayName}
-              <span style={{ color: "#8B5CF6" }}>.</span>
+              <span style={{ color: "var(--accent)" }}>.</span>
             </span>
           </button>
 
@@ -85,13 +85,13 @@ export default function Navbar() {
                       fontFamily: "'Outfit', system-ui, sans-serif",
                       fontWeight: 700,
                       fontSize: "0.82rem",
-                      color: isActive ? color : "#1E293B",
+                      color: isActive ? color : "var(--foreground)",
                       position: "relative",
                       transition: "color 0.2s",
                       letterSpacing: "0.02em",
                     }}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = color; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = isActive ? color : "#1E293B"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = isActive ? color : "var(--foreground)"; }}
                     aria-label={`Navigate to ${item.label}`}
                   >
                     {item.label}
@@ -119,20 +119,20 @@ export default function Navbar() {
               style={{
                 padding: "9px 22px",
                 borderRadius: 9999,
-                border: "2px solid #1E293B",
-                background: "#8B5CF6",
-                color: "#fff",
+                border: "2px solid var(--foreground)",
+                background: "var(--accent)",
+                color: "var(--accent-fg)",
                 fontFamily: "'Outfit', system-ui, sans-serif",
                 fontWeight: 800,
                 fontSize: "0.82rem",
                 cursor: "pointer",
-                boxShadow: "3px 3px 0px #1E293B",
+                boxShadow: "3px 3px 0px var(--foreground)",
                 transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
                 letterSpacing: "0.02em",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translate(-2px,-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "5px 5px 0px #1E293B"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = ""; (e.currentTarget as HTMLButtonElement).style.boxShadow = "3px 3px 0px #1E293B"; }}
-              onMouseDown={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translate(1px,1px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "1px 1px 0px #1E293B"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translate(-2px,-2px)"; (e.currentTarget as HTMLButtonElement).style.background = "var(--hover-primary)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "5px 5px 0px var(--foreground)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = ""; (e.currentTarget as HTMLButtonElement).style.background = "var(--accent)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "3px 3px 0px var(--foreground)"; }}
+              onMouseDown={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translate(1px,1px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "1px 1px 0px var(--foreground)"; }}
             >
               Contact
             </button>
@@ -141,7 +141,7 @@ export default function Navbar() {
             <button
               className="mobile-menu-btn"
               onClick={() => setMenuOpen((o) => !o)}
-              style={{ background: "none", border: "2px solid #1E293B", borderRadius: 8, padding: "6px", cursor: "pointer", marginLeft: 8, display: "none", color: "#1E293B" }}
+              style={{ background: "none", border: "2px solid var(--foreground)", borderRadius: 8, padding: "6px", cursor: "pointer", marginLeft: 8, display: "none", color: "var(--foreground)" }}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
             >
@@ -158,18 +158,18 @@ export default function Navbar() {
             position: "fixed",
             inset: 0,
             zIndex: 999,
-            background: "#FFFDF5",
+            background: "var(--background)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             gap: 20,
-            borderBottom: "2px solid #E2E8F0",
+            borderBottom: "2px solid var(--border)",
           }}
         >
           <button
             onClick={() => setMenuOpen(false)}
-            style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", cursor: "pointer", color: "#1E293B" }}
+            style={{ position: "absolute", top: 20, right: 24, background: "none", border: "none", cursor: "pointer", color: "var(--foreground)" }}
             aria-label="Close menu"
           >
             <X size={28} strokeWidth={2.5} />

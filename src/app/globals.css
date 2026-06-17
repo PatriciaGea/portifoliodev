@@ -5,18 +5,21 @@
 @tailwind utilities;
 
 :root {
-  --background:       #FFFDF5;
-  --foreground:       #1E293B;
-  --muted:            #F1F5F9;
-  --muted-foreground: #64748B;
-  --accent:           #8B5CF6;
+  --background:       #FFFFFF;
+  --foreground:       #000000;
+  --muted:            #FFF9EA;
+  --muted-foreground: #333333;
+  --accent:           #B9124F;
   --accent-fg:        #FFFFFF;
-  --secondary:        #F472B6;
-  --tertiary:         #FBBF24;
-  --quaternary:       #34D399;
-  --border:           #E2E8F0;
+  --secondary:        #629FB1;
+  --tertiary:         #D3712F;
+  --quaternary:       #629FB1;
+  --border:           #000000;
   --card:             #FFFFFF;
-  --ring:             #8B5CF6;
+  --ring:             #B9124F;
+  --hover-primary:    #9A0F42;
+  --hover-secondary:  #4F8698;
+  --hover-accent:     #B85E24;
 
   --radius-sm:        8px;
   --radius-md:        16px;
@@ -25,21 +28,54 @@
   --border-w:         2px;
 
   /* Legacy aliases for inline styles */
-  --color-bg:         #FFFDF5;
-  --color-bg-alt:     #F1F5F9;
+  --color-bg:         #FFFFFF;
+  --color-bg-alt:     #FAFAFA;
   --color-surface:    #FFFFFF;
-  --color-surface-alt:#F1F5F9;
-  --color-border:     #E2E8F0;
-  --color-text:       #1E293B;
-  --color-text-muted: #64748B;
-  --color-text-faint: #94A3B8;
-  --nav-bg:           rgba(255,253,245,0.96);
+  --color-surface-alt:#FAFAFA;
+  --color-border:     #000000;
+  --color-text:       #000000;
+  --color-text-muted: #333333;
+  --color-text-faint: #555555;
+  --nav-bg:           rgba(255,255,255,0.96);
 
   /* Hard shadow */
-  --shadow-pop:       4px 4px 0px 0px #1E293B;
-  --shadow-pop-hover: 6px 6px 0px 0px #1E293B;
-  --shadow-pop-sm:    2px 2px 0px 0px #1E293B;
-  --shadow-sticker:   8px 8px 0px 0px #E2E8F0;
+  --shadow-pop:       4px 4px 0px 0px #000000;
+  --shadow-pop-hover: 6px 6px 0px 0px #000000;
+  --shadow-pop-sm:    2px 2px 0px 0px #000000;
+  --shadow-sticker:   6px 6px 0px 0px #000000;
+}
+
+.dark {
+  --background:       #000000;
+  --foreground:       #FFFFFF;
+  --muted:            #111111;
+  --muted-foreground: #E8E8E8;
+  --accent:           #D83A74;
+  --accent-fg:        #FFFFFF;
+  --secondary:        #7FBFD1;
+  --tertiary:         #F0914E;
+  --quaternary:       #7FBFD1;
+  --border:           #FFFFFF;
+  --card:             #111111;
+  --ring:             #D83A74;
+  --hover-primary:    #E84B84;
+  --hover-secondary:  #9AD0DF;
+  --hover-accent:     #FFA96A;
+
+  --color-bg:         #000000;
+  --color-bg-alt:     #111111;
+  --color-surface:    #111111;
+  --color-surface-alt:#111111;
+  --color-border:     #FFFFFF;
+  --color-text:       #FFFFFF;
+  --color-text-muted: #E8E8E8;
+  --color-text-faint: #BDBDBD;
+  --nav-bg:           rgba(0,0,0,0.96);
+
+  --shadow-pop:       4px 4px 0px 0px #FFFFFF;
+  --shadow-pop-hover: 6px 6px 0px 0px #FFFFFF;
+  --shadow-pop-sm:    2px 2px 0px 0px #FFFFFF;
+  --shadow-sticker:   6px 6px 0px 0px #FFFFFF;
 }
 
 * {
@@ -207,7 +243,7 @@ code, pre, .mono {
 }
 
 .card:hover {
-  transform: rotate(-1deg) scale(1.02);
+  transform: scale(1.02);
   box-shadow: var(--shadow-pop-hover);
 }
 
@@ -262,7 +298,7 @@ code, pre, .mono {
   font-size: 0.9rem;
   color: var(--foreground);
   background: var(--background);
-  border: var(--border-w) solid #CBD5E1;
+  border: var(--border-w) solid var(--border);
   border-radius: 10px;
   outline: none;
   box-sizing: border-box;
@@ -459,22 +495,19 @@ section[id] {
   margin: 16px 0;
 }
 
-/* Project image overlay */
-.project-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(139,92,246,0.88);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  border-radius: 12px 12px 0 0;
+.project-title-accent {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease, letter-spacing 0.2s ease;
 }
 
-.project-card:hover .project-overlay {
-  opacity: 1;
+.project-card:hover .project-title-accent {
+  color: var(--accent);
+  text-decoration-color: var(--tertiary);
+  letter-spacing: 0.01em;
 }
 
 /* Nav link */
@@ -656,7 +689,7 @@ section[id] {
   .contact-form-card {
     padding: 24px 18px !important;
     border-radius: 16px !important;
-    box-shadow: 4px 4px 0px #8B5CF6 !important;
+    box-shadow: 4px 4px 0px var(--accent) !important;
   }
 
   .field-input {

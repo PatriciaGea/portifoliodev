@@ -3,7 +3,7 @@
 import { Github, Linkedin, Mail, Globe } from "lucide-react";
 import { siteConfig, socialLinks } from "@/lib/portfolio-data";
 
-const socialColors = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
+const socialColors = ["var(--foreground)", "var(--foreground)", "var(--foreground)", "var(--foreground)"];
 
 const socialIconByType = { github: Github, linkedin: Linkedin, email: Mail, website: Globe } as const;
 const mainSocialLinks = socialLinks.filter((s) => ["github", "linkedin", "email"].includes(s.type));
@@ -19,8 +19,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "#1E293B",
-        borderTop: "3px solid #1E293B",
+        background: "var(--color-surface-alt)",
+        borderTop: "3px solid var(--foreground)",
         padding: "48px 24px 32px",
         position: "relative",
         overflow: "hidden",
@@ -34,9 +34,9 @@ export default function Footer() {
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
             aria-label="Go to top"
           >
-            <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.4rem", color: "#fff", letterSpacing: "-0.02em" }}>
+            <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.4rem", color: "var(--foreground)", letterSpacing: "-0.02em" }}>
               {siteConfig.displayName}
-              <span style={{ color: "#8B5CF6" }}>.</span>
+              <span style={{ color: "var(--accent)" }}>.</span>
             </span>
           </button>
 
@@ -56,9 +56,9 @@ export default function Footer() {
                     width: 44, height: 44,
                     borderRadius: "50%",
                     border: `2px solid ${color}`,
-                    background: `${color}18`,
+                    background: "var(--card)",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#fff",
+                    color: "var(--foreground)",
                     boxShadow: `3px 3px 0px ${color}`,
                     transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
                     textDecoration: "none",
@@ -74,14 +74,14 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: 2, background: "linear-gradient(90deg, #8B5CF6, #F472B6, #FBBF24, #34D399)", borderRadius: 2, marginBottom: 24, opacity: 0.4 }} />
+        <div style={{ height: 2, background: "var(--border)", borderRadius: 2, marginBottom: 24, opacity: 0.35 }} />
 
         {/* Bottom row */}
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
-          <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.8rem", color: "#94A3B8" }}>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.8rem", color: "var(--muted-foreground)" }}>
             &copy; {year} {siteConfig.name}. All rights reserved.
           </p>
-          <p style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.8rem", color: "#94A3B8" }}>
+          <p style={{ display: "flex", alignItems: "center", gap: 5, fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.8rem", color: "var(--muted-foreground)" }}>
             Made with Next.js &amp; TypeScript
           </p>
         </div>

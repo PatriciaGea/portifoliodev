@@ -2,11 +2,11 @@
 
 import { techCloud } from "@/lib/portfolio-data";
 
-const pillColors = ["#000000", "#000000", "#000000", "#000000"];
+const pillColors = ["var(--foreground)", "var(--foreground)", "var(--foreground)", "var(--foreground)"];
 
 export default function TechStack() {
   return (
-    <section id="stack" className="section" style={{ background: "#F1F5F9" }}>
+    <section id="stack" className="section" style={{ background: "var(--color-surface-alt)" }}>
       <div className="container">
 
         {/* HEADER */}
@@ -34,7 +34,7 @@ export default function TechStack() {
                     fontWeight: 700,
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    color: "#64748B",
+                    color: "var(--muted-foreground)",
                     marginBottom: 12,
                     textAlign: "center",
                   }}
@@ -62,9 +62,9 @@ export default function TechStack() {
                         fontFamily: "'Outfit', system-ui, sans-serif",
                         fontSize: "0.82rem",
                         fontWeight: 700,
-                        background: "#fff",
+                        background: "var(--card)",
                         border: `2px solid ${color}`,
-                        color: "#1E293B",
+                        color: "var(--foreground)",
                         boxShadow: `3px 3px 0px ${color}`,
                         cursor: "default",
                         transition: "transform 0.25s ease, box-shadow 0.25s ease",

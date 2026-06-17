@@ -6,10 +6,10 @@ import { Mail, MessageSquare, User, Send, MapPin, Github, Linkedin, Globe } from
 import { siteConfig, socialLinks } from "@/lib/portfolio-data";
 
 const infoCards = [
-  { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}`, color: "#8B5CF6" },
-  { icon: MapPin, label: "Location", value: siteConfig.location, href: undefined, color: "#F472B6" },
-  { icon: Github, label: "GitHub", value: "github.com/PatriciaGea", href: siteConfig.github, color: "#FBBF24" },
-  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/patriciageadev", href: siteConfig.linkedin, color: "#34D399" },
+  { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}`, color: "var(--foreground)" },
+  { icon: MapPin, label: "Location", value: siteConfig.location, href: undefined, color: "var(--foreground)" },
+  { icon: Github, label: "GitHub", value: "github.com/PatriciaGea", href: siteConfig.github, color: "var(--foreground)" },
+  { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/patriciageadev", href: siteConfig.linkedin, color: "var(--foreground)" },
 ];
 
 const socialIconByType = { github: Github, linkedin: Linkedin, email: Mail, website: Globe } as const;
@@ -76,13 +76,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section" style={{ background: "#F1F5F9" }}>
+    <section id="contact" className="section" style={{ background: "var(--color-surface-alt)" }}>
       <div className="container">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <p className="section-label">05 - Contact</p>
           <h2 className="section-title">Let&apos;s <span className="section-title-accent">work together</span></h2>
           <div className="divider" style={{ margin: "16px auto" }} />
-          <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "#64748B", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "var(--muted-foreground)", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>
             Do you have a project in mind? Feel free to reach out. I look forward to hearing from you.
           </p>
         </div>
@@ -93,17 +93,17 @@ export default function Contact() {
             {infoCards.map(({ icon: Icon, label, value, href, color }) => (
               <div
                 key={label}
-                style={{ display: "flex", alignItems: "center", gap: 14, padding: "16px 18px", background: "#fff", border: "2px solid #1E293B", borderRadius: 14, boxShadow: `4px 4px 0px ${color}`, transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s", cursor: href ? "pointer" : "default" }}
+                style={{ display: "flex", alignItems: "center", gap: 14, padding: "16px 18px", background: "var(--card)", border: "2px solid var(--foreground)", borderRadius: 14, boxShadow: `4px 4px 0px ${color}`, transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s", cursor: href ? "pointer" : "default" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translate(-2px,-2px)"; (e.currentTarget as HTMLElement).style.boxShadow = `6px 6px 0px ${color}`; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = ""; (e.currentTarget as HTMLElement).style.boxShadow = `4px 4px 0px ${color}`; }}
                 onClick={() => href && window.open(href, "_blank", "noopener,noreferrer")}
               >
-                <div style={{ width: 42, height: 42, borderRadius: "50%", background: `${color}18`, border: `2px solid ${color}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <div style={{ width: 42, height: 42, borderRadius: "50%", background: "var(--color-surface-alt)", border: `2px solid ${color}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <Icon size={18} strokeWidth={2.5} style={{ color }} />
                 </div>
                 <div>
-                  <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#94A3B8", marginBottom: 2 }}>{label}</p>
-                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.85rem", fontWeight: 600, color: "#1E293B" }}>{value}</p>
+                  <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--color-text-faint)", marginBottom: 2 }}>{label}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.85rem", fontWeight: 600, color: "var(--foreground)" }}>{value}</p>
                 </div>
               </div>
             ))}
@@ -121,14 +121,14 @@ export default function Contact() {
           </div>
 
           {/* Form card */}
-          <div className="contact-form-card" style={{ background: "#fff", border: "2px solid #1E293B", borderRadius: 20, boxShadow: "6px 6px 0px #8B5CF6", padding: "32px 28px" }}>
+          <div className="contact-form-card" style={{ background: "var(--card)", border: "2px solid var(--foreground)", borderRadius: 20, boxShadow: "6px 6px 0px var(--foreground)", padding: "32px 28px" }}>
             {status === "success" ? (
               <div style={{ textAlign: "center", padding: "40px 0" }}>
-                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "#34D39918", border: "2px solid #34D399", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-                  <Send size={24} strokeWidth={2.5} style={{ color: "#34D399" }} />
+                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "var(--color-surface-alt)", border: "2px solid var(--foreground)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
+                  <Send size={24} strokeWidth={2.5} style={{ color: "var(--foreground)" }} />
                 </div>
-                <h3 style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.1rem", marginBottom: 8, color: "#1E293B" }}>Message sent!</h3>
-                <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "#64748B", fontSize: "0.9rem" }}>I&apos;ll get back to you soon.</p>
+                <h3 style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "1.1rem", marginBottom: 8, color: "var(--foreground)" }}>Message sent!</h3>
+                <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", color: "var(--muted-foreground)", fontSize: "0.9rem" }}>I&apos;ll get back to you soon.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 20 }}>

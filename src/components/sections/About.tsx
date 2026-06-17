@@ -23,11 +23,11 @@ const infoCards = [
   { title: "Interests", subtitle: "Music · Art · Illustration · Coding", details: "Creative problem solving", icon: "palette" },
 ] as const;
 
-const cardAccents = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
+const cardAccents = ["var(--foreground)", "var(--foreground)", "var(--foreground)", "var(--foreground)"];
 
 export default function About() {
   return (
-    <section id="about" className="section" style={{ background: "#F1F5F9" }}>
+    <section id="about" className="section" style={{ background: "var(--color-surface-alt)" }}>
       <div className="container">
         <div className="section-heading-block" style={{ textAlign: "center" }}>
           <p className="section-label">01 — About</p>
@@ -42,25 +42,25 @@ export default function About() {
 
             {/* Profile card — Sticker */}
             <div style={{
-              background: "#fff",
-              border: "2px solid #1E293B",
+              background: "var(--card)",
+              border: "2px solid var(--foreground)",
               borderRadius: 20,
-              boxShadow: "6px 6px 0px #F472B6",
+              boxShadow: "6px 6px 0px var(--foreground)",
               width: "100%",
               maxWidth: 360,
               padding: "24px 20px",
               textAlign: "center",
               transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
             }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "rotate(-1deg) scale(1.02)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "8px 8px 0px #F472B6"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "6px 6px 0px #F472B6"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "scale(1.02)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "8px 8px 0px var(--foreground)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = ""; (e.currentTarget as HTMLDivElement).style.boxShadow = "6px 6px 0px var(--foreground)"; }}
             >
               <div style={{
                 width: 76, height: 76,
                 borderRadius: "50%",
-                border: "2px solid #1E293B",
+                border: "2px solid var(--foreground)",
                 margin: "0 auto 12px",
-                background: "#fff",
+                backgroundColor: "#FFFFFF",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -72,15 +72,15 @@ export default function About() {
                   alt="Patrícia Gea"
                   fill
                   sizes="76px"
-                  style={{ objectFit: "cover", objectPosition: "center bottom", transform: "translateY(6px) scale(0.96)" }}
+                  style={{ objectFit: "contain", objectPosition: "center bottom", transform: "translateY(6px) scale(0.82)" }}
                   priority
                 />
               </div>
-              <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "0.95rem", marginBottom: 4, color: "#1E293B" }}>
+              <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 800, fontSize: "0.95rem", marginBottom: 4, color: "var(--foreground)" }}>
                 Patrícia Gea Rodrigues
               </p>
-              <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.85rem", color: "#64748B", fontWeight: 500 }}>
-                Frontend Developer with Product & UX Background
+              <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.85rem", color: "var(--muted-foreground)", fontWeight: 500 }}>
+                Mobile - Frontend Developer with Product & UX Background
               </p>
             </div>
 
@@ -91,24 +91,24 @@ export default function About() {
                 const accent = cardAccents[i % cardAccents.length];
                 return (
                   <div key={label} className="card" style={{ padding: "16px 14px" }}>
-                    <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${accent}22`, border: `2px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                    <div style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--color-surface-alt)", border: `2px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
                       <Icon size={14} strokeWidth={2.5} style={{ color: accent }} />
                     </div>
-                    <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "#1E293B" }}>{label}</p>
-                    <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.72rem", color: "#64748B" }}>{sub}</p>
+                    <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "var(--foreground)" }}>{label}</p>
+                    <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.72rem", color: "var(--muted-foreground)" }}>{sub}</p>
                   </div>
                 );
               })}
 
               <div className="card" style={{ padding: "16px 14px" }}>
-                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#8B5CF622", border: "2px solid #8B5CF6", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
-                  <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "#8B5CF6", fontFamily: "Outfit, system-ui, sans-serif" }}>AB</span>
+                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--color-surface-alt)", border: "2px solid var(--foreground)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                  <span style={{ fontSize: "0.75rem", fontWeight: 800, color: "var(--foreground)", fontFamily: "Outfit, system-ui, sans-serif" }}>AB</span>
                 </div>
-                <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 8, color: "#1E293B" }}>Languages</p>
+                <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 8, color: "var(--foreground)" }}>Languages</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-start" }}>
                 {(languages ?? []).map(({ name, level }) => (
-                  <p key={name} style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.72rem", color: "#64748B", margin: 0 }}>
-                    {name} <span style={{ color: "#8B5CF6", fontWeight: 600 }}>({level})</span>
+                  <p key={name} style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.72rem", color: "var(--muted-foreground)", margin: 0 }}>
+                    {name} <span style={{ color: "var(--foreground)", fontWeight: 600 }}>({level})</span>
                   </p>
                 ))}
               </div>
@@ -120,22 +120,22 @@ export default function About() {
                     const Icon = infoIconByKey[card.icon];
                     const accent = cardAccents[(i + 1) % cardAccents.length];
                     return (
-                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${accent}22`, border: `2px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                      <div style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--color-surface-alt)", border: `2px solid ${accent}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
                         <Icon size={14} strokeWidth={2.5} style={{ color: accent }} />
                       </div>
                     );
                   })()}
-                  <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "#1E293B" }}>{card.title}</p>
-                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.74rem", color: "#64748B", marginBottom: 2 }}>{card.subtitle}</p>
-                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.67rem", color: "#94A3B8" }}>{card.details}</p>
+                  <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 3, color: "var(--foreground)" }}>{card.title}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.74rem", color: "var(--muted-foreground)", marginBottom: 2 }}>{card.subtitle}</p>
+                  <p style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.67rem", color: "var(--color-text-faint)" }}>{card.details}</p>
                 </div>
               ))}
 
               <div className="card" style={{ padding: "16px 14px" }}>
-                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#F472B622", border: "2px solid #F472B6", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
-                  <Instagram size={14} strokeWidth={2.5} style={{ color: "#F472B6" }} />
+                <div style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--color-surface-alt)", border: "2px solid var(--foreground)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }}>
+                  <Instagram size={14} strokeWidth={2.5} style={{ color: "var(--foreground)" }} />
                 </div>
-                <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 10, color: "#1E293B" }}>Instagram</p>
+                <p style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontWeight: 700, fontSize: "0.82rem", marginBottom: 10, color: "var(--foreground)" }}>Instagram</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                   {[
                     { href: "https://www.instagram.com/tattooink.se", label: "Studio Stockholm Sweden", meta: "2018–2025" },
@@ -144,8 +144,8 @@ export default function About() {
                   ].map(({ href, label, meta }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                       style={{ textDecoration: "none", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.76rem", color: "#1E293B", fontWeight: 600 }}>{label}</span>
-                      <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.65rem", color: "#94A3B8", marginLeft: 8 }}>{meta}</span>
+                      <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontSize: "0.76rem", color: "var(--foreground)", fontWeight: 600 }}>{label}</span>
+                      <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.65rem", color: "var(--color-text-faint)", marginLeft: 8 }}>{meta}</span>
                     </a>
                   ))}
                 </div>

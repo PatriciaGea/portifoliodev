@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Frontend and Fullstack Developer portfolio built with Next.js and TypeScript.",
     start_url: "/",
     display: "standalone",
-    background_color: "#fcfbfd",
-    theme_color: "#5170ff",
+    background_color: "#FFFFFF",
+    theme_color: "#B9124F",
     lang: "en",
   };
 }

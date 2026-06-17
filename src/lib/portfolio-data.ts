@@ -84,7 +84,7 @@ export const aboutHighlights = [
 export const techCloud = [
   {
     title: "Mobile",
-    items: ["Kotlin", "Android Studio", "Jetpack Compose", "Material 3", "Intents (ACTION_VIEW, ACTION_DIAL)"]
+    items: ["Kotlin", "Android Studio", "Jetpack Compose"]
   },
   {
     title: "Frontend",
@@ -120,7 +120,7 @@ export const projects: Project[] = [
     github: "https://github.com/PatriciaGea/BusinessCardPatriciaGea",
     live: "",
     category: "Mobile",
-    accent: "#5170ff",
+    accent: "#629FB1",
     emoji: "📱",
     image: "/images/screenshotandroidcard.png",
   },
@@ -140,7 +140,7 @@ export const projects: Project[] = [
     github: "https://github.com/PatriciaGea/AppAndroid.git",
     live: "",
     category: "Mobile",
-    accent: "#F472B6",
+    accent: "#B9124F",
     emoji: "✨",
     image: "/images/gifapp.gif",
   },
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     github: "https://github.com/PatriciaGea/BookingSystem.git",
     live: "https://patriciagea.github.io/BookingSystem/",
     category: "Fullstack",
-    accent: "#5170ff",
+    accent: "#629FB1",
     emoji: "🖋️",
     image: "/images/bookingsystem.webp",
   },
@@ -166,7 +166,7 @@ export const projects: Project[] = [
     github: "https://github.com/PatriciaGea/portifoliodev.git",
     live: "https://patriciageadev.vercel.app/",
     category: "Frontend",
-    accent: "#ff66c4",
+    accent: "#B9124F",
     emoji: "🎨",
     image: "/images/site2.webp",
   },
@@ -186,7 +186,7 @@ export const projects: Project[] = [
     github: "https://github.com/PatriciaGea/React_Javascript_Api.git",
     live: "https://patriciagea.github.io/React_Javascript_Api/",
     category: "Fullstack",
-    accent: "#791919",
+    accent: "#D3712F",
     emoji: "✅",
     image: "/images/site3.webp",
   },

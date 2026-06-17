@@ -16,9 +16,9 @@ export default function Hero() {
       className="animate-rotate-image hero-portrait"
       style={{
         borderRadius: "50%",
-        border: "2px solid #1E293B",
-        background: "#fff",
-        boxShadow: "8px 8px 0px 0px #1E293B",
+        border: "2px solid var(--foreground)",
+        backgroundColor: "#FFFFFF",
+        boxShadow: "8px 8px 0px 0px var(--foreground)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -34,6 +34,7 @@ export default function Hero() {
           borderRadius: "50%",
           overflow: "hidden",
           position: "relative",
+          backgroundColor: "#FFFFFF",
         }}
       >
         <Image
@@ -57,6 +58,7 @@ export default function Hero() {
           justifyContent: "center",
           transform: "rotateY(180deg)",
           backfaceVisibility: "hidden",
+          backgroundColor: "#FFFFFF",
         }}
       >
         <Image
@@ -79,7 +81,7 @@ export default function Hero() {
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
-        background: "#FFFDF5",
+        background: "var(--background)",
       }}
     >
       
@@ -95,14 +97,14 @@ export default function Hero() {
               alignItems: "center",
               gap: 8,
               marginBottom: 28,
-              background: "#34D399",
-              border: "2px solid #1E293B",
+              background: "var(--card)",
+              border: "2px solid var(--foreground)",
               borderRadius: 9999,
               padding: "6px 14px",
-              boxShadow: "3px 3px 0px #1E293B",
+              boxShadow: "3px 3px 0px var(--foreground)",
             }}>
-              <span style={{ width: 7, height: 7, background: "#1E293B", borderRadius: "50%", display: "inline-block" }} />
-              <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.62rem", fontWeight: 700, color: "#1E293B", letterSpacing: "0.04em" }}>
+              <span style={{ width: 7, height: 7, background: "var(--foreground)", borderRadius: "50%", display: "inline-block" }} />
+              <span style={{ fontFamily: "'Outfit', system-ui, sans-serif", fontSize: "0.62rem", fontWeight: 700, color: "var(--foreground)", letterSpacing: "0.04em" }}>
                 Available for project inquiries & quotes worldwide
               </span>
             </div>
@@ -116,16 +118,16 @@ export default function Hero() {
                 fontWeight: 800,
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
-                color: "#1E293B",
+                color: "var(--foreground)",
                 marginBottom: 12,
                 whiteSpace: "nowrap",
               }}
             >
                 Mobile / Frontend{" "}
                 <span style={{
-                  color: "#8B5CF6",
+                  color: "var(--accent)",
                   textDecoration: "underline",
-                  textDecorationColor: "#FBBF24",
+                  textDecorationColor: "var(--foreground)",
                   textDecorationStyle: "wavy",
                   textDecorationThickness: "4px",
                   textUnderlineOffset: "6px",
@@ -136,7 +138,7 @@ export default function Hero() {
             <p className="hero-tagline" style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: "clamp(1rem, 2vw, 1.15rem)",
-              color: "#64748B",
+              color: "var(--muted-foreground)",
               maxWidth: 520,
               marginBottom: 8,
               lineHeight: 1.6,
@@ -147,7 +149,7 @@ export default function Hero() {
             <p className="hero-location" style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: "clamp(0.75rem, 1vw, 0.8125rem)",
-              color: "#7d858f",
+              color: "var(--color-text-faint)",
               maxWidth: 520,
               marginBottom: 28,
               lineHeight: 1.6,
@@ -165,18 +167,18 @@ export default function Hero() {
             <p style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: "1.05rem",
-              color: "#64748B",
+              color: "var(--muted-foreground)",
               maxWidth: 540,
               marginBottom: 12,
               lineHeight: 1.8,
               fontWeight: 400,
             }}>
-              <strong style={{ color: "#1E293B", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong>, a Mobile and Frontend Developer with 17 years of previous experience as a business owner, where I built and scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people.
+              <strong style={{ color: "var(--foreground)", fontWeight: 700 }}>Hi, I&apos;m Patricia Gea</strong>, a Mobile and Frontend Developer with 17 years of previous experience as a business owner, where I built and scaled 3 tattoo studios across Brazil and Sweden with a team of 20 people.
             </p>
             <p style={{
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: "1.05rem",
-              color: "#64748B",
+              color: "var(--muted-foreground)",
               maxWidth: 540,
               marginTop: 8,
               marginBottom: 20,
@@ -214,30 +216,30 @@ export default function Hero() {
                       style={{
                         width: 44, height: 44,
                         borderRadius: "50%",
-                        border: "2px solid #1E293B",
-                        background: "#fff",
-                        boxShadow: "3px 3px 0px #1E293B",
+                        border: "2px solid var(--foreground)",
+                        background: "var(--card)",
+                        boxShadow: "3px 3px 0px var(--foreground)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        color: "#1E293B",
+                        color: "var(--foreground)",
                         textDecoration: "none",
                         transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.56,0.64,1)",
                       }}
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLAnchorElement).style.transform = "translate(-2px,-2px) rotate(5deg)";
-                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "5px 5px 0px #1E293B";
+                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "5px 5px 0px var(--foreground)";
                       }}
                       onMouseLeave={(e) => {
                         (e.currentTarget as HTMLAnchorElement).style.transform = "";
-                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "3px 3px 0px #1E293B";
+                        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "3px 3px 0px var(--foreground)";
                       }}
                     >
                       <Icon size={18} strokeWidth={2.5} />
                     </a>
                   );
                 })}
-              <div style={{ width: 1, height: 20, background: "#CBD5E1", marginLeft: 4 }} />
+              <div style={{ width: 1, height: 20, background: "var(--border)", marginLeft: 4 }} />
             </div>
           </div>
 
