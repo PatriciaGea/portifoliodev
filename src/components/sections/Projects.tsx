@@ -210,12 +210,12 @@ export default function Projects() {
                       <span
                         key={t}
                         style={{
-                          padding: "3px 10px",
+                          padding: "4px 12px",
                           borderRadius: 9999,
                           background: "var(--muted)",
                           border: "1px solid var(--border)",
                           fontFamily: "'Outfit', system-ui, sans-serif",
-                          fontSize: "0.67rem",
+                          fontSize: "0.76rem",
                           fontWeight: 600,
                           color: "var(--muted-foreground)",
                         }}
