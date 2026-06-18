@@ -13,7 +13,7 @@ export default function TechStack() {
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <p className="section-label">02 — Skills</p>
           <h2 className="section-title">
-            My <span className="section-title-accent">Toolkit</span>
+            My <span className="section-title-accent">Tools</span>
           </h2>
           <div className="divider" style={{ margin: "16px auto" }} />
         </div>
