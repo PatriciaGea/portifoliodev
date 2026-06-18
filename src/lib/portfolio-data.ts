@@ -211,7 +211,7 @@ export const projects: Project[] = [
     tech: ["A-Frame", "WebXR", "JavaScript", "HTML & CSS", "Meshy AI", "ChatGPT"],
     features: ["Interactive virtual showroom", "3D tattoo machines", "Documentary storytelling", "WebXR experience"],
     github: "https://github.com/PatriciaGea/TattooMachineShowRoom",
-    live: "https://patriciagea.github.io/TattooMachineShowRoom/",
+    live: "https://patriciagea.github.io/tattoo-machine-showroom/",
     category: "Frontend",
     categoryLabel: "VR / WebXR",
     accent: "#629FB1",
